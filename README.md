@@ -51,8 +51,8 @@ compiled Tailwind, compressed assets, real scroll-spy navigation, and accessible
 ## Running locally
 
 ```bash
-git clone https://github.com/panvenaidu/portfolio.git
-cd portfolio
+git clone https://github.com/panvenaidu/Portfolio.git
+cd Portfolio
 python3 -m http.server 8000   # then open http://localhost:8000
 ```
 
