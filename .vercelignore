@@ -1,0 +1,18 @@
+# Build tooling — styles.css is compiled locally and shipped, so Vercel
+# serves pure static output and never needs to run a build.
+node_modules
+package.json
+package-lock.json
+tailwind.config.js
+src
+
+# Local/editor cruft
+.DS_Store
+
+# Stitch export artifacts and the uncompressed original, not part of the site
+screen.png
+DESIGN.md
+profile.png
+
+# Exact duplicates of certificates already shipped (identical md5)
+Certs/*copy*
