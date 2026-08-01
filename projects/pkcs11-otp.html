@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PKCS#11 OTP Authentication | Panvee Naidu</title>
+<meta content="A hotel booking application on Apache, PHP and MySQL, with one-time-password authentication backed by a hardware security module through the PKCS#11 standard and SoftHSM." name="description"/>
+<meta content="Panvee Naidu" name="author"/>
+<meta content="PKCS#11 OTP Authentication | Panvee Naidu" property="og:title"/>
+<meta content="A hotel booking application on Apache, PHP and MySQL, with one-time-password authentication backed by a hardware security module through the PKCS#11 standard and SoftHSM." property="og:description"/>
+<meta content="https://panveedev.vercel.app/og.png" property="og:image"/>
+<meta content="website" property="og:type"/>
+<link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23000'/%3E%3Ctext x='32' y='44' font-family='ui-monospace,Menlo,monospace' font-size='30' font-weight='700' fill='%23fff' text-anchor='middle'%3EPN%3C/text%3E%3C/svg%3E" rel="icon" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Hanken+Grotesk:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="../styles.css" rel="stylesheet"/>
+<link href="case.css" rel="stylesheet"/>
+</head>
+<body class="font-body-md antialiased">
+<header class="sticky top-0 z-50 bg-background border-b-2 border-primary">
+<div class="max-w-5xl mx-auto px-stack-lg py-stack-md flex items-center justify-between gap-stack-md">
+<a class="font-label-sm text-label-sm text-primary hover:underline inline-flex items-center gap-1" href="../index.html#projects"><span class="material-symbols-outlined text-[16px]">arrow_back</span>FEATURED WORK</a>
+<a class="font-label-sm text-label-sm text-primary hover:underline" href="../index.html">PANVEE NAIDU</a>
+</div>
+</header>
+
+<main class="max-w-5xl mx-auto px-stack-lg py-section-gap flex flex-col gap-section-gap">
+
+<section>
+<div class="inline-flex items-center gap-2 border border-primary px-stack-sm py-1 mb-stack-md font-label-sm text-label-sm text-primary">APPLIED CRYPTOGRAPHY</div>
+<h1 class="font-headline-xl-mobile md:font-headline-xl text-headline-xl-mobile md:text-headline-xl text-primary mb-stack-md">PKCS#11 OTP Authentication</h1>
+<p class="font-body-lg text-body-lg text-secondary border-l-2 border-primary pl-stack-md mb-stack-lg max-w-3xl">A working hotel booking site whose login is protected by one-time passwords generated inside a hardware security token rather than by application code &mdash; so the signing key never exists in the web server&rsquo;s memory.</p>
+<div class="flex flex-wrap gap-stack-sm">
+<a class="font-label-sm text-label-sm border border-primary px-stack-sm py-2 bg-primary text-on-primary hover:bg-white hover:text-primary transition-colors inline-flex items-center gap-1" href="https://github.com/panvenaidu/pkcs11-otp-authentication" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px]">link</span>Source</a>
+</div>
+</section>
+
+<section class="border-2 border-primary bg-white p-stack-lg grid grid-cols-2 md:grid-cols-4 gap-stack-lg">
+<div><p class="font-label-sm text-label-sm text-secondary mb-1">STANDARD</p><p class="font-label-md text-label-md text-primary">PKCS#11</p></div>
+<div><p class="font-label-sm text-label-sm text-secondary mb-1">TOKEN</p><p class="font-label-md text-label-md text-primary">SoftHSM</p></div>
+<div><p class="font-label-sm text-label-sm text-secondary mb-1">STACK</p><p class="font-label-md text-label-md text-primary">Apache / PHP / MySQL</p></div>
+<div><p class="font-label-sm text-label-sm text-secondary mb-1">APP</p><p class="font-label-md text-label-md text-primary">18 PHP files</p></div>
+</section>
+
+<section class="case-section" id="overview">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary border-b-2 border-primary pb-stack-sm mb-stack-lg">Overview</h2>
+<div class="flex flex-col gap-stack-md max-w-3xl">
+<p class="font-body-md text-body-md text-secondary">The visible half is a complete booking application: room listings and detail pages, a booking flow with confirmation, user profiles, contact and facilities pages, PDF generation for confirmations, and a MySQL schema shipped as <span class="font-mono text-primary">pkhotels.sql</span>.</p>
+<p class="font-body-md text-body-md text-secondary">The interesting half is the authentication. Instead of computing a one-time password in PHP, the application delegates generation and verification to a cryptographic token accessed through PKCS#11 &mdash; the same interface used to talk to smart cards and real hardware security modules. SoftHSM provides that token in software so the design can be built and tested without buying hardware.</p>
+</div>
+</section>
+
+<section class="case-section" id="problem">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary border-b-2 border-primary pb-stack-sm mb-stack-lg">The Problem</h2>
+<div class="flex flex-col gap-stack-md max-w-3xl">
+<p class="font-body-md text-body-md text-secondary">Passwords alone are weak, so a second factor is standard. But bolting a one-time password onto a web app usually moves the problem rather than solving it: the secret used to derive the codes ends up sitting in application config or the database, where anything that can read the filesystem can read it too.</p>
+<p class="font-body-md text-body-md text-secondary">If an attacker gets that seed, they can mint valid codes forever and the second factor is worthless. The requirement was therefore not "add an OTP" but "add an OTP whose key the web application itself is never allowed to see".</p>
+</div>
+</section>
+
+<section class="case-section" id="approach">
+<div class="stack" data-stack>
+<div class="stack-track" data-track>
+<div class="stack-vp" data-vp>
+<div class="stack-head">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Approach</h2>
+<div class="stack-counter stack-ticks" data-ticks aria-hidden="true"></div>
+</div>
+<div class="stack-cards" data-cards>
+
+<article class="stack-card" data-card>
+<p class="font-label-sm text-label-sm text-secondary mb-stack-sm">STEP 01</p>
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Put the key somewhere the app cannot read it</h3>
+<p class="font-body-md text-body-md text-secondary">A PKCS#11 token holds the key material and exposes operations, not secrets. The application asks the token to produce or verify a one-time password; the key stays inside and is never returned. Compromising the PHP layer therefore does not hand over the ability to forge codes indefinitely.</p>
+</article>
+
+<article class="stack-card" data-card>
+<p class="font-label-sm text-label-sm text-secondary mb-stack-sm">STEP 02</p>
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Use SoftHSM as the token</h3>
+<p class="font-body-md text-body-md text-secondary">SoftHSM implements the PKCS#11 interface in software. It behaves like a hardware module &mdash; slots, tokens, PINs, objects &mdash; so the integration is written against the real standard. Swapping in physical hardware later is a configuration change rather than a rewrite.</p>
+</article>
+
+<article class="stack-card" data-card>
+<p class="font-label-sm text-label-sm text-secondary mb-stack-sm">STEP 03</p>
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Initialise slot, token and PINs deliberately</h3>
+<p class="font-body-md text-body-md text-secondary">The token has to be initialised before anything works: a slot is configured, the token labelled, and a user PIN and security-officer PIN set. These are setup steps with security consequences, not boilerplate, so they are documented rather than scripted away.</p>
+</article>
+
+<article class="stack-card" data-card>
+<p class="font-label-sm text-label-sm text-secondary mb-stack-sm">STEP 04</p>
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Control access at the operating-system level</h3>
+<p class="font-body-md text-body-md text-secondary">Apache runs as its own unprivileged user, which by default cannot reach the HSM device files. Access is granted by placing that user in a specific group rather than loosening permissions globally &mdash; the web server gets exactly the access it needs and nothing more.</p>
+</article>
+
+<article class="stack-card" data-card>
+<p class="font-label-sm text-label-sm text-secondary mb-stack-sm">STEP 05</p>
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Deliver the code out of band</h3>
+<p class="font-body-md text-body-md text-secondary">The generated password is emailed to the user through SMTP, with the mail credentials supplied by an untracked environment file. The code travels over a channel separate from the browser session, which is the point of a second factor.</p>
+</article>
+
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="case-section" id="challenges">
+<div class="stack" data-stack>
+<div class="stack-track" data-track>
+<div class="stack-vp" data-vp>
+<div class="stack-head">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Challenges</h2>
+<div class="stack-counter stack-ticks" data-ticks aria-hidden="true"></div>
+</div>
+<div class="stack-cards" data-cards>
+
+<article class="stack-card" data-card>
+<p class="font-label-sm text-label-sm text-secondary mb-stack-sm">01</p>
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-md">The PKCS#11 helper programs are not in this repository</h3>
+<p class="font-body-md text-body-md text-secondary">The setup guide includes a step to compile the PKCS#11 programs, but those C sources are not part of the published repository &mdash; what is here is the PHP application, the schema, and the installation guide. Anyone cloning it gets a working booking site and the documented HSM procedure, not a one-command build of the cryptographic layer. This is the honest state of the project and the first thing worth fixing.</p>
+</article>
+
+<article class="stack-card" data-card>
+<p class="font-label-sm text-label-sm text-secondary mb-stack-sm">02</p>
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Permissions are where HSM integrations actually fail</h3>
+<p class="font-body-md text-body-md text-secondary">Most of the difficulty was not cryptographic. The token is visible to the shell user who created it and invisible to the Apache user, so the code works when tested from a terminal and fails silently through the browser. Getting group ownership and slot configuration right &mdash; and understanding why it failed &mdash; was the bulk of the work.</p>
+</article>
+
+<article class="stack-card" data-card>
+<p class="font-label-sm text-label-sm text-secondary mb-stack-sm">03</p>
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-md">A setup with many moving parts needs real documentation</h3>
+<p class="font-body-md text-body-md text-secondary">SoftHSM, Apache, PHP, MySQL, token initialisation, group permissions and SMTP all have to line up before a single login succeeds, and any one of them failing looks identical from the browser. A step-by-step installation guide ships with the repository because without it the project is not reproducible &mdash; and a project nobody else can run is not finished.</p>
+</article>
+
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="case-section" id="results">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary border-b-2 border-primary pb-stack-sm mb-stack-lg">Result</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="border border-primary p-stack-md bg-surface-container-low transition-colors hover:bg-white hover:border-2">
+<h3 class="font-label-md text-label-md text-primary border-b border-gray-light pb-stack-sm mb-stack-sm">What works</h3>
+<ul class="flex flex-col gap-stack-sm">
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Full booking flow with confirmation and PDF</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">OTP generated and verified inside the token</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Key material never enters PHP memory</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Documented, reproducible setup procedure</li>
+</ul>
+</div>
+<div class="border border-primary p-stack-md bg-surface-container-low transition-colors hover:bg-white hover:border-2">
+<h3 class="font-label-md text-label-md text-primary border-b border-gray-light pb-stack-sm mb-stack-sm">Known limitations</h3>
+<ul class="flex flex-col gap-stack-sm">
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">PKCS#11 helper sources not in the repository</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">SoftHSM is a software token, not real hardware</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">No TLS configured in the shipped setup</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Single-server design; no key backup or rotation</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="case-section" id="stack">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary border-b-2 border-primary pb-stack-sm mb-stack-lg">Stack</h2>
+<div class="flex flex-wrap gap-stack-sm">
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">C</span>
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">PKCS#11</span>
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">SoftHSM</span>
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">PHP</span>
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">MySQL</span>
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">Apache</span>
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">SMTP</span>
+</div>
+</section>
+
+<section class="border-t-2 border-primary pt-stack-lg flex flex-wrap gap-stack-md justify-between items-center">
+<a class="font-label-md text-label-md text-primary hover:underline inline-flex items-center gap-1" href="../index.html#projects"><span class="material-symbols-outlined text-[16px]">arrow_back</span>All work</a>
+<a class="font-label-md text-label-md px-stack-lg py-stack-md bg-primary text-on-primary border-2 border-primary hover:bg-white hover:text-primary transition-colors" href="../index.html#contact">Get in touch</a>
+</section>
+
+</main>
+<script src="case.js"></script>
+</body></html>

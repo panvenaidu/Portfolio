@@ -1,0 +1,60 @@
+/* Shared styles for the project case-study pages.
+   styles.css is Tailwind-generated — put hand-written rules here, not there. */
+
+::selection { background-color: #000; color: #fff; }
+body { background-color: #f9f9f9; color: #1a1c1c; }
+.case-section { scroll-margin-top: 90px; }
+
+/* Status dot in the page badge */
+.status-dot {
+    width: 8px; height: 8px;
+    background-color: #1a1c1c;
+    border-radius: 9999px;
+    display: inline-block;
+}
+@media (prefers-reduced-motion: no-preference) {
+    .status-dot { animation: statuspulse 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    @keyframes statuspulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+}
+
+/* ---- Scroll-stacked cards -------------------------------------------------
+   Default (no JS, reduced motion, or narrow screens): a plain vertical list.
+   .is-stacked is added by case.js only when stacking is safe.               */
+.stack-card {
+    border: 2px solid #1a1c1c;
+    background: #fff;
+    padding: 32px;
+}
+.stack-cards > .stack-card + .stack-card { margin-top: 24px; }
+
+.stack-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    border-bottom: 2px solid #1a1c1c;
+    padding-bottom: 8px;
+    margin-bottom: 32px;
+}
+.stack-counter { opacity: 0; transition: opacity .3s ease; }
+.is-stacked .stack-counter { opacity: 1; }
+
+.is-stacked .stack-vp { position: sticky; }
+.is-stacked .stack-cards { position: relative; }
+.is-stacked .stack-card {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    margin-top: 0;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+}
+
+/* Progress ticks */
+.stack-ticks { display: flex; gap: 6px; }
+.stack-tick {
+    width: 22px; height: 2px;
+    background: #1a1c1c;
+    opacity: .18;
+    transition: opacity .3s ease;
+}
+.stack-tick.is-on { opacity: 1; }

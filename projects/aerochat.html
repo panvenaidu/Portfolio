@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AeroChat | Panvee Naidu</title>
+<meta content="A containerisation mini project: a four-service chat stack orchestrated with Docker Compose on an isolated bridge network, with a named volume, env-file configuration and a Makefile lifecycle." name="description"/>
+<meta content="Panvee Naidu" name="author"/>
+<meta content="AeroChat | Panvee Naidu" property="og:title"/>
+<meta content="A containerisation mini project: a four-service chat stack orchestrated with Docker Compose on an isolated bridge network, with a named volume, env-file configuration and a Makefile lifecycle." property="og:description"/>
+<meta content="https://panveedev.vercel.app/og.png" property="og:image"/>
+<meta content="website" property="og:type"/>
+<link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23000'/%3E%3Ctext x='32' y='44' font-family='ui-monospace,Menlo,monospace' font-size='30' font-weight='700' fill='%23fff' text-anchor='middle'%3EPN%3C/text%3E%3C/svg%3E" rel="icon" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Hanken+Grotesk:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="../styles.css" rel="stylesheet"/>
+<link href="case.css" rel="stylesheet"/>
+</head>
+<body class="font-body-md antialiased">
+<header class="sticky top-0 z-50 bg-background border-b-2 border-primary">
+<div class="max-w-5xl mx-auto px-stack-lg py-stack-md flex items-center justify-between gap-stack-md">
+<a class="font-label-sm text-label-sm text-primary hover:underline inline-flex items-center gap-1" href="../index.html#projects"><span class="material-symbols-outlined text-[16px]">arrow_back</span>FEATURED WORK</a>
+<a class="font-label-sm text-label-sm text-primary hover:underline" href="../index.html">PANVEE NAIDU</a>
+</div>
+</header>
+
+<main class="max-w-5xl mx-auto px-stack-lg py-section-gap flex flex-col gap-section-gap">
+
+<section>
+<div class="inline-flex items-center gap-2 border border-primary px-stack-sm py-1 mb-stack-md font-label-sm text-label-sm text-primary">COURSEWORK MINI PROJECT</div>
+<h1 class="font-headline-xl-mobile md:font-headline-xl text-headline-xl-mobile md:text-headline-xl text-primary mb-stack-md">AeroChat</h1>
+<p class="font-body-lg text-body-lg text-secondary border-l-2 border-primary pl-stack-md mb-stack-lg max-w-3xl">A containerisation exercise set by our professor &mdash; the brief was Docker and containers, not the application. The repository publishes the orchestration layer: four services wired together with Docker Compose, on an isolated network, run with one command.</p>
+<div class="flex flex-wrap gap-stack-sm">
+<a class="font-label-sm text-label-sm border border-primary px-stack-sm py-2 bg-primary text-on-primary hover:bg-white hover:text-primary transition-colors inline-flex items-center gap-1" href="https://github.com/panvenaidu/aero-chat-realtime" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px]">link</span>Source</a>
+</div>
+</section>
+
+<section class="border-2 border-primary bg-white p-stack-lg grid grid-cols-2 md:grid-cols-4 gap-stack-lg">
+<div><p class="font-label-sm text-label-sm text-secondary mb-1">SCOPE</p><p class="font-label-md text-label-md text-primary">Docker &amp; containers</p></div>
+<div><p class="font-label-sm text-label-sm text-secondary mb-1">SERVICES</p><p class="font-label-md text-label-md text-primary">4 containers</p></div>
+<div><p class="font-label-sm text-label-sm text-secondary mb-1">NETWORK</p><p class="font-label-md text-label-md text-primary">1 bridge</p></div>
+<div><p class="font-label-sm text-label-sm text-secondary mb-1">RUNS</p><p class="font-label-md text-label-md text-primary">Locally only</p></div>
+</section>
+
+<section class="case-section" id="overview">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary border-b-2 border-primary pb-stack-sm mb-stack-lg">Overview</h2>
+<div class="flex flex-col gap-stack-md max-w-3xl">
+<p class="font-body-md text-body-md text-secondary">The assignment was about container orchestration, so that is what this repository contains: a <span class="font-mono text-primary">docker-compose.yml</span> that brings up a chat application as four cooperating containers, a <span class="font-mono text-primary">Makefile</span> wrapping the lifecycle, a deploy script, and an example environment file.</p>
+<p class="font-body-md text-body-md text-secondary">The application source itself is kept private and is not published here, and nothing is hosted &mdash; the stack runs on a local machine and nowhere else. What is on show is the infrastructure definition, which is what the exercise was marked on.</p>
+</div>
+</section>
+
+<section class="case-section" id="problem">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary border-b-2 border-primary pb-stack-sm mb-stack-lg">The Problem</h2>
+<div class="flex flex-col gap-stack-md max-w-3xl">
+<p class="font-body-md text-body-md text-secondary">A web application that needs a database and a cache is four moving parts, not one. Running them by hand means installing PostgreSQL and Redis locally, starting each in the right order, remembering the connection strings, and hoping the next machine is configured identically.</p>
+<p class="font-body-md text-body-md text-secondary">The classic failure is "works on my machine": versions drift, a service is missing, or a port collides. Containers exist to make that reproducible &mdash; the same declaration produces the same stack anywhere Docker runs.</p>
+</div>
+</section>
+
+<section class="case-section" id="approach">
+<div class="stack" data-stack>
+<div class="stack-track" data-track>
+<div class="stack-vp" data-vp>
+<div class="stack-head">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Approach</h2>
+<div class="stack-counter stack-ticks" data-ticks aria-hidden="true"></div>
+</div>
+<div class="stack-cards" data-cards>
+
+<article class="stack-card" data-card>
+<p class="font-label-sm text-label-sm text-secondary mb-stack-sm">STEP 01</p>
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Declare the whole stack in one file</h3>
+<p class="font-body-md text-body-md text-secondary">Four services are defined together: a React frontend on port 3000, a Node backend on 5000, <span class="font-mono text-primary">postgres:15</span> and <span class="font-mono text-primary">redis:7</span>. Two are built from local Dockerfiles, two are pulled as pinned upstream images, so nothing depends on what happens to be installed on the host.</p>
+</article>
+
+<article class="stack-card" data-card>
+<p class="font-label-sm text-label-sm text-secondary mb-stack-sm">STEP 02</p>
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Give them a private network</h3>
+<p class="font-body-md text-body-md text-secondary">All four join a single <span class="font-mono text-primary">app-net</span> bridge network. Containers reach each other by service name &mdash; the backend connects to <span class="font-mono text-primary">redis://redis:6379</span>, not to an IP &mdash; and only the ports deliberately published are reachable from outside. The database and cache are never exposed to the host at all.</p>
+</article>
+
+<article class="stack-card" data-card>
+<p class="font-label-sm text-label-sm text-secondary mb-stack-sm">STEP 03</p>
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Make the data outlive the container</h3>
+<p class="font-body-md text-body-md text-secondary">Containers are disposable; the database must not be. A named volume, <span class="font-mono text-primary">chat_pgdata</span>, is mounted at the PostgreSQL data directory so a rebuild or restart keeps existing data. Wiping it is a separate, explicit action.</p>
+</article>
+
+<article class="stack-card" data-card>
+<p class="font-label-sm text-label-sm text-secondary mb-stack-sm">STEP 04</p>
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Keep configuration out of the image</h3>
+<p class="font-body-md text-body-md text-secondary">Credentials and connection strings come from an <span class="font-mono text-primary">env_file</span> at run time rather than being baked into a layer. An <span class="font-mono text-primary">.env.example</span> is committed so anyone can see which variables are required, while the real <span class="font-mono text-primary">.env</span> stays out of version control.</p>
+</article>
+
+<article class="stack-card" data-card>
+<p class="font-label-sm text-label-sm text-secondary mb-stack-sm">STEP 05</p>
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Reduce it to one command</h3>
+<p class="font-body-md text-body-md text-secondary">A <span class="font-mono text-primary">Makefile</span> wraps the day-to-day operations &mdash; <span class="font-mono text-primary">make up</span> builds and starts everything detached, with <span class="font-mono text-primary">ps</span>, <span class="font-mono text-primary">logs</span> and <span class="font-mono text-primary">down</span> for inspection and teardown. A <span class="font-mono text-primary">deploy.sh</span> script does the same for anyone who would rather not use Make.</p>
+</article>
+
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="case-section" id="challenges">
+<div class="stack" data-stack>
+<div class="stack-track" data-track>
+<div class="stack-vp" data-vp>
+<div class="stack-head">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Challenges</h2>
+<div class="stack-counter stack-ticks" data-ticks aria-hidden="true"></div>
+</div>
+<div class="stack-cards" data-cards>
+
+<article class="stack-card" data-card>
+<p class="font-label-sm text-label-sm text-secondary mb-stack-sm">01</p>
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Startup order is not readiness</h3>
+<p class="font-body-md text-body-md text-secondary"><span class="font-mono text-primary">depends_on</span> controls the order containers are <em>started</em>, not whether the service inside is ready to accept connections. PostgreSQL takes a moment to initialise, so a backend that connects immediately can fail against a container that is technically already running. The backend exposes a health-check endpoint so readiness can be observed rather than assumed; a proper fix is a health-check condition or a retrying connection.</p>
+</article>
+
+<article class="stack-card" data-card>
+<p class="font-label-sm text-label-sm text-secondary mb-stack-sm">02</p>
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Secrets in a public repository</h3>
+<p class="font-body-md text-body-md text-secondary">The setup notes carry a default database password so the stack runs out of the box. That is a real hazard once a repository is public &mdash; a default that is never changed is the same as no password. The committed file is an example rather than the live configuration, and the correct habit is to generate credentials per environment and keep them only in the untracked <span class="font-mono text-primary">.env</span>.</p>
+</article>
+
+<article class="stack-card" data-card>
+<p class="font-label-sm text-label-sm text-secondary mb-stack-sm">03</p>
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Clean teardown versus keeping data</h3>
+<p class="font-body-md text-body-md text-secondary">Stopping the stack and destroying it are different intentions and needed different commands, because conflating them loses the database by accident. <span class="font-mono text-primary">make down</span> stops the containers and leaves the volume; only <span class="font-mono text-primary">make clean</span> removes the volume with it.</p>
+</article>
+
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="case-section" id="results">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary border-b-2 border-primary pb-stack-sm mb-stack-lg">Result</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="border border-primary p-stack-md bg-surface-container-low transition-colors hover:bg-white hover:border-2">
+<h3 class="font-label-md text-label-md text-primary border-b border-gray-light pb-stack-sm mb-stack-sm">What works</h3>
+<ul class="flex flex-col gap-stack-sm">
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">One command brings up all four services</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Service-name networking, no hardcoded IPs</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Database survives restarts and rebuilds</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Configuration by environment file</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Pinned upstream image versions</li>
+</ul>
+</div>
+<div class="border border-primary p-stack-md bg-surface-container-low transition-colors hover:bg-white hover:border-2">
+<h3 class="font-label-md text-label-md text-primary border-b border-gray-light pb-stack-sm mb-stack-sm">Known limitations</h3>
+<ul class="flex flex-col gap-stack-sm">
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Application source is private, not in the repo</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Local only &mdash; nothing is deployed or hosted</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">No TLS; ports are plain HTTP</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Startup ordering has no readiness gate</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="case-section" id="stack">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary border-b-2 border-primary pb-stack-sm mb-stack-lg">Stack</h2>
+<div class="flex flex-wrap gap-stack-sm">
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">Docker</span>
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">Docker Compose</span>
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">PostgreSQL 15</span>
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">Redis 7</span>
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">Makefile</span>
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">Bash</span>
+</div>
+</section>
+
+<section class="border-t-2 border-primary pt-stack-lg flex flex-wrap gap-stack-md justify-between items-center">
+<a class="font-label-md text-label-md text-primary hover:underline inline-flex items-center gap-1" href="../index.html#projects"><span class="material-symbols-outlined text-[16px]">arrow_back</span>All work</a>
+<a class="font-label-md text-label-md px-stack-lg py-stack-md bg-primary text-on-primary border-2 border-primary hover:bg-white hover:text-primary transition-colors" href="../index.html#contact">Get in touch</a>
+</section>
+
+</main>
+<script src="case.js"></script>
+</body></html>

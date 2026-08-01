@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Smart Home Automation | Panvee Naidu</title>
+<meta content="A distributed IoT platform built across three decoupled Python processes communicating over MQTT, with a multi-threaded REST API, natural-language command parsing and live energy monitoring." name="description"/>
+<meta content="Panvee Naidu" name="author"/>
+<meta content="Smart Home Automation | Panvee Naidu" property="og:title"/>
+<meta content="A distributed IoT platform across three decoupled processes over MQTT, with a multi-threaded REST API and a 14-pattern voice command interpreter." property="og:description"/>
+<meta content="https://panveedev.vercel.app/og.png" property="og:image"/>
+<meta content="website" property="og:type"/>
+<link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23000'/%3E%3Ctext x='32' y='44' font-family='ui-monospace,Menlo,monospace' font-size='30' font-weight='700' fill='%23fff' text-anchor='middle'%3EPN%3C/text%3E%3C/svg%3E" rel="icon" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Hanken+Grotesk:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="../styles.css" rel="stylesheet"/>
+<link href="case.css" rel="stylesheet"/>
+</head>
+<body class="font-body-md antialiased">
+<header class="sticky top-0 z-50 bg-background border-b-2 border-primary">
+<div class="max-w-5xl mx-auto px-stack-lg py-stack-md flex items-center justify-between gap-stack-md">
+<a class="font-label-sm text-label-sm text-primary hover:underline inline-flex items-center gap-1" href="../index.html#projects"><span class="material-symbols-outlined text-[16px]">arrow_back</span>FEATURED WORK</a>
+<a class="font-label-sm text-label-sm text-primary hover:underline" href="../index.html">PANVEE NAIDU</a>
+</div>
+</header>
+
+<main class="max-w-5xl mx-auto px-stack-lg py-section-gap flex flex-col gap-section-gap">
+
+<!-- Hero -->
+<section>
+<div class="inline-flex items-center gap-2 border border-primary px-stack-sm py-1 mb-stack-md font-label-sm text-label-sm text-primary">DISTRIBUTED SYSTEMS</div>
+<h1 class="font-headline-xl-mobile md:font-headline-xl text-headline-xl-mobile md:text-headline-xl text-primary mb-stack-md">Smart Home Automation</h1>
+<p class="font-body-lg text-body-lg text-secondary border-l-2 border-primary pl-stack-md mb-stack-lg max-w-3xl">Control nine devices by voice or dashboard, schedule them in plain English, and watch energy draw live &mdash; built as three independent processes talking over a message broker.</p>
+<a class="font-label-sm text-label-sm border border-primary px-stack-sm py-2 bg-primary text-on-primary hover:bg-white hover:text-primary transition-colors inline-flex items-center gap-1" href="https://github.com/panvee/Home-Automation-Using-Voice-Command" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px]">link</span>Source</a>
+</section>
+
+<!-- At a glance -->
+<section class="border-2 border-primary bg-white p-stack-lg grid grid-cols-2 md:grid-cols-4 gap-stack-lg">
+<div><p class="font-label-sm text-label-sm text-secondary mb-1">ARCHITECTURE</p><p class="font-label-md text-label-md text-primary">3 processes</p></div>
+<div><p class="font-label-sm text-label-sm text-secondary mb-1">TRANSPORT</p><p class="font-label-md text-label-md text-primary">MQTT pub/sub</p></div>
+<div><p class="font-label-sm text-label-sm text-secondary mb-1">DEVICES</p><p class="font-label-md text-label-md text-primary">9 types</p></div>
+<div><p class="font-label-sm text-label-sm text-secondary mb-1">BACKEND</p><p class="font-label-md text-label-md text-primary">832 lines Python</p></div>
+</section>
+
+<!-- Architecture -->
+<section class="case-section" id="architecture">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary border-b-2 border-primary pb-stack-sm mb-stack-lg">Architecture</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="border border-primary p-stack-md bg-surface-container-low transition-colors hover:bg-white hover:border-2">
+<p class="font-label-sm text-label-sm text-primary mb-stack-sm font-mono">0_mqtt_simulator.py</p>
+<p class="font-body-sm text-body-sm text-secondary">Stands in for hardware. Holds the nine devices with their real wattages and publishes energy telemetry on a loop.</p>
+</div>
+<div class="border border-primary p-stack-md bg-surface-container-low transition-colors hover:bg-white hover:border-2">
+<p class="font-label-sm text-label-sm text-primary mb-stack-sm font-mono">1_voice_automation.py</p>
+<p class="font-body-sm text-body-sm text-secondary">Listens, transcribes, and turns free-form English into device commands and schedules.</p>
+</div>
+<div class="border border-primary p-stack-md bg-surface-container-low transition-colors hover:bg-white hover:border-2">
+<p class="font-label-sm text-label-sm text-primary mb-stack-sm font-mono">2_web_bridge.py</p>
+<p class="font-body-sm text-body-sm text-secondary">Runs an HTTP server and an MQTT client side by side, exposing the system to a browser dashboard.</p>
+</div>
+</div>
+<p class="font-body-md text-body-md text-secondary mt-stack-lg max-w-3xl">The three know almost nothing about each other &mdash; they communicate only by publishing and subscribing to topics, so any one can be restarted, replaced or moved to another machine without the others noticing.</p>
+</section>
+
+<!-- Problem -->
+<section class="case-section" id="overview">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary border-b-2 border-primary pb-stack-sm mb-stack-lg">The Problem</h2>
+<div class="flex flex-col gap-stack-md max-w-3xl">
+<p class="font-body-md text-body-md text-secondary">Smart-home devices are fragmented. Every brand ships its own app and cloud account, so a house with lights from one vendor and a thermostat from another has no single place to control anything &mdash; and no view of energy use at all.</p>
+<p class="font-body-md text-body-md text-secondary">So the design question was never "how do I switch a light on". It was: what messaging architecture lets devices of any type join one system without rewriting the controller each time?</p>
+</div>
+</section>
+
+<!-- Approach — stacked -->
+<section class="case-section" id="approach">
+<div class="stack" data-stack>
+<div class="stack-track" data-track>
+<div class="stack-vp" data-vp>
+<div class="stack-head">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Approach</h2>
+<div class="stack-counter stack-ticks" data-ticks aria-hidden="true"></div>
+</div>
+<div class="stack-cards" data-cards>
+
+<article class="stack-card" data-card>
+<p class="font-label-sm text-label-sm text-secondary mb-stack-sm">STEP 01</p>
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Publish/subscribe over direct calls</h3>
+<p class="font-body-md text-body-md text-secondary">MQTT was chosen precisely so components would not hold references to each other. Wildcard topic subscriptions mean a new device publishing on the agreed pattern is picked up automatically &mdash; the bridge needs no change to support it. That is the property that answers the fragmentation problem.</p>
+</article>
+
+<article class="stack-card" data-card>
+<p class="font-label-sm text-label-sm text-secondary mb-stack-sm">STEP 02</p>
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Intent parsing as a dispatch table</h3>
+<p class="font-body-md text-body-md text-secondary">Rather than a chain of string comparisons, speech is matched against an ordered table of <strong class="text-primary">14 regular-expression patterns</strong>, each bound to a handler. Adding a capability means adding one row. The table covers on/off control, temperature, status queries, energy reporting, four phrasings of scheduling, three of cancellation, and help.</p>
+</article>
+
+<article class="stack-card" data-card>
+<p class="font-label-sm text-label-sm text-secondary mb-stack-sm">STEP 03</p>
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Compound and time-aware commands</h3>
+<p class="font-body-md text-body-md text-secondary">A command containing <span class="font-mono text-primary">and</span> is split and each half recursively re-parsed, so "turn off the kitchen light and turn on the fan" executes as two actions. Scheduling accepts relative time ("in 30 minutes") and absolute time ("at 7 pm"), and tasks can be listed and cancelled by index or by "the last one".</p>
+</article>
+
+<article class="stack-card" data-card>
+<p class="font-label-sm text-label-sm text-secondary mb-stack-sm">STEP 04</p>
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Concurrency in the bridge</h3>
+<p class="font-body-md text-body-md text-secondary">The bridge serves HTTP and consumes MQTT at the same time. The HTTP server runs on a daemon thread alongside the MQTT event loop, with CORS pre-flight handled explicitly so the browser dashboard can call it. Endpoints cover <span class="font-mono text-primary">/api/voice-command</span>, <span class="font-mono text-primary">/api/device/toggle</span> and <span class="font-mono text-primary">/api/device/add</span>.</p>
+</article>
+
+<article class="stack-card" data-card>
+<p class="font-label-sm text-label-sm text-secondary mb-stack-sm">STEP 05</p>
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Bounded energy history</h3>
+<p class="font-body-md text-body-md text-secondary">Every telemetry message appends to an in-memory history capped at <strong class="text-primary">2,880 samples</strong> &mdash; a full day at 30-second resolution &mdash; with the oldest dropped on overflow. A long-running process cannot grow without bound, which matters more on a Raspberry Pi than on a laptop.</p>
+</article>
+
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Challenges — stacked -->
+<section class="case-section" id="challenges">
+<div class="stack" data-stack>
+<div class="stack-track" data-track>
+<div class="stack-vp" data-vp>
+<div class="stack-head">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Challenges</h2>
+<div class="stack-counter stack-ticks" data-ticks aria-hidden="true"></div>
+</div>
+<div class="stack-cards" data-cards>
+
+<article class="stack-card" data-card>
+<p class="font-label-sm text-label-sm text-secondary mb-stack-sm">01</p>
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Security gaps in my own design</h3>
+<p class="font-body-md text-body-md text-secondary mb-stack-md">Once it worked, I reviewed it as an attacker rather than as its author. The dashboard has a login screen, but the REST endpoints behind it never check who is calling &mdash; anyone who can reach the port controls every device, so the authentication was decoration. MQTT traffic is also unencrypted, so anyone on the network can read telemetry or publish forged commands.</p>
+<p class="font-body-md text-body-md text-secondary">Both are documented with a prioritised fix plan rather than quietly left out. Finding them was the most useful part of the project.</p>
+</article>
+
+<article class="stack-card" data-card>
+<p class="font-label-sm text-label-sm text-secondary mb-stack-sm">02</p>
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Speech recognition is unreliable by nature</h3>
+<p class="font-body-md text-body-md text-secondary">Transcription fails constantly &mdash; ambient noise, timeouts, network errors, audio that is simply unintelligible. Each failure mode is caught separately and returns a distinct message rather than a stack trace, and the recogniser calibrates for ambient noise before each listen. A text command path runs alongside the voice path so the system stays testable without a microphone.</p>
+</article>
+
+<article class="stack-card" data-card>
+<p class="font-label-sm text-label-sm text-secondary mb-stack-sm">03</p>
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Ambiguous phrasing</h3>
+<p class="font-body-md text-body-md text-secondary">People do not speak in one fixed grammar. "Schedule the fan to turn off at 9", "set the fan to turn off at 9" and "turn off the fan at 9" mean the same thing and match different expressions. Pattern order matters, because a broad pattern placed too early swallows commands meant for a narrower one. When nothing matches, a keyword-and-device-name fallback tries to recover intent instead of giving up.</p>
+</article>
+
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Result -->
+<section class="case-section" id="results">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary border-b-2 border-primary pb-stack-sm mb-stack-lg">Result</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="border border-primary p-stack-md bg-surface-container-low transition-colors hover:bg-white hover:border-2">
+<h3 class="font-label-md text-label-md text-primary border-b border-gray-light pb-stack-sm mb-stack-sm">What works</h3>
+<ul class="flex flex-col gap-stack-sm">
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Voice and dashboard control of 9 devices</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Compound commands in one utterance</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Relative and absolute scheduling</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Live energy aggregation</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">New devices join without controller changes</li>
+</ul>
+</div>
+<div class="border border-primary p-stack-md bg-surface-container-low transition-colors hover:bg-white hover:border-2">
+<h3 class="font-label-md text-label-md text-primary border-b border-gray-light pb-stack-sm mb-stack-sm">Known limitations</h3>
+<ul class="flex flex-col gap-stack-sm">
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Devices are simulated, not physical</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">REST endpoints are unauthenticated</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">MQTT transport is unencrypted</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">History is in-memory; a restart clears it</li>
+</ul>
+</div>
+</div>
+</section>
+
+<!-- Stack -->
+<section class="case-section" id="stack">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary border-b-2 border-primary pb-stack-sm mb-stack-lg">Stack</h2>
+<div class="flex flex-wrap gap-stack-sm">
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">Python</span>
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">MQTT / paho-mqtt</span>
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">Mosquitto</span>
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">REST</span>
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">Threading</span>
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">SpeechRecognition</span>
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">JavaScript</span>
+</div>
+</section>
+
+<!-- Footer nav -->
+<section class="border-t-2 border-primary pt-stack-lg flex flex-wrap gap-stack-md justify-between items-center">
+<a class="font-label-md text-label-md text-primary hover:underline inline-flex items-center gap-1" href="../index.html#projects"><span class="material-symbols-outlined text-[16px]">arrow_back</span>All work</a>
+<a class="font-label-md text-label-md px-stack-lg py-stack-md bg-primary text-on-primary border-2 border-primary hover:bg-white hover:text-primary transition-colors" href="../index.html#contact">Get in touch</a>
+</section>
+
+</main>
+
+<script src="case.js"></script>
+</body></html>

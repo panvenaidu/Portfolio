@@ -184,7 +184,7 @@
         },
       }
 
-module.exports.content = ['./index.html'];
+module.exports.content = ['./index.html', './projects/*.html'];
 module.exports.darkMode = 'class';
 module.exports.plugins = [
   require('@tailwindcss/forms'),

@@ -9,7 +9,7 @@
 <link href="https://panveedev.vercel.app/" rel="canonical"/>
 <!-- Open Graph / LinkedIn -->
 <meta content="Panvee Naidu | Software Engineer" property="og:title"/>
-<meta content="Computer Science undergraduate specialising in Cybersecurity. Distributed IoT, full-stack web, and real-time computer vision. Seeking a remote software engineering internship." property="og:description"/>
+<meta content="Computer Science undergraduate specialising in Cybersecurity. Real-time services with Socket.IO and Redis, containerised full-stack backends, distributed IoT, and hardware-backed cryptography. Seeking a remote software engineering internship." property="og:description"/>
 <meta content="https://panveedev.vercel.app/og.png" property="og:image"/>
 <meta content="1200" property="og:image:width"/>
 <meta content="630" property="og:image:height"/>
@@ -180,6 +180,37 @@
         .cert-card:focus-visible::before {
             transform: scaleY(1);
         }
+
+        /* Project cards that open a write-up: a standing "Read more" chip so the
+           card reads as clickable without needing a hover to discover it.
+           card-tilt sets `transform` from JS, so the press state uses shadow. */
+        .card-cue {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .card-open:hover .card-cue,
+        .card-open:focus-within .card-cue {
+            background-color: #000000;
+            color: #FFFFFF;
+        }
+        .card-cue .material-symbols-outlined {
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .card-open:hover .card-cue .material-symbols-outlined {
+            transform: translateX(3px);
+        }
+        .card-open:active {
+            box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1) !important;
+        }
+        .card-open a:focus-visible {
+            outline: 2px solid #000000;
+            outline-offset: 3px;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .card-cue,
+            .card-cue .material-symbols-outlined {
+                transition: none;
+            }
+        }
         .cert-card h3,
         .cert-card div {
             transition: color 0.35s ease;
@@ -266,7 +297,7 @@
 <span aria-hidden="true" class="availability-dot"></span>AVAILABLE &mdash; SEEKING REMOTE SOFTWARE ENGINEERING INTERNSHIP
                     </div>
 <p class="font-body-lg text-body-lg text-secondary border-l-2 border-primary pl-stack-md">
-                        Computer Science undergraduate specialising in Cybersecurity, designing and shipping full-stack systems — from IoT platforms to real-time computer vision.
+                        Computer Science undergraduate specialising in Cybersecurity, designing and shipping full-stack systems — real-time services, containerised backends, and distributed IoT.
 </p>
 </div>
 <div>
@@ -285,45 +316,98 @@
 <h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Featured Work</h2>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
-<!-- Project Card 1 -->
-<div class="stagger-child card-tilt border-2 border-primary p-stack-lg group hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] bg-white">
-<h3 class="font-headline-md text-headline-md text-primary mb-stack-sm group-hover:underline">Smart Home Automation</h3>
-<p class="font-body-md text-body-md text-secondary mb-stack-md">IoT platform for centralized device management and analytics.</p>
-<div class="flex flex-wrap gap-stack-sm mt-auto">
-<span class="font-label-sm text-label-sm border border-primary px-2 py-1">Python</span>
-<span class="font-label-sm text-label-sm border border-primary px-2 py-1">MQTT</span>
-<span class="font-label-sm text-label-sm border border-primary px-2 py-1">IoT</span>
-<a class="font-label-sm text-label-sm border border-primary px-2 py-1 bg-primary text-on-primary hover:bg-white hover:text-primary transition-colors flex items-center gap-1" href="https://github.com/panvee/Home-Automation-Using-Voice-Command" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px]">link</span>GitHub</a></div>
+<!-- Project Card 1 — AeroChat -->
+<div class="stagger-child card-tilt border-2 border-primary p-stack-lg group hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] bg-white relative card-open">
+<a class="absolute inset-0 z-10" href="projects/aerochat.html"><span class="sr-only">Read more about AeroChat</span></a>
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-sm group-hover:underline">AeroChat</h3>
+<p class="font-body-md text-body-md text-secondary mb-stack-md">Containerisation mini project &mdash; four services orchestrated with Docker Compose on an isolated bridge network, with a named volume for database persistence and a Makefile wrapping the lifecycle. Runs locally only.</p>
+<div class="flex flex-wrap gap-stack-sm mt-auto relative z-20 pointer-events-none">
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">Docker</span>
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">Docker Compose</span>
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">PostgreSQL</span>
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">Redis</span>
+<a class="font-label-sm text-label-sm border border-primary px-2 py-1 bg-primary pointer-events-auto text-on-primary hover:bg-white hover:text-primary transition-colors flex items-center gap-1" href="https://github.com/panvenaidu/aero-chat-realtime" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px]">link</span>GitHub</a>
+<span class="card-cue font-label-sm text-label-sm border border-primary px-2 py-1 inline-flex items-center gap-1 pointer-events-none" aria-hidden="true">Read more<span class="material-symbols-outlined text-[14px]">arrow_forward</span></span>
 </div>
-<!-- Project Card 2 -->
+</div>
+<!-- Project Card 2 — Aurum -->
 <div class="stagger-child card-tilt border-2 border-primary p-stack-lg group hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] bg-white">
-<h3 class="font-headline-md text-headline-md text-primary mb-stack-sm group-hover:underline">SoftSell</h3>
-<p class="font-body-md text-body-md text-secondary mb-stack-md">Digital software marketplace with secure licensing and payment integration.</p>
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-sm group-hover:underline">Aurum</h3>
+<p class="font-body-md text-body-md text-secondary mb-stack-md">Multi-tenant hotel platform with three isolated portals — platform admin, hotel admin and guest — behind JWT role guards, plus an automatic commission engine.</p>
 <div class="flex flex-wrap gap-stack-sm mt-auto">
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">FastAPI</span>
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">SQLModel</span>
 <span class="font-label-sm text-label-sm border border-primary px-2 py-1">React</span>
-<span class="font-label-sm text-label-sm border border-primary px-2 py-1">Vite</span>
-<span class="font-label-sm text-label-sm border border-primary px-2 py-1">Stripe</span>
-<a class="font-label-sm text-label-sm border border-primary px-2 py-1 bg-primary text-on-primary hover:bg-white hover:text-primary transition-colors flex items-center gap-1" href="https://github.com/panvee/SoftSell-Software-License-Marketplace" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px]">link</span>GitHub</a></div>
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">JWT</span>
+<a class="font-label-sm text-label-sm border border-primary px-2 py-1 bg-primary text-on-primary hover:bg-white hover:text-primary transition-colors flex items-center gap-1" href="https://github.com/panvenaidu/aurum-hotel-management" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px]">link</span>GitHub</a></div>
 </div>
-<!-- Project Card 3 -->
-<div class="stagger-child card-tilt border-2 border-primary p-stack-lg group hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] bg-white">
+<!-- Project Card 3 — PKCS#11 OTP -->
+<div class="stagger-child card-tilt border-2 border-primary p-stack-lg group hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] bg-white relative card-open">
+<a class="absolute inset-0 z-10" href="projects/pkcs11-otp.html"><span class="sr-only">Read more about PKCS#11 OTP Authentication</span></a>
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-sm group-hover:underline">PKCS#11 OTP Authentication</h3>
+<p class="font-body-md text-body-md text-secondary mb-stack-md">Hardware-security-module-backed one-time passwords via PKCS#11 and SoftHSM, with keys held inside the token rather than in application memory.</p>
+<div class="flex flex-wrap gap-stack-sm mt-auto relative z-20 pointer-events-none">
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">C</span>
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">PKCS#11</span>
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">SoftHSM</span>
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">MySQL</span>
+<a class="font-label-sm text-label-sm border border-primary px-2 py-1 bg-primary pointer-events-auto text-on-primary hover:bg-white hover:text-primary transition-colors flex items-center gap-1" href="https://github.com/panvenaidu/pkcs11-otp-authentication" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px]">link</span>GitHub</a>
+<span class="card-cue font-label-sm text-label-sm border border-primary px-2 py-1 inline-flex items-center gap-1 pointer-events-none" aria-hidden="true">Read more<span class="material-symbols-outlined text-[14px]">arrow_forward</span></span>
+</div>
+</div>
+<!-- Project Card 4 — Valorix -->
+<div class="stagger-child card-tilt border-2 border-primary p-stack-lg group hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] bg-white relative card-open">
+<a class="absolute inset-0 z-10" href="projects/valorix.html"><span class="sr-only">Read the Valorix case study</span></a>
 <h3 class="font-headline-md text-headline-md text-primary mb-stack-sm group-hover:underline">Valorix</h3>
-<p class="font-body-md text-body-md text-secondary mb-stack-md">Comprehensive tracking and analytics platform for VALORANT players.</p>
-<div class="flex flex-wrap gap-stack-sm mt-auto">
+<p class="font-body-md text-body-md text-secondary mb-stack-md">Production Next.js 15 / React 19 app with a custom Tailwind v4 token system, hand-built SVG charts with zero charting dependencies, and reduced-motion guards on every animation.</p>
+<div class="flex flex-wrap gap-stack-sm mt-auto relative z-20 pointer-events-none">
 <span class="font-label-sm text-label-sm border border-primary px-2 py-1">Next.js 15</span>
 <span class="font-label-sm text-label-sm border border-primary px-2 py-1">TypeScript</span>
 <span class="font-label-sm text-label-sm border border-primary px-2 py-1">Tailwind</span>
-<a class="font-label-sm text-label-sm border border-primary px-2 py-1 bg-primary text-on-primary hover:bg-white hover:text-primary transition-colors flex items-center gap-1" href="https://playvalorix.vercel.app" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px]">open_in_new</span>Live Demo</a><a class="font-label-sm text-label-sm border border-primary px-2 py-1 bg-primary text-on-primary hover:bg-white hover:text-primary transition-colors flex items-center gap-1" href="https://github.com/panvenaidu/valorix" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px]">link</span>GitHub</a></div>
+<a class="font-label-sm text-label-sm border border-primary px-2 py-1 bg-primary pointer-events-auto text-on-primary hover:bg-white hover:text-primary transition-colors flex items-center gap-1" href="https://playvalorix.vercel.app" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px]">open_in_new</span>Live Demo</a><a class="font-label-sm text-label-sm border border-primary px-2 py-1 bg-primary pointer-events-auto text-on-primary hover:bg-white hover:text-primary transition-colors flex items-center gap-1" href="https://github.com/panvenaidu/valorix" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px]">link</span>GitHub</a>
+<span class="card-cue font-label-sm text-label-sm border border-primary px-2 py-1 inline-flex items-center gap-1 pointer-events-none" aria-hidden="true">Read more<span class="material-symbols-outlined text-[14px]">arrow_forward</span></span>
 </div>
-<!-- Project Card 4 -->
-<div class="stagger-child card-tilt border-2 border-primary p-stack-lg group hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] bg-white">
+</div>
+<!-- Project Card 5 — Smart Home Automation -->
+<div class="stagger-child card-tilt border-2 border-primary p-stack-lg group hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] bg-white relative card-open">
+<a class="absolute inset-0 z-10" href="projects/smart-home-automation.html"><span class="sr-only">Read the Smart Home Automation case study</span></a>
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-sm group-hover:underline">Smart Home Automation</h3>
+<p class="font-body-md text-body-md text-secondary mb-stack-md">Distributed IoT platform across three decoupled processes over MQTT, with a multi-threaded REST API and a voice interpreter routing 14 intent patterns.</p>
+<div class="flex flex-wrap gap-stack-sm mt-auto relative z-20 pointer-events-none">
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">Python</span>
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">MQTT</span>
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">REST</span>
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">Threading</span>
+<a class="font-label-sm text-label-sm border border-primary px-2 py-1 bg-primary pointer-events-auto text-on-primary hover:bg-white hover:text-primary transition-colors flex items-center gap-1" href="https://github.com/panvee/Home-Automation-Using-Voice-Command" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px]">link</span>GitHub</a>
+<span class="card-cue font-label-sm text-label-sm border border-primary px-2 py-1 inline-flex items-center gap-1 pointer-events-none" aria-hidden="true">Read more<span class="material-symbols-outlined text-[14px]">arrow_forward</span></span>
+</div>
+</div>
+<!-- Project Card 6 — Crowd Detection -->
+<div class="stagger-child card-tilt border-2 border-primary p-stack-lg group hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] bg-white relative card-open">
+<a class="absolute inset-0 z-10" href="projects/crowd-detection.html"><span class="sr-only">Read the Crowd Detection System case study</span></a>
 <h3 class="font-headline-md text-headline-md text-primary mb-stack-sm group-hover:underline">Crowd Detection System</h3>
-<p class="font-body-md text-body-md text-secondary mb-stack-md">Real-time computer vision system for monitoring crowd density and flow.</p>
-<div class="flex flex-wrap gap-stack-sm mt-auto">
+<p class="font-body-md text-body-md text-secondary mb-stack-md">Real-time vision pipeline that clusters YOLOv8 detections by proximity and logs only crowds that persist across frames.</p>
+<div class="flex flex-wrap gap-stack-sm mt-auto relative z-20 pointer-events-none">
 <span class="font-label-sm text-label-sm border border-primary px-2 py-1">Computer Vision</span>
 <span class="font-label-sm text-label-sm border border-primary px-2 py-1">YOLOv8</span>
 <span class="font-label-sm text-label-sm border border-primary px-2 py-1">OpenCV</span>
-<a class="font-label-sm text-label-sm border border-primary px-2 py-1 bg-primary text-on-primary hover:bg-white hover:text-primary transition-colors flex items-center gap-1" href="https://github.com/panvee/crowd-detect-ai" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px]">link</span>GitHub</a></div>
+<a class="font-label-sm text-label-sm border border-primary px-2 py-1 bg-primary pointer-events-auto text-on-primary hover:bg-white hover:text-primary transition-colors flex items-center gap-1" href="https://github.com/panvee/crowd-detect-ai" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px]">link</span>GitHub</a>
+<span class="card-cue font-label-sm text-label-sm border border-primary px-2 py-1 inline-flex items-center gap-1 pointer-events-none" aria-hidden="true">Read more<span class="material-symbols-outlined text-[14px]">arrow_forward</span></span>
+</div>
+</div>
+<!-- Project Card 7 — SoftSell -->
+<div class="stagger-child card-tilt border-2 border-primary p-stack-lg group hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] bg-white relative card-open">
+<a class="absolute inset-0 z-10" href="projects/softsell.html"><span class="sr-only">Read more about SoftSell</span></a>
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-sm group-hover:underline">SoftSell</h3>
+<p class="font-body-md text-body-md text-secondary mb-stack-md">React single-page marketing site for a software-license resale concept — 8 modular components with system-aware dark mode, validated lead capture, and a scripted chat widget.</p>
+<div class="flex flex-wrap gap-stack-sm mt-auto relative z-20 pointer-events-none">
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">React</span>
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">Vite</span>
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">Tailwind</span>
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">Framer Motion</span>
+<a class="font-label-sm text-label-sm border border-primary px-2 py-1 bg-primary pointer-events-auto text-on-primary hover:bg-white hover:text-primary transition-colors flex items-center gap-1" href="https://github.com/panvee/SoftSell-Software-License-Marketplace" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px]">link</span>GitHub</a>
+<span class="card-cue font-label-sm text-label-sm border border-primary px-2 py-1 inline-flex items-center gap-1 pointer-events-none" aria-hidden="true">Read more<span class="material-symbols-outlined text-[14px]">arrow_forward</span></span>
+</div>
 </div>
 </div>
 </section>
@@ -340,19 +424,22 @@
 <li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Python</li>
 <li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">JavaScript</li>
 <li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">TypeScript</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">C</li>
 <li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Apex</li>
 <li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">SQL</li>
 </ul>
 </div>
 <!-- Backend -->
 <div class="stagger-child border border-primary p-stack-md bg-surface-container-low transition-colors hover:bg-white hover:border-2">
-<h3 class="font-label-md text-label-md text-primary border-b border-gray-light pb-stack-sm mb-stack-sm">Backend</h3>
+<h3 class="font-label-md text-label-md text-primary border-b border-gray-light pb-stack-sm mb-stack-sm">Backend &amp; Systems</h3>
 <ul class="flex flex-col gap-stack-sm">
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">FastAPI</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Node.js / Express</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Socket.IO</li>
 <li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">REST APIs</li>
 <li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">MQTT</li>
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Supabase</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Redis</li>
 <li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">PostgreSQL</li>
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Node.js</li>
 </ul>
 </div>
 <!-- Frontend -->
@@ -367,18 +454,18 @@
 <li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">HTML/CSS</li>
 </ul>
 </div>
-<!-- AI/Tools -->
+<!-- DevOps & Security -->
 <div class="stagger-child border border-primary p-stack-md bg-surface-container-low transition-colors hover:bg-white hover:border-2">
-<h3 class="font-label-md text-label-md text-primary border-b border-gray-light pb-stack-sm mb-stack-sm">Tools</h3>
+<h3 class="font-label-md text-label-md text-primary border-b border-gray-light pb-stack-sm mb-stack-sm">DevOps &amp; Security</h3>
 <ul class="flex flex-col gap-stack-sm">
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">YOLOv8</li>
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">OpenCV</li>
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Git/GitHub</li>
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Docker</li>
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Vercel</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Docker / Compose</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">JWT / bcrypt</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">PKCS#11 / SoftHSM</li>
 <li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">CI/CD</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Git / GitHub</li>
 <li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Linux</li>
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">NumPy</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Vercel</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">YOLOv8 / OpenCV</li>
 </ul>
 </div>
 </div>
@@ -388,8 +475,8 @@
 <div class="w-full md:w-2/3">
 <h2 class="font-headline-md text-headline-md text-primary mb-stack-sm">Experience</h2>
 <div class="border-l-2 border-gray-light pl-stack-md mt-stack-md hover:border-primary transition-colors duration-300">
-<h3 class="font-label-md text-label-md text-primary">Salesforce (SmartBridge) <span class="font-body-sm text-secondary font-normal ml-2">Software Engineering Intern</span></h3>
-<p class="font-body-sm text-body-sm text-secondary mt-stack-sm">Developed and optimized custom CRM solutions using Apex and Lightning Web Components. Collaborated with cross-functional teams to streamline deployment pipelines.</p>
+<h3 class="font-label-md text-label-md text-primary">SmartBridge <span class="font-body-sm text-secondary font-normal ml-2">Salesforce Developer Intern &middot; May &ndash; Jul 2025</span></h3>
+<p class="font-body-sm text-body-sm text-secondary mt-stack-sm">Completed an 8-week Agentblazer Champion program in collaboration with Salesforce — building and testing custom Apex classes and Lightning Web Components, and earning the Object Relationships Superbadge.</p>
 </div>
 </div>
 <div class="w-full md:w-auto flex-shrink-0 flex flex-col sm:flex-row md:flex-col lg:flex-row gap-stack-sm">
@@ -520,7 +607,7 @@
                     PANVEE NAIDU
                 </div>
 <ul class="flex gap-stack-md">
-<li class=""><a class="font-label-sm text-label-sm text-secondary dark:text-secondary-fixed hover:text-primary dark:hover:text-primary-fixed transition-colors hover:underline" href="https://github.com/panvee" rel="noopener noreferrer" target="_blank">GitHub</a></li>
+<li class=""><a class="font-label-sm text-label-sm text-secondary dark:text-secondary-fixed hover:text-primary dark:hover:text-primary-fixed transition-colors hover:underline" href="https://github.com/panvenaidu" rel="noopener noreferrer" target="_blank">GitHub</a></li>
 <li class=""><a class="font-label-sm text-label-sm text-secondary dark:text-secondary-fixed hover:text-primary dark:hover:text-primary-fixed transition-colors hover:underline" href="https://www.linkedin.com/in/panvee-naidu-8a6430291/" rel="noopener noreferrer" target="_blank">LinkedIn</a></li>
 <li class=""><a class="contact-email-link font-label-sm text-label-sm text-secondary dark:text-secondary-fixed hover:text-primary dark:hover:text-primary-fixed transition-colors hover:underline" href="#">Email</a></li>
 </ul>

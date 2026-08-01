@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Valorix — Case Study | Panvee Naidu</title>
+<meta content="Valorix — an ongoing VALORANT performance analytics platform. Next.js 15, React 19, hand-built SVG charts with zero charting dependencies. A case study on shipping a product surface while blocked on a production API key." name="description"/>
+<meta content="Panvee Naidu" name="author"/>
+<meta content="Valorix — Case Study | Panvee Naidu" property="og:title"/>
+<meta content="An ongoing VALORANT performance analytics platform built in Next.js 15 and React 19, with hand-built SVG charts and zero charting dependencies." property="og:description"/>
+<meta content="https://panveedev.vercel.app/og.png" property="og:image"/>
+<meta content="website" property="og:type"/>
+<link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23000'/%3E%3Ctext x='32' y='44' font-family='ui-monospace,Menlo,monospace' font-size='30' font-weight='700' fill='%23fff' text-anchor='middle'%3EPN%3C/text%3E%3C/svg%3E" rel="icon" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Hanken+Grotesk:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="../styles.css" rel="stylesheet"/>
+<link href="case.css" rel="stylesheet"/>
+</head>
+<body class="font-body-md antialiased">
+<header class="sticky top-0 z-50 bg-background border-b-2 border-primary">
+<div class="max-w-5xl mx-auto px-stack-lg py-stack-md flex items-center justify-between gap-stack-md">
+<a class="font-label-sm text-label-sm text-primary hover:underline inline-flex items-center gap-1" href="../index.html#projects"><span class="material-symbols-outlined text-[16px]">arrow_back</span>FEATURED WORK</a>
+<a class="font-label-sm text-label-sm text-primary hover:underline" href="../index.html">PANVEE NAIDU</a>
+</div>
+</header>
+
+<main class="max-w-5xl mx-auto px-stack-lg py-section-gap flex flex-col gap-section-gap">
+
+<!-- Hero -->
+<section>
+<div class="inline-flex items-center gap-2 border border-primary px-stack-sm py-1 mb-stack-md font-label-sm text-label-sm text-primary">
+<span aria-hidden="true" class="status-dot"></span>ONGOING &mdash; LONG-TERM PROJECT
+</div>
+<h1 class="font-headline-xl-mobile md:font-headline-xl text-headline-xl-mobile md:text-headline-xl text-primary mb-stack-md">Valorix</h1>
+<p class="font-body-lg text-body-lg text-secondary border-l-2 border-primary pl-stack-md mb-stack-lg">A performance analytics platform for VALORANT players &mdash; match history, agent-level insight and progression tracking. Built as a long-term product rather than a coursework exercise, and still in active development.</p>
+<div class="flex flex-wrap gap-stack-sm">
+<a class="font-label-sm text-label-sm border border-primary px-stack-sm py-2 bg-primary text-on-primary hover:bg-white hover:text-primary transition-colors inline-flex items-center gap-1" href="https://playvalorix.vercel.app" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px]">open_in_new</span>Live Site</a>
+<a class="font-label-sm text-label-sm border border-primary px-stack-sm py-2 bg-primary text-on-primary hover:bg-white hover:text-primary transition-colors inline-flex items-center gap-1" href="https://github.com/panvenaidu/valorix" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px]">link</span>Source</a>
+</div>
+</section>
+
+<!-- At a glance -->
+<section class="border-2 border-primary bg-white p-stack-lg grid grid-cols-2 md:grid-cols-4 gap-stack-lg">
+<div><p class="font-label-sm text-label-sm text-secondary mb-1">STATUS</p><p class="font-label-md text-label-md text-primary">In development</p></div>
+<div><p class="font-label-sm text-label-sm text-secondary mb-1">ROLE</p><p class="font-label-md text-label-md text-primary">Sole engineer</p></div>
+<div><p class="font-label-sm text-label-sm text-secondary mb-1">STARTED</p><p class="font-label-md text-label-md text-primary">Jul 2026</p></div>
+<div><p class="font-label-sm text-label-sm text-secondary mb-1">CODEBASE</p><p class="font-label-md text-label-md text-primary">54 files, TypeScript</p></div>
+</section>
+
+<!-- Overview -->
+<section class="case-section" id="overview">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary border-b-2 border-primary pb-stack-sm mb-stack-lg">Overview</h2>
+<div class="flex flex-col gap-stack-md max-w-3xl">
+<p class="font-body-md text-body-md text-secondary">Valorix is a web application that turns raw VALORANT match data into something a player can act on: which agents actually perform on which maps, where a session started to slip, and how form moves over weeks rather than single games.</p>
+<p class="font-body-md text-body-md text-secondary">What is live today is the full product surface &mdash; the marketing site and a complete, navigable preview of the product at <span class="font-mono text-primary">/vision</span>, covering dashboard, match history, profile, analytics, insights and progression screens. The interface is real and built to production standards. The data behind it is not yet live, for a reason covered below.</p>
+<p class="font-body-md text-body-md text-secondary">The project is treated as a long-running product build. Architecture, design system and component library were established first so that features can be added without rework, rather than shipping a single throwaway page.</p>
+</div>
+</section>
+
+<!-- Problem -->
+<section class="case-section" id="problem">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary border-b-2 border-primary pb-stack-sm mb-stack-lg">The Problem</h2>
+<div class="flex flex-col gap-stack-md max-w-3xl">
+<p class="font-body-md text-body-md text-secondary">In-game statistics tell a player what happened, not why. A scoreboard shows kills and deaths for one match, but no player can see their own patterns across a season from inside the game client.</p>
+<p class="font-body-md text-body-md text-secondary">Third-party trackers exist, but most present dense tables that assume the reader already knows what matters. The gap is interpretation &mdash; taking the same underlying match records and surfacing the two or three observations that would actually change how someone plays next.</p>
+<p class="font-body-md text-body-md text-secondary">That framing drove every product decision: fewer numbers on screen, each one earning its place, with charts used to show direction over time rather than to decorate.</p>
+</div>
+</section>
+
+<!-- Approach -->
+<section class="case-section" id="approach">
+<div class="stack" data-stack>
+<div class="stack-track" data-track>
+<div class="stack-vp" data-vp>
+<div class="stack-head">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Approach</h2>
+<div class="stack-counter stack-ticks" data-ticks aria-hidden="true"></div>
+</div>
+<div class="stack-cards" data-cards>
+
+<article class="stack-card" data-card>
+<p class="font-label-sm text-label-sm text-secondary mb-stack-sm">STEP 01</p>
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Specification before implementation</h3>
+<p class="font-body-md text-body-md text-secondary">Screens were specified in writing first &mdash; what each one is for, what a user should conclude from it, and what belongs on it. Writing the spec first killed several features before they cost any code.</p>
+</article>
+
+<article class="stack-card" data-card>
+<p class="font-label-sm text-label-sm text-secondary mb-stack-sm">STEP 02</p>
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Design tokens, then components</h3>
+<p class="font-body-md text-body-md text-secondary">A Tailwind v4 token layer defines colour, type and spacing centrally, with a deliberately small and low-saturation accent set so the brand red stays dominant. Primitives (<span class="font-mono text-primary">GlassCard</span>, <span class="font-mono text-primary">StatCard</span>, <span class="font-mono text-primary">Section</span>, <span class="font-mono text-primary">BrowserFrame</span>) are built on those tokens, so a spacing or palette change propagates everywhere instead of being retyped.</p>
+</article>
+
+<article class="stack-card" data-card>
+<p class="font-label-sm text-label-sm text-secondary mb-stack-sm">STEP 03</p>
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Charts built by hand</h3>
+<p class="font-body-md text-body-md text-secondary">Every visualisation &mdash; <span class="font-mono text-primary">LineChart</span>, <span class="font-mono text-primary">Sparkline</span>, <span class="font-mono text-primary">SegmentedBar</span>, <span class="font-mono text-primary">BarList</span> &mdash; is hand-rendered SVG with a shared geometry helper. The dependency list contains no charting library at all: only <span class="font-mono text-primary">next</span>, <span class="font-mono text-primary">react</span>, <span class="font-mono text-primary">framer-motion</span>, <span class="font-mono text-primary">animejs</span>, <span class="font-mono text-primary">clsx</span> and <span class="font-mono text-primary">tailwind-merge</span>.</p>
+</article>
+
+<article class="stack-card" data-card>
+<p class="font-label-sm text-label-sm text-secondary mb-stack-sm">STEP 04</p>
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Data layer isolated from UI</h3>
+<p class="font-body-md text-body-md text-secondary">All preview content lives in a single typed module, <span class="font-mono text-primary">lib/preview-data.ts</span>, behind the same interfaces a live API would satisfy. Components never know where their data came from, so swapping placeholder records for real ones is a data-layer change, not a rewrite.</p>
+</article>
+
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Challenges -->
+<section class="case-section" id="challenges">
+<div class="stack" data-stack>
+<div class="stack-track" data-track>
+<div class="stack-vp" data-vp>
+<div class="stack-head">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Challenges</h2>
+<div class="stack-counter stack-ticks" data-ticks aria-hidden="true"></div>
+</div>
+<div class="stack-cards" data-cards>
+
+<article class="stack-card" data-card>
+<p class="font-label-sm text-label-sm text-secondary mb-stack-sm">01</p>
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-md">The production API key &mdash; the blocker</h3>
+<p class="font-body-md text-body-md text-secondary mb-stack-sm">Live match data requires a production API key from Riot Games. Development keys expire on a 24-hour cycle and are rate-limited to a level no real user base can sit behind, so they cannot back a deployed product.</p>
+<p class="font-body-md text-body-md text-secondary mb-stack-sm">Production approval requires an application describing a working product with a real audience. That approval has not come through, and it is the single reason Valorix is not serving live statistics today.</p>
+<p class="font-body-md text-body-md text-secondary"><span class="text-primary font-medium">How it was handled:</span> rather than stall the project, the product was built to be complete and convincing behind a typed data boundary. Every screen, interaction and chart is finished. Granting the key becomes a data-source swap rather than months of remaining work.</p>
+</article>
+
+<article class="stack-card" data-card>
+<p class="font-label-sm text-label-sm text-secondary mb-stack-sm">02</p>
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Honest placeholders</h3>
+<p class="font-body-md text-body-md text-secondary">Preview data is documented in-file as invented. Map and agent names are the real ones so screens read correctly, but handles, ranks, scores and win rates are fabricated and labelled as such, and no Riot artwork or portraits are referenced anywhere. The alternative &mdash; unlabelled fake numbers that look live &mdash; would have been misleading.</p>
+</article>
+
+<article class="stack-card" data-card>
+<p class="font-label-sm text-label-sm text-secondary mb-stack-sm">03</p>
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Motion without accessibility cost</h3>
+<p class="font-body-md text-body-md text-secondary">Scroll-linked animation carries the product story, but unguarded motion is a genuine accessibility problem. Every animated component sits behind a <span class="font-mono text-primary">prefers-reduced-motion</span> guard, and entrance animation is centralised in one hook so no component can quietly ship unguarded.</p>
+</article>
+
+<article class="stack-card" data-card>
+<p class="font-label-sm text-label-sm text-secondary mb-stack-sm">04</p>
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Building on a moving target</h3>
+<p class="font-body-md text-body-md text-secondary">Next.js 15, React 19 and Tailwind v4 are recent enough that established patterns and much online guidance are out of date. Several conventions had to be taken from the shipped framework documentation rather than from memory or tutorials.</p>
+</article>
+
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Results -->
+<section class="case-section" id="results">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary border-b-2 border-primary pb-stack-sm mb-stack-lg">Where It Stands</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter mb-stack-lg">
+<div class="border border-primary p-stack-md bg-surface-container-low transition-colors hover:bg-white hover:border-2">
+<h3 class="font-label-md text-label-md text-primary border-b border-gray-light pb-stack-sm mb-stack-sm">Shipped</h3>
+<ul class="flex flex-col gap-stack-sm">
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Live on Vercel with GitHub CI/CD</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Seven product screens, fully navigable</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Reusable component library and token system</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Charts with zero external dependencies</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Strict TypeScript, ESLint and Prettier enforced</li>
+</ul>
+</div>
+<div class="border border-primary p-stack-md bg-surface-container-low transition-colors hover:bg-white hover:border-2">
+<h3 class="font-label-md text-label-md text-primary border-b border-gray-light pb-stack-sm mb-stack-sm">Next</h3>
+<ul class="flex flex-col gap-stack-sm">
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Riot production key approval</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Live match ingestion behind the typed data layer</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Player accounts and persistence</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Insight generation from real history</li>
+</ul>
+</div>
+</div>
+<p class="font-body-md text-body-md text-secondary max-w-3xl">The honest summary: this is a finished front end waiting on third-party access, not an abandoned prototype. The work that remains is integration, and the codebase was structured specifically so that integration stays small.</p>
+</section>
+
+<!-- Stack -->
+<section class="case-section" id="stack">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary border-b-2 border-primary pb-stack-sm mb-stack-lg">Stack</h2>
+<div class="flex flex-wrap gap-stack-sm">
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">Next.js 15</span>
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">React 19</span>
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">TypeScript</span>
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">Tailwind CSS v4</span>
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">Framer Motion</span>
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">Anime.js</span>
+<span class="font-label-sm text-label-sm border border-primary px-2 py-1">Vercel</span>
+</div>
+</section>
+
+<!-- Footer nav -->
+<section class="border-t-2 border-primary pt-stack-lg flex flex-wrap gap-stack-md justify-between items-center">
+<a class="font-label-md text-label-md text-primary hover:underline inline-flex items-center gap-1" href="../index.html#projects"><span class="material-symbols-outlined text-[16px]">arrow_back</span>All work</a>
+<a class="font-label-md text-label-md px-stack-lg py-stack-md bg-primary text-on-primary border-2 border-primary hover:bg-white hover:text-primary transition-colors" href="../index.html#contact">Get in touch</a>
+</section>
+
+</main>
+<script src="case.js"></script>
+</body></html>
