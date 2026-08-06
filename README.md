@@ -10,34 +10,45 @@ Personal portfolio site. Static, dependency-free at runtime, deployed on Vercel.
 
 ## About
 
-A single-page portfolio built around an "Obsidian Mono" design language — pure black on off-white,
-zero border-radius, monospace labels, and motion used sparingly. It covers featured projects,
-technical skills, experience, education, and verifiable certifications.
+The site ships **two complete designs**, not one design recoloured:
 
-Started from a [Google Stitch](https://stitch.withgoogle.com) export, then rebuilt for production:
-compiled Tailwind, compressed assets, real scroll-spy navigation, and accessible motion.
+- **Light — "Obsidian Mono."** Pure black on off-white, zero border-radius, monospace labels,
+  heavy 2px rules.
+- **Dark — "Editorial Teal."** Warm near-black, bone text, Libre Caslon Display headings against
+  JetBrains Mono labels, hairline rules, teal accent.
+
+Each carries its own markup and its own motion runtime. A single `data-theme` attribute on `<html>`
+switches between them, set before first paint so the page never flashes the wrong design. It covers
+featured projects, technical skills, experience, education, and verifiable certifications, plus six
+long-form project case studies.
 
 ## Tech
 
 | | |
 |---|---|
-| Markup | Semantic HTML5, single page |
-| Styling | Tailwind CSS 3 (compiled, not CDN) + hand-written CSS for custom animation |
+| Markup | Semantic HTML5 |
+| Styling | Tailwind CSS 3 (compiled, not CDN) + hand-written CSS per theme |
 | Scripting | Vanilla JS — no framework, no bundler |
+| Animation | [anime.js](https://animejs.com) v4 (vendored) for the light design; hand-rolled runtime for dark |
 | Background | WebGL fragment shader (interactive dot grid) |
-| Hosting | Vercel (static) |
+| Hosting | Vercel (static, no build step) |
 
-**No runtime dependencies.** The browser loads one HTML file, one 20 KB stylesheet, and one image.
+**One runtime dependency:** anime.js v4, vendored in `vendor/` rather than loaded from a CDN so the
+page owns its dependency. It adds ~40 KB gzipped and is the largest script on the site.
 
 ## Features
 
-- **Scroll-spy navigation** — an underline slides between sections as you scroll, driven by
-  section geometry rather than hardcoded state
+- **Two full designs** with a persisted preference, following the OS until you choose for yourself
+- **Cross-fade theme switch** — the views are separate DOM trees, so the swap happens behind a
+  cover rather than as a visible cut
+- **Standing theme indicator** that points at the toggle and stands down once you scroll in
+- **Scroll-spy navigation** — an underline slides between sections, driven by section geometry
 - **WebGL dot-grid background** that reacts to cursor position
-- **3D tilt** on project cards, and a black fill that sweeps up on certification cards
-- **Full-screen mobile overlay menu**
+- **Animated statistics** — figures spin up out of noise and decelerate onto their real value
+- **Chained case studies** — every project page links to the next, so you can walk the whole set
+  without returning to the index
 - **Contact form** that composes a prefilled `mailto:` — no backend, no third-party form service
-- **Respects `prefers-reduced-motion`** — every animation is guarded
+- **Respects `prefers-reduced-motion`** — every animation is guarded, in both designs
 - **Social share card** with Open Graph and Twitter meta
 
 ## Performance
@@ -48,6 +59,9 @@ compiled Tailwind, compressed assets, real scroll-spy navigation, and accessible
 | CSS | ~400 KB (CDN, runtime-compiled) | **20 KB** (prebuilt, minified) |
 | Hero image | 1.81 MB PNG | **174 KB** JPEG |
 
+Figures are from the original single-design build. The second design and anime.js have since added
+roughly 40 KB gzipped of script on top.
+
 ## Running locally
 
 ```bash
@@ -55,6 +69,11 @@ git clone https://github.com/panvenaidu/Portfolio.git
 cd Portfolio
 python3 -m http.server 8000   # then open http://localhost:8000
 ```
+
+> **Caching gotcha.** `python3 -m http.server` sends no cache directives, so browsers
+> heuristically cache `.css` and `.js` and keep serving stale copies after an edit — changes
+> appear not to apply. Hard-reload (<kbd>⇧</kbd>+<kbd>⌘</kbd>+<kbd>R</kbd>), use a private
+> window, or serve with `Cache-Control: no-store` while developing.
 
 ## Editing styles
 
@@ -81,10 +100,16 @@ runs a build step.
 ## Structure
 
 ```
-index.html            Entire site — markup, custom CSS, and JS
+index.html            Both designs — the light and dark views live side by side
 styles.css            Compiled Tailwind output (generated)
+dark.css              Dark design + the shared theme toggle and indicator
+theme.js              Theme engine — switching, persistence, cross-fade
+dark.js               Dark-design motion runtime (reveals, counters, parallax)
+motion.js             anime.js effects for the light design
+vendor/               anime.js v4, vendored (MIT)
 tailwind.config.js    Design tokens
 src/input.css         Tailwind entry point
+projects/             Six case studies, each linking on to the next
 profile.jpg           Hero portrait
 og.png                Social share card
 Panvee_Naidu_Resume.pdf

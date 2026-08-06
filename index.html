@@ -3,6 +3,20 @@
 <html lang="en" style=""><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<!-- Theme boot: runs before first paint so the page never flashes the wrong
+     design. Follows the OS until the visitor picks a side themselves. -->
+<script>
+(function () {
+    var t;
+    try { t = localStorage.getItem('pn-theme'); } catch (e) { t = null; }
+    if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+    if (t === 'dark') document.documentElement.classList.add('dark');
+})();
+</script>
 <title>Panvee Naidu | Software Engineer</title>
 <meta content="Computer Science undergraduate specialising in Cybersecurity, designing and shipping full-stack systems — from distributed IoT platforms to real-time computer vision. Seeking a remote software engineering internship." name="description"/>
 <meta content="Panvee Naidu" name="author"/>
@@ -24,9 +38,10 @@
 <meta content="https://panveedev.vercel.app/og.png" name="twitter:image"/>
 <!-- Favicon: PN monogram, inline so it costs no extra request -->
 <link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23000'/%3E%3Ctext x='32' y='44' font-family='ui-monospace,Menlo,monospace' font-size='30' font-weight='700' fill='%23fff' text-anchor='middle'%3EPN%3C/text%3E%3C/svg%3E" rel="icon" type="image/svg+xml"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Hanken+Grotesk:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Hanken+Grotesk:wght@400;700;800&amp;family=Libre+Caslon+Display&amp;family=Instrument+Sans:ital,wght@0,400;0,500;1,400&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="styles.css" rel="stylesheet"/>
+<link href="dark.css" rel="stylesheet"/>
 <style>
         ::selection {
             background-color: #000000;
@@ -247,6 +262,10 @@
     </style>
 </head>
 <body class="font-body-md text-body-md antialiased bg-background text-on-background relative overflow-x-hidden">
+<!-- ============================================================ LIGHT VIEW ==
+     The original brutalist design. Hidden wholesale when data-theme="dark".
+     ========================================================================= -->
+<div class="pn-view pn-light">
 <canvas class="fixed inset-0 w-full h-full pointer-events-none z-0" id="bg-canvas"></canvas>
 <!-- Header -->
 <header class="bg-background dark:bg-background w-full sticky top-0 z-40 border-b-2 border-primary dark:border-primary-fixed">
@@ -261,15 +280,32 @@
 <li class=""><a class="nav-link font-label-md text-label-md text-secondary dark:text-secondary-fixed hover:text-primary dark:hover:text-primary-fixed cursor-pointer active:scale-95" href="#certifications">Certs</a></li>
 <li class="nav-indicator" id="nav-indicator"></li>
 </ul>
+<div class="flex items-center gap-stack-sm relative">
 <div class="hidden md:block">
 <a class="font-label-md text-label-md px-stack-md py-stack-sm bg-primary text-on-primary hover:bg-white hover:text-primary border-2 border-primary transition-all cursor-pointer active:scale-95" href="#contact">
                     Contact
                 </a>
 </div>
+<!-- Theme toggle sits LAST in both designs so it holds the same spot on the
+     rail when the two views swap. Keep it after Contact in the dark header too. -->
+<div class="theme-indicator-wrapper">
+<button aria-label="Switch to dark design" aria-pressed="false" class="theme-toggle" data-theme-toggle="" type="button">
+<svg aria-hidden="true" class="tt-moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+<svg aria-hidden="true" class="tt-sun" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+<span class="tt-text" data-theme-label="">Dark</span>
+</button>
+<!-- Always on. theme.js rewrites the copy to match whichever design is showing. -->
+<div class="theme-cue" data-theme-cue="" hidden="">
+<span class="cue-dot"></span>
+<span data-cue-text="">See it in a whole different design</span>
+<span class="cue-arrow">&#8593;</span>
+</div>
+</div>
 <!-- Mobile Menu Icon -->
 <button aria-label="Open menu" class="md:hidden text-primary" id="mobile-menu-btn">
 <span class="material-symbols-outlined text-3xl">menu</span>
 </button>
+</div>
 </nav>
 </header>
 <!-- Mobile Full-Screen Overlay -->
@@ -614,6 +650,370 @@
 </div>
 </div>
 </footer>
+</div><!-- /.pn-light -->
+
+<!-- ============================================================= DARK VIEW ==
+     The editorial teal design. A separate design rather than a recolour, so it
+     carries its own markup; dark.css styles it and dark.js drives its motion.
+
+     MAINTENANCE: content here is a second copy. When a project, skill,
+     certificate or date changes, update BOTH the light section above and the
+     matching block below. The six project pages need no such pairing — they
+     are restyled by CSS alone.
+
+     Everything is authored in its finished, visible state. dark.js applies the
+     hidden pre-state itself, so this reads correctly with JS disabled.
+     ========================================================================= -->
+<div class="pn-view pn-dark">
+
+<div class="dk-progress" data-dprogress=""></div>
+
+<header class="dk-header" data-dheader="">
+<a class="dk-brand" data-danim="up" href="#d-hero">Panvee Naidu</a>
+<nav class="dk-nav">
+<a class="dk-navlink" data-danim="up" data-dnavlink="" href="#d-projects">Projects</a>
+<a class="dk-navlink" data-danim="up" data-dnavlink="" href="#d-skills">Skills</a>
+<a class="dk-navlink" data-danim="up" data-dnavlink="" href="#d-resume">Resume</a>
+<a class="dk-navlink" data-danim="up" data-dnavlink="" href="#d-certifications">Certs</a>
+<a class="dk-pill" data-danim="up" href="#d-contact">Contact</a>
+<div class="theme-indicator-wrapper">
+<button aria-label="Switch to light design" aria-pressed="true" class="theme-toggle" data-theme-toggle="" type="button">
+<svg aria-hidden="true" class="tt-moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+<svg aria-hidden="true" class="tt-sun" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+<span class="tt-text" data-theme-label="">Light</span>
+</button>
+<div class="theme-cue" data-theme-cue="" hidden="">
+<span class="cue-dot"></span>
+<span data-cue-text="">Back to the original design</span>
+<span class="cue-arrow">&#8593;</span>
+</div>
+</div>
+</nav>
+</header>
+
+<!-- Hero -->
+<section class="dk-hero" id="d-hero">
+<div class="dk-hero-grid">
+<div class="dk-hero-main">
+<div class="dk-badge-row">
+<span class="dk-badge" data-danim="line-in">
+<span class="dk-dot"></span>
+                Available — open to SWE roles
+            </span>
+</div>
+<h1 class="dk-h1">
+<span class="dk-line"><span data-danim="line-in" style="display:block">Panvee</span></span>
+<span class="dk-line"><span data-danim="line-in" style="display:block"><em>Naidu</em></span></span>
+</h1>
+<div class="dk-rule" data-danim="rule"></div>
+<p class="dk-lede" data-danim="words">Computer Science undergraduate specialising in Cybersecurity, designing and shipping full-stack systems — real-time services, containerised backends, and distributed IoT.</p>
+<div class="dk-cta-row">
+<a class="dk-btn" data-danim="up" data-dmagnet="" href="#d-contact">
+<span class="dk-fill" data-dfill=""></span>
+<span>Get in touch</span>
+<span class="dk-arrow" data-darrow=""></span>
+</a>
+<a class="dk-btn-underline" data-danim="up" href="#d-projects">View work</a>
+</div>
+</div>
+<div class="dk-hero-aside">
+<div class="dk-portrait-frame">
+<img alt="Portrait of Panvee Naidu" class="dk-portrait" data-danim="img" data-dparallax=".06" src="profile.jpg"/>
+</div>
+<div class="dk-portrait-meta" data-danim="up">
+<span>SRM University — AP</span><span>B.Tech CSE '27</span>
+</div>
+</div>
+</div>
+<div class="dk-scroll" data-danim="up">SCROLL</div>
+</section>
+
+<!-- Featured work -->
+<section class="dk-section" id="d-projects">
+<div class="dk-projects-grid">
+<div class="dk-projects-aside">
+<div class="dk-projects-sticky">
+<div class="dk-clip"><h2 class="dk-h2 dk-projects-title" data-danim="line-in">Featured<br/><em>Work</em></h2></div>
+<div class="dk-projects-rule" data-danim="rule"></div>
+<div class="dk-eyebrow" data-danim="up"><span class="dk-rowcount" data-drowcount="">01</span> / 07 SELECTED</div>
+</div>
+</div>
+<div class="dk-rows">
+
+<a class="dk-row" data-danim="wipe" data-drow="" href="projects/aerochat.html">
+<span class="dk-rowbg" data-drowbg=""></span>
+<span class="dk-row-inner">
+<span class="dk-num" data-dnum="">01</span>
+<span class="dk-row-body">
+<h3 class="dk-row-title">AeroChat</h3>
+<span class="dk-stackline"><span>Docker</span><span>·</span><span>Compose</span><span>·</span><span>PostgreSQL</span><span>·</span><span>Redis</span></span>
+</span>
+<span class="dk-row-desc">Containerisation mini project — four services orchestrated with Docker Compose on an isolated bridge network, with a named volume for database persistence and a Makefile wrapping the lifecycle.</span>
+<span class="dk-rowarrow" data-drowarrow="">Read →</span>
+</span>
+</a>
+
+<div class="dk-row" data-danim="wipe" data-drow="" style="cursor:default">
+<span class="dk-rowbg" data-drowbg=""></span>
+<span class="dk-row-inner">
+<span class="dk-num" data-dnum="">02</span>
+<span class="dk-row-body">
+<h3 class="dk-row-title">Aurum</h3>
+<span class="dk-stackline"><span>FastAPI</span><span>·</span><span>SQLModel</span><span>·</span><span>React</span><span>·</span><span>JWT</span></span>
+</span>
+<span class="dk-row-desc">Multi-tenant hotel platform with three isolated portals — platform admin, hotel admin and guest — behind JWT role guards, plus an automatic commission engine.</span>
+</span>
+</div>
+
+<a class="dk-row" data-danim="wipe" data-drow="" href="projects/pkcs11-otp.html">
+<span class="dk-rowbg" data-drowbg=""></span>
+<span class="dk-row-inner">
+<span class="dk-num" data-dnum="">03</span>
+<span class="dk-row-body">
+<h3 class="dk-row-title">PKCS#11 OTP</h3>
+<span class="dk-stackline"><span>C</span><span>·</span><span>PKCS#11</span><span>·</span><span>SoftHSM</span><span>·</span><span>MySQL</span></span>
+</span>
+<span class="dk-row-desc">Hardware-security-module-backed one-time passwords via PKCS#11 and SoftHSM, with keys held inside the token rather than in application memory.</span>
+<span class="dk-rowarrow" data-drowarrow="">Read →</span>
+</span>
+</a>
+
+<a class="dk-row" data-danim="wipe" data-drow="" href="projects/valorix.html">
+<span class="dk-rowbg" data-drowbg=""></span>
+<span class="dk-row-inner">
+<span class="dk-num" data-dnum="">04</span>
+<span class="dk-row-body">
+<h3 class="dk-row-title">Valorix</h3>
+<span class="dk-stackline"><span>Next.js 15</span><span>·</span><span>TypeScript</span><span>·</span><span>Tailwind</span></span>
+</span>
+<span class="dk-row-desc">Production Next.js 15 / React 19 app with a custom Tailwind v4 token system, hand-built SVG charts with zero charting dependencies, and reduced-motion guards on every animation.</span>
+<span class="dk-rowarrow" data-drowarrow="">Read →</span>
+</span>
+</a>
+
+<a class="dk-row" data-danim="wipe" data-drow="" href="projects/smart-home-automation.html">
+<span class="dk-rowbg" data-drowbg=""></span>
+<span class="dk-row-inner">
+<span class="dk-num" data-dnum="">05</span>
+<span class="dk-row-body">
+<h3 class="dk-row-title">Smart Home Automation</h3>
+<span class="dk-stackline"><span>Python</span><span>·</span><span>MQTT</span><span>·</span><span>REST</span><span>·</span><span>Threading</span></span>
+</span>
+<span class="dk-row-desc">Distributed IoT platform across three decoupled processes over MQTT, with a multi-threaded REST API and a voice interpreter routing 14 intent patterns.</span>
+<span class="dk-rowarrow" data-drowarrow="">Read →</span>
+</span>
+</a>
+
+<a class="dk-row" data-danim="wipe" data-drow="" href="projects/crowd-detection.html">
+<span class="dk-rowbg" data-drowbg=""></span>
+<span class="dk-row-inner">
+<span class="dk-num" data-dnum="">06</span>
+<span class="dk-row-body">
+<h3 class="dk-row-title">Crowd Detection</h3>
+<span class="dk-stackline"><span>Computer Vision</span><span>·</span><span>YOLOv8</span><span>·</span><span>OpenCV</span></span>
+</span>
+<span class="dk-row-desc">Real-time vision pipeline that clusters YOLOv8 detections by proximity and logs only crowds that persist across frames.</span>
+<span class="dk-rowarrow" data-drowarrow="">Read →</span>
+</span>
+</a>
+
+<a class="dk-row" data-danim="wipe" data-drow="" href="projects/softsell.html">
+<span class="dk-rowbg" data-drowbg=""></span>
+<span class="dk-row-inner">
+<span class="dk-num" data-dnum="">07</span>
+<span class="dk-row-body">
+<h3 class="dk-row-title">SoftSell</h3>
+<span class="dk-stackline"><span>React</span><span>·</span><span>Vite</span><span>·</span><span>Tailwind</span><span>·</span><span>Framer Motion</span></span>
+</span>
+<span class="dk-row-desc">React single-page marketing site for a software-license resale concept — 8 modular components with system-aware dark mode, validated lead capture, and a scripted chat widget.</span>
+<span class="dk-rowarrow" data-drowarrow="">Read →</span>
+</span>
+</a>
+
+</div>
+</div>
+</section>
+
+<!-- Running tech marquee -->
+<div class="dk-marquee-wrap" data-dmarquee-wrap="">
+<div class="dk-marquee" data-dmarquee="">
+<span><span>Python</span><span>·</span><span>TypeScript</span><span>·</span><span>FastAPI</span><span>·</span><span>Socket.IO</span><span>·</span><span>Redis</span><span>·</span><span>PostgreSQL</span><span>·</span><span>Docker</span><span>·</span><span>MQTT</span><span>·</span><span>Next.js</span><span>·</span><span>PKCS#11</span><span>·</span><span>YOLOv8</span><span>·</span><span>Linux</span><span>·</span></span>
+<span aria-hidden="true"><span>Python</span><span>·</span><span>TypeScript</span><span>·</span><span>FastAPI</span><span>·</span><span>Socket.IO</span><span>·</span><span>Redis</span><span>·</span><span>PostgreSQL</span><span>·</span><span>Docker</span><span>·</span><span>MQTT</span><span>·</span><span>Next.js</span><span>·</span><span>PKCS#11</span><span>·</span><span>YOLOv8</span><span>·</span><span>Linux</span><span>·</span></span>
+</div>
+</div>
+
+<!-- Technical expertise -->
+<section class="dk-section" id="d-skills">
+<div class="dk-wrap">
+<div class="dk-clip" style="margin-bottom:clamp(30px,6vh,64px)"><h2 class="dk-h2" data-danim="line-in">Technical <em>Expertise</em></h2></div>
+<div class="dk-skill-cols">
+<div class="dk-skill-col">
+<div class="dk-skill-head" data-danim="up">01 — Languages</div>
+<div class="dk-skill-list" data-dstagger="">
+<span class="dk-skill" data-danim="up" data-dskill="">Python</span><span class="dk-skill" data-danim="up" data-dskill="">JavaScript</span><span class="dk-skill" data-danim="up" data-dskill="">TypeScript</span><span class="dk-skill" data-danim="up" data-dskill="">C</span><span class="dk-skill" data-danim="up" data-dskill="">Apex</span><span class="dk-skill" data-danim="up" data-dskill="">SQL</span>
+</div>
+</div>
+<div class="dk-skill-col">
+<div class="dk-skill-head" data-danim="up">02 — Backend &amp; Systems</div>
+<div class="dk-skill-list" data-dstagger="">
+<span class="dk-skill" data-danim="up" data-dskill="">FastAPI</span><span class="dk-skill" data-danim="up" data-dskill="">Node.js / Express</span><span class="dk-skill" data-danim="up" data-dskill="">Socket.IO</span><span class="dk-skill" data-danim="up" data-dskill="">REST APIs</span><span class="dk-skill" data-danim="up" data-dskill="">MQTT</span><span class="dk-skill" data-danim="up" data-dskill="">Redis</span><span class="dk-skill" data-danim="up" data-dskill="">PostgreSQL</span>
+</div>
+</div>
+<div class="dk-skill-col">
+<div class="dk-skill-head" data-danim="up">03 — Frontend</div>
+<div class="dk-skill-list" data-dstagger="">
+<span class="dk-skill" data-danim="up" data-dskill="">React</span><span class="dk-skill" data-danim="up" data-dskill="">Next.js</span><span class="dk-skill" data-danim="up" data-dskill="">Tailwind CSS</span><span class="dk-skill" data-danim="up" data-dskill="">Vite</span><span class="dk-skill" data-danim="up" data-dskill="">Framer Motion</span><span class="dk-skill" data-danim="up" data-dskill="">HTML/CSS</span>
+</div>
+</div>
+<div class="dk-skill-col">
+<div class="dk-skill-head" data-danim="up">04 — DevOps &amp; Security</div>
+<div class="dk-skill-list" data-dstagger="">
+<span class="dk-skill" data-danim="up" data-dskill="">Docker / Compose</span><span class="dk-skill" data-danim="up" data-dskill="">JWT / bcrypt</span><span class="dk-skill" data-danim="up" data-dskill="">PKCS#11 / SoftHSM</span><span class="dk-skill" data-danim="up" data-dskill="">CI/CD</span><span class="dk-skill" data-danim="up" data-dskill="">Git / GitHub</span><span class="dk-skill" data-danim="up" data-dskill="">Linux</span><span class="dk-skill" data-danim="up" data-dskill="">Vercel</span><span class="dk-skill" data-danim="up" data-dskill="">YOLOv8 / OpenCV</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Experience + education -->
+<section class="dk-section dk-section--surface" id="d-resume">
+<div class="dk-split">
+<div class="dk-col-wide">
+<div class="dk-clip"><h2 class="dk-h2 dk-h2--tall" data-danim="line-in">Experience</h2></div>
+<div class="dk-entry" data-danim="wipe">
+<div class="dk-entry-meta">
+<span>SmartBridge · Salesforce Developer Intern</span><span>May – Jul 2025</span>
+</div>
+<p class="dk-entry-body">Completed an 8-week Agentblazer Champion program in collaboration with Salesforce — building and testing custom Apex classes and Lightning Web Components, and earning the Object Relationships Superbadge.</p>
+</div>
+<div class="dk-cta-row">
+<a class="dk-btn" data-danim="up" data-dmagnet="" href="Panvee_Naidu_Resume.pdf" rel="noopener noreferrer" target="_blank">
+<span class="dk-fill" data-dfill=""></span>
+<span>View résumé</span>
+</a>
+<a class="dk-btn-ghost" data-danim="up" download="" href="Panvee_Naidu_Resume.pdf">Download</a>
+</div>
+</div>
+<div class="dk-col-narrow">
+<div class="dk-clip"><h2 class="dk-h2 dk-h2--tall" data-danim="line-in">Education</h2></div>
+<div class="dk-entry" data-danim="wipe">
+<h3 class="dk-edu-name">SRM University — AP</h3>
+<p class="dk-edu-sub">B.Tech, Computer Science and Engineering · Specialization in Cybersecurity</p>
+<div class="dk-stats">
+<div>
+<div class="dk-stat-label">Expected</div>
+<div class="dk-stat-value">May 2027</div>
+</div>
+<div>
+<div class="dk-stat-label">CGPA</div>
+<div class="dk-stat-value"><span data-danim="up" data-dcount="7.4">7.4</span> <small>/ 10</small></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Certifications -->
+<section class="dk-section" id="d-certifications">
+<div class="dk-wrap">
+<div class="dk-sec-head">
+<div class="dk-clip"><h2 class="dk-h2" data-danim="line-in">Certifications</h2></div>
+<div class="dk-eyebrow"><span data-danim="up" data-dcount="8" data-dpad="2">08</span> CREDENTIALS</div>
+</div>
+<div class="dk-cert-grid" data-dstagger="">
+<a class="dk-cert" data-danim="up" data-dcert="" href="Certs/sap-generative-ai-developer.pdf" rel="noopener noreferrer" target="_blank">
+<span class="dk-certbg" data-dcertbg=""></span>
+<span class="dk-certmeta" data-dcerttxt="">SAP · 2026</span>
+<span class="dk-certtitle" data-dcerttxt="">SAP Generative AI Developer</span>
+</a>
+<a class="dk-cert" data-danim="up" data-dcert="" href="Certs/salesforce-smartbridge.pdf" rel="noopener noreferrer" target="_blank">
+<span class="dk-certbg" data-dcertbg=""></span>
+<span class="dk-certmeta" data-dcerttxt="">SmartBridge × Salesforce · 2025</span>
+<span class="dk-certtitle" data-dcerttxt="">Agentblazer Champion Program</span>
+</a>
+<a class="dk-cert" data-danim="up" data-dcert="" href="Certs/google-ai-essentials.pdf" rel="noopener noreferrer" target="_blank">
+<span class="dk-certbg" data-dcertbg=""></span>
+<span class="dk-certmeta" data-dcerttxt="">Google · 2025</span>
+<span class="dk-certtitle" data-dcerttxt="">Google AI Essentials</span>
+</a>
+<a class="dk-cert" data-danim="up" data-dcert="" href="Certs/meta-genai-frontend.pdf" rel="noopener noreferrer" target="_blank">
+<span class="dk-certbg" data-dcertbg=""></span>
+<span class="dk-certmeta" data-dcerttxt="">Coursera · 2025</span>
+<span class="dk-certtitle" data-dcerttxt="">GenAI for Front-End Development</span>
+</a>
+<a class="dk-cert" data-danim="up" data-dcert="" href="Certs/meta-intro-frontend.pdf" rel="noopener noreferrer" target="_blank">
+<span class="dk-certbg" data-dcertbg=""></span>
+<span class="dk-certmeta" data-dcerttxt="">Meta · 2025</span>
+<span class="dk-certtitle" data-dcerttxt="">Introduction to Front-End Development</span>
+</a>
+<a class="dk-cert" data-danim="up" data-dcert="" href="Certs/techgyan-hackathon-data-analytics.jpg" rel="noopener noreferrer" target="_blank">
+<span class="dk-certbg" data-dcertbg=""></span>
+<span class="dk-certmeta" data-dcerttxt="">TechGyan × IIT Hyderabad · Jun 2025</span>
+<span class="dk-certtitle" data-dcerttxt="">Data Analytics Hackathon</span>
+</a>
+<a class="dk-cert" data-danim="up" data-dcert="" href="Certs/techgyan-data-science-python.jpg" rel="noopener noreferrer" target="_blank">
+<span class="dk-certbg" data-dcertbg=""></span>
+<span class="dk-certmeta" data-dcerttxt="">TechGyan × IIT Hyderabad · Jun 2025</span>
+<span class="dk-certtitle" data-dcerttxt="">Data Science with Python</span>
+</a>
+<a class="dk-cert" data-danim="up" data-dcert="" href="Certs/techgyan-workshop-data-analytics.jpg" rel="noopener noreferrer" target="_blank">
+<span class="dk-certbg" data-dcertbg=""></span>
+<span class="dk-certmeta" data-dcerttxt="">TechGyan × IIT Hyderabad · Jun 2025</span>
+<span class="dk-certtitle" data-dcerttxt="">Data Analytics Workshop</span>
+</a>
+</div>
+</div>
+</section>
+
+<!-- Contact -->
+<section class="dk-contact" id="d-contact">
+<div class="dk-contact-grid">
+<div class="dk-contact-main">
+<div class="dk-clip"><h2 class="dk-h2 dk-h2--huge" data-danim="line-in">Let's <em>connect</em></h2></div>
+<p class="dk-contact-lede" data-danim="words">Open to remote software engineering internships. The fastest way to reach me is email — I reply within a day.</p>
+<div class="dk-contact-rule" data-danim="rule"></div>
+<div class="dk-social">
+<a data-danim="up" data-dlink="" href="https://github.com/panvenaidu" rel="noopener noreferrer" target="_blank">GitHub</a>
+<a data-danim="up" data-dlink="" href="https://www.linkedin.com/in/panvee-naidu-8a6430291/" rel="noopener noreferrer" target="_blank">LinkedIn</a>
+<a class="contact-email-link" data-danim="up" data-dlink="" href="#">Email</a>
+</div>
+</div>
+<form class="dk-form" data-dform="">
+<label class="dk-field" data-danim="up" data-dfield="">
+<span class="dk-field-label">Name</span>
+<input id="dk-cf-name" placeholder="Your name" type="text"/>
+<span class="dk-underline" data-dunderline=""></span>
+</label>
+<label class="dk-field" data-danim="up" data-dfield="">
+<span class="dk-field-label">Email</span>
+<input id="dk-cf-email" placeholder="you@company.com" type="email"/>
+<span class="dk-underline" data-dunderline=""></span>
+</label>
+<label class="dk-field" data-danim="up" data-dfield="">
+<span class="dk-field-label">Message</span>
+<textarea id="dk-cf-message" placeholder="A line about the role" rows="3"></textarea>
+<span class="dk-underline" data-dunderline=""></span>
+</label>
+<button class="dk-btn dk-submit" data-danim="up" data-dmagnet="" data-dsubmit="" type="submit">
+<span class="dk-fill" data-dfill=""></span>
+<span data-dsubmitlabel="">Send message</span>
+</button>
+</form>
+</div>
+</section>
+
+<footer class="dk-footer">
+<div class="dk-wrap">
+<div class="dk-clip"><div class="dk-wordmark" data-danim="line-in">Panvee Naidu</div></div>
+<div class="dk-footer-meta" data-danim="up">
+<span>Available for remote SWE internships</span><span>© 2026</span>
+</div>
+</div>
+</footer>
+
+</div><!-- /.pn-dark -->
+
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     // --- Contact address (change this one line to update it everywhere) ---
@@ -925,6 +1325,13 @@ void main() {
     resize();
 
     function render(time) {
+        // This canvas belongs to the light design. While the dark theme is
+        // showing it is display:none, so skip the GL work rather than paint
+        // into a hidden element every frame.
+        if (document.documentElement.getAttribute('data-theme') === 'dark') {
+            requestAnimationFrame(render);
+            return;
+        }
         gl.uniform1f(timeLocation, time * 0.001);
         gl.uniform2f(resolutionLocation, canvas.width, canvas.height);
         gl.uniform2f(mouseLocation, mouseX, mouseY); // v_texCoord is already flipped top-down in the vertex shader
@@ -943,4 +1350,10 @@ void main() {
     requestAnimationFrame(render);
 });
 </script>
+<script defer="" src="theme.js"></script>
+<script defer="" src="dark.js"></script>
+<!-- anime.js v4 (MIT), vendored so the page owns its dependency. motion.js
+     drives the light design only — dark.js already owns the dark one. -->
+<script defer="" src="vendor/anime.umd.min.js"></script>
+<script defer="" src="motion.js"></script>
 </body></html>

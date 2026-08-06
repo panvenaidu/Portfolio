@@ -2,6 +2,20 @@
 <html lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<!-- Theme boot: runs before first paint so the page never flashes the wrong
+     design. Follows the OS until the visitor picks a side themselves. -->
+<script>
+(function () {
+    var t;
+    try { t = localStorage.getItem('pn-theme'); } catch (e) { t = null; }
+    if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+    if (t === 'dark') document.documentElement.classList.add('dark');
+})();
+</script>
 <title>SoftSell | Panvee Naidu</title>
 <meta content="A React and Vite single-page marketing site for a software-licence resale concept: eight modular components, system-aware dark mode, a validated lead capture form and a scripted chat widget." name="description"/>
 <meta content="Panvee Naidu" name="author"/>
@@ -10,16 +24,24 @@
 <meta content="https://panveedev.vercel.app/og.png" property="og:image"/>
 <meta content="website" property="og:type"/>
 <link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23000'/%3E%3Ctext x='32' y='44' font-family='ui-monospace,Menlo,monospace' font-size='30' font-weight='700' fill='%23fff' text-anchor='middle'%3EPN%3C/text%3E%3C/svg%3E" rel="icon" type="image/svg+xml"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Hanken+Grotesk:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Hanken+Grotesk:wght@400;700;800&amp;family=Libre+Caslon+Display&amp;family=Instrument+Sans:ital,wght@0,400;0,500;1,400&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="../styles.css" rel="stylesheet"/>
 <link href="case.css" rel="stylesheet"/>
+<link href="../dark.css" rel="stylesheet"/>
 </head>
-<body class="font-body-md antialiased">
+<body class="font-body-md antialiased case-page">
 <header class="sticky top-0 z-50 bg-background border-b-2 border-primary">
 <div class="max-w-5xl mx-auto px-stack-lg py-stack-md flex items-center justify-between gap-stack-md">
 <a class="font-label-sm text-label-sm text-primary hover:underline inline-flex items-center gap-1" href="../index.html#projects"><span class="material-symbols-outlined text-[16px]">arrow_back</span>FEATURED WORK</a>
+<div class="flex items-center gap-stack-md">
 <a class="font-label-sm text-label-sm text-primary hover:underline" href="../index.html">PANVEE NAIDU</a>
+<button aria-label="Switch to dark design" aria-pressed="false" class="theme-toggle" data-theme-toggle="" type="button">
+<svg aria-hidden="true" class="tt-moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+<svg aria-hidden="true" class="tt-sun" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+<span class="tt-text" data-theme-label="">Dark</span>
+</button>
+</div>
 </div>
 </header>
 
@@ -175,9 +197,10 @@
 
 <section class="border-t-2 border-primary pt-stack-lg flex flex-wrap gap-stack-md justify-between items-center">
 <a class="font-label-md text-label-md text-primary hover:underline inline-flex items-center gap-1" href="../index.html#projects"><span class="material-symbols-outlined text-[16px]">arrow_back</span>All work</a>
-<a class="font-label-md text-label-md px-stack-lg py-stack-md bg-primary text-on-primary border-2 border-primary hover:bg-white hover:text-primary transition-colors" href="../index.html#contact">Get in touch</a>
+<div class="flex flex-wrap items-center gap-stack-md"><a class="case-next font-label-md text-label-md text-primary inline-flex items-center gap-2" href="aerochat.html"><span class="case-next-label">Next</span><span class="case-next-name">AeroChat</span><span class="material-symbols-outlined text-[16px] case-next-arrow">arrow_forward</span></a><a class="font-label-md text-label-md px-stack-lg py-stack-md bg-primary text-on-primary border-2 border-primary hover:bg-white hover:text-primary transition-colors" href="../index.html#contact">Get in touch</a></div>
 </section>
 
 </main>
 <script src="case.js"></script>
+<script defer="" src="../theme.js"></script>
 </body></html>
