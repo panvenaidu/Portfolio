@@ -10,17 +10,57 @@ Personal portfolio site. Static, dependency-free at runtime, deployed on Vercel.
 
 ## About
 
-The site ships **two complete designs**, not one design recoloured:
+A portfolio covering featured projects, technical skills, experience, education, and verifiable
+certifications — plus six long-form project case studies.
 
-- **Light — "Obsidian Mono."** Pure black on off-white, zero border-radius, monospace labels,
-  heavy 2px rules.
-- **Dark — "Editorial Teal."** Warm near-black, bone text, Libre Caslon Display headings against
-  JetBrains Mono labels, hairline rules, teal accent.
+It also ships **two complete designs instead of one**, which is the more interesting part.
 
-Each carries its own markup and its own motion runtime. A single `data-theme` attribute on `<html>`
-switches between them, set before first paint so the page never flashes the wrong design. It covers
-featured projects, technical skills, experience, education, and verifiable certifications, plus six
-long-form project case studies.
+## The idea
+
+Most portfolios choose an aesthetic and commit to it. Most dark modes are that same design with the
+tokens inverted — identical grid, identical type, identical rhythm, darker paint. The toggle changes
+the lighting, not the room.
+
+This one asks a different question:
+
+> **What if the toggle switched design languages instead of colours?**
+
+Not one design and its shadow. Two arguments about how the same work should look, each carried all
+the way down to the typeface and the thickness of a rule.
+
+**Light — "Obsidian Mono."** Brutalist and technical. Pure black on off-white, zero border-radius,
+2px rules that look ruled rather than drawn, monospace labels throughout. It reads like a spec sheet
+and is unapologetic about it.
+
+**Dark — "Editorial Teal."** A magazine spread. Warm near-black paper, bone-white text, Libre Caslon
+Display set large and italic against JetBrains Mono labels, hairline rules, one teal accent used
+sparingly. Same résumé, completely different voice.
+
+Nothing is shared between them but the content and the toggle.
+
+## What the idea cost
+
+Committing to it meant giving up the cheap version — a palette swap behind CSS variables — and
+paying for the real one:
+
+- **Two DOM trees, not one.** The designs differ structurally, so both exist in the markup and only
+  one is ever in the document flow.
+- **Two motion runtimes.** Dark drives its own reveal engine; light uses anime.js. Pointing one
+  system at both would have meant two things writing the same inline styles.
+- **The switch became its own design problem.** Because the views are separate subtrees, a colour
+  transition alone still showed the incoming design snap into place. It needed a cross-fade behind a
+  cover to read as one continuous movement.
+- **Content lives twice.** The honest cost. Change a project, a date or a certificate on the home
+  page and it must be changed in both views. The six case-study pages avoid this — they are restyled
+  by CSS alone, so their markup exists once.
+
+## Did it work?
+
+Yes, with an asterisk. Both designs hold up on their own, the switch is smooth, the preference
+persists, and everything is guarded by `prefers-reduced-motion`. The asterisk is that duplicated
+home-page content is a genuine maintenance tax — a deliberate trade for the idea, not an oversight.
+If this grew past a personal site, the two views would want to be generated from one content source
+rather than hand-kept in sync.
 
 ## Tech
 
