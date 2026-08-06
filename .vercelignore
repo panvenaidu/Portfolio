@@ -9,10 +9,11 @@ src
 # Local/editor cruft
 .DS_Store
 
-# Stitch export artifacts and the uncompressed original, not part of the site
+# Repo documentation and source originals, not part of the served site
 screen.png
 DESIGN.md
 profile.png
+docs
 
 # Exact duplicates of certificates already shipped (identical md5)
 Certs/*copy*

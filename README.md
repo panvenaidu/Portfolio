@@ -4,7 +4,11 @@ Personal portfolio site. Static, dependency-free at runtime, deployed on Vercel.
 
 **Live:** https://panveedev.vercel.app
 
-![Panvee Naidu — Software Engineer](og.png)
+| Light — *Obsidian Mono* | Dark — *Editorial Teal* |
+|---|---|
+| ![The light design: black on off-white, monospace labels, hard 2px rules](docs/theme-light.jpg) | ![The dark design: warm near-black, serif display headings, teal accent](docs/theme-dark.jpg) |
+
+*Same content, same page, one toggle apart.*
 
 ---
 
@@ -152,6 +156,7 @@ src/input.css         Tailwind entry point
 projects/             Six case studies, each linking on to the next
 profile.jpg           Hero portrait
 og.png                Social share card
+docs/                 README screenshots (not deployed)
 Panvee_Naidu_Resume.pdf
 Certs/                Certificates linked from the site
 ```
