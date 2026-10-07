@@ -1,21 +1,8 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="en" data-portfolio-theme="workroom"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<!-- Theme boot: runs before first paint so the page never flashes the wrong
-     design. Follows the OS until the visitor picks a side themselves. -->
-<script>
-(function () {
-    var t;
-    try { t = localStorage.getItem('pn-theme'); } catch (e) { t = null; }
-    if (t !== 'dark' && t !== 'light') {
-        t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-            ? 'dark' : 'light';
-    }
-    document.documentElement.setAttribute('data-theme', t);
-    if (t === 'dark') document.documentElement.classList.add('dark');
-})();
-</script>
+
 <title>SoftSell | Panvee Naidu</title>
 <meta content="A React and Vite single-page marketing site for a software-licence resale concept: eight modular components, system-aware dark mode, a validated lead capture form and a scripted chat widget." name="description"/>
 <meta content="Panvee Naidu" name="author"/>
@@ -24,35 +11,24 @@
 <meta content="https://panveedev.vercel.app/og.png" property="og:image"/>
 <meta content="website" property="og:type"/>
 <link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23000'/%3E%3Ctext x='32' y='44' font-family='ui-monospace,Menlo,monospace' font-size='30' font-weight='700' fill='%23fff' text-anchor='middle'%3EPN%3C/text%3E%3C/svg%3E" rel="icon" type="image/svg+xml"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Hanken+Grotesk:wght@400;700;800&amp;family=Libre+Caslon+Display&amp;family=Instrument+Sans:ital,wght@0,400;0,500;1,400&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+
+
 <link href="../styles.css" rel="stylesheet"/>
 <link href="case.css" rel="stylesheet"/>
-<link href="../dark.css" rel="stylesheet"/>
+<link href="workroom.css" rel="stylesheet"/>
+
 </head>
 <body class="font-body-md antialiased case-page">
-<header class="sticky top-0 z-50 bg-background border-b-2 border-primary">
-<div class="max-w-5xl mx-auto px-stack-lg py-stack-md flex items-center justify-between gap-stack-md">
-<a class="font-label-sm text-label-sm text-primary hover:underline inline-flex items-center gap-1" href="../index.html#projects"><span class="material-symbols-outlined text-[16px]">arrow_back</span>FEATURED WORK</a>
-<div class="flex items-center gap-stack-md">
-<a class="font-label-sm text-label-sm text-primary hover:underline" href="../index.html">PANVEE NAIDU</a>
-<button aria-label="Switch to dark design" aria-pressed="false" class="theme-toggle" data-theme-toggle="" type="button">
-<svg aria-hidden="true" class="tt-moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-<svg aria-hidden="true" class="tt-sun" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
-<span class="tt-text" data-theme-label="">Dark</span>
-</button>
-</div>
-</div>
-</header>
+<a class="case-skip" href="#case-main">Skip to case study</a><header class="case-header"><a href="/#room-systems">← Selected work</a><a class="case-brand" href="/">Panvee Naidu<span>Software engineer</span></a><a href="/#room-contact">Let’s talk <span class="case-external-arrow" aria-hidden="true">↗</span></a></header>
 
-<main class="max-w-5xl mx-auto px-stack-lg py-section-gap flex flex-col gap-section-gap">
+<main id="case-main" class="max-w-5xl mx-auto px-stack-lg py-section-gap flex flex-col gap-section-gap">
 
 <section>
 <div class="inline-flex items-center gap-2 border border-primary px-stack-sm py-1 mb-stack-md font-label-sm text-label-sm text-primary">FRONT-END BUILD</div>
 <h1 class="font-headline-xl-mobile md:font-headline-xl text-headline-xl-mobile md:text-headline-xl text-primary mb-stack-md">SoftSell</h1>
-<p class="font-body-lg text-body-lg text-secondary border-l-2 border-primary pl-stack-md mb-stack-lg max-w-3xl">A single-page marketing site for a software-licence resale concept &mdash; built to see how far a landing page can be pushed on structure, motion and responsiveness without a backend behind it.</p>
+<p class="font-body-lg text-body-lg text-secondary border-l-2 border-primary pl-stack-md mb-stack-lg max-w-3xl">A single-page marketing site for a software-licence resale concept &ndash; built to see how far a landing page can be pushed on structure, motion and responsiveness without a backend behind it.</p>
 <div class="flex flex-wrap gap-stack-sm">
-<a class="font-label-sm text-label-sm border border-primary px-stack-sm py-2 bg-primary text-on-primary hover:bg-white hover:text-primary transition-colors inline-flex items-center gap-1" href="https://github.com/panvee/SoftSell-Software-License-Marketplace" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px]">link</span>Source</a>
+<a class="font-label-sm text-label-sm border border-primary px-stack-sm py-2 bg-primary text-on-primary hover:bg-white hover:text-primary transition-colors inline-flex items-center gap-1" href="https://github.com/panvee/SoftSell-Software-License-Marketplace" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px] case-external-arrow" aria-hidden="true">↗</span>Source</a>
 </div>
 </section>
 
@@ -67,7 +43,7 @@
 <h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary border-b-2 border-primary pb-stack-sm mb-stack-lg">Overview</h2>
 <div class="flex flex-col gap-stack-md max-w-3xl">
 <p class="font-body-md text-body-md text-secondary">The page walks a visitor from proposition to enquiry: a hero, a three-step explanation of how selling a licence works, trust indicators and benefits, testimonials, a lead capture form, and a chat widget for questions.</p>
-<p class="font-body-md text-body-md text-secondary">It is deliberately front-end only. There is no server, no database and no payment processing &mdash; the product it advertises is a concept, and the build is about component structure, responsive behaviour and interaction quality rather than commerce.</p>
+<p class="font-body-md text-body-md text-secondary">It is deliberately front-end only. There is no server, no database and no payment processing &ndash; the product it advertises is a concept, and the build is about component structure, responsive behaviour and interaction quality rather than commerce.</p>
 </div>
 </section>
 
@@ -92,7 +68,7 @@
 <article class="stack-card" data-card>
 <p class="font-label-sm text-label-sm text-secondary mb-stack-sm">STEP 01</p>
 <h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Decompose the page into eight modules</h3>
-<p class="font-body-md text-body-md text-secondary">Each region &mdash; hero, process, benefits, testimonials, lead capture, chat and the surrounding chrome &mdash; is its own component with its own props and styles. Sections can be reordered, removed or restyled independently, which is what makes a marketing page maintainable rather than one long file.</p>
+<p class="font-body-md text-body-md text-secondary">Each region &ndash; hero, process, benefits, testimonials, lead capture, chat and the surrounding chrome &ndash; is its own component with its own props and styles. Sections can be reordered, removed or restyled independently, which is what makes a marketing page maintainable rather than one long file.</p>
 </article>
 
 <article class="stack-card" data-card>
@@ -110,7 +86,7 @@
 <article class="stack-card" data-card>
 <p class="font-label-sm text-label-sm text-secondary mb-stack-sm">STEP 04</p>
 <h3 class="font-headline-md text-headline-md text-primary mb-stack-md">A chat widget structured for a real brain later</h3>
-<p class="font-body-md text-body-md text-secondary">The widget runs a scripted response engine &mdash; the answers are written in advance, not generated. It is built behind a clear boundary so the script could be replaced by a live language model without touching the interface. Calling it what it is matters: it looks like a chatbot, and it is a decision tree.</p>
+<p class="font-body-md text-body-md text-secondary">The widget runs a scripted response engine &ndash; the answers are written in advance, not generated. It is built behind a clear boundary so the script could be replaced by a live language model without touching the interface. Calling it what it is matters: it looks like a chatbot, and it is a decision tree.</p>
 </article>
 
 <article class="stack-card" data-card>
@@ -138,7 +114,7 @@
 <article class="stack-card" data-card>
 <p class="font-label-sm text-label-sm text-secondary mb-stack-sm">01</p>
 <h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Claims in the README that were never measured</h3>
-<p class="font-body-md text-body-md text-secondary">The repository README asserts a Lighthouse score above 95 and a first contentful paint under one second. Neither number was ever measured. They are not repeated on this page, and they should be deleted from the README or actually benchmarked &mdash; an unverified performance claim is the easiest thing in a portfolio for a reviewer to check and disprove.</p>
+<p class="font-body-md text-body-md text-secondary">The repository README asserts a Lighthouse score above 95 and a first contentful paint under one second. Neither number was ever measured. They are not repeated on this page, and they should be deleted from the README or actually benchmarked &ndash; an unverified performance claim is the easiest thing in a portfolio for a reviewer to check and disprove.</p>
 </article>
 
 <article class="stack-card" data-card>
@@ -175,7 +151,7 @@
 <div class="border border-primary p-stack-md bg-surface-container-low transition-colors hover:bg-white hover:border-2">
 <h3 class="font-label-md text-label-md text-primary border-b border-gray-light pb-stack-sm mb-stack-sm">Known limitations</h3>
 <ul class="flex flex-col gap-stack-sm">
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">No backend &mdash; nothing is submitted anywhere</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">No backend &ndash; nothing is submitted anywhere</li>
 <li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Chat responses are scripted, not generated</li>
 <li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Testimonials and brand are illustrative</li>
 <li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">README performance claims are unverified</li>
@@ -196,11 +172,11 @@
 </section>
 
 <section class="border-t-2 border-primary pt-stack-lg flex flex-wrap gap-stack-md justify-between items-center">
-<a class="font-label-md text-label-md text-primary hover:underline inline-flex items-center gap-1" href="../index.html#projects"><span class="material-symbols-outlined text-[16px]">arrow_back</span>All work</a>
-<div class="flex flex-wrap items-center gap-stack-md"><a class="case-next font-label-md text-label-md text-primary inline-flex items-center gap-2" href="aerochat.html"><span class="case-next-label">Next</span><span class="case-next-name">AeroChat</span><span class="material-symbols-outlined text-[16px] case-next-arrow">arrow_forward</span></a><a class="font-label-md text-label-md px-stack-lg py-stack-md bg-primary text-on-primary border-2 border-primary hover:bg-white hover:text-primary transition-colors" href="../index.html#contact">Get in touch</a></div>
+<a class="font-label-md text-label-md text-primary hover:underline inline-flex items-center gap-1" href="/#room-systems"><span class="material-symbols-outlined text-[16px]">←</span>All work</a>
+<div class="flex flex-wrap items-center gap-stack-md"><a class="case-next font-label-md text-label-md text-primary inline-flex items-center gap-2" href="aerochat.html"><span class="case-next-label">Next</span><span class="case-next-name">AeroChat</span><span class="material-symbols-outlined text-[16px] case-next-arrow">→</span></a><a class="font-label-md text-label-md px-stack-lg py-stack-md bg-primary text-on-primary border-2 border-primary hover:bg-white hover:text-primary transition-colors" href="/#room-contact">Get in touch</a></div>
 </section>
 
 </main>
-<script src="case.js"></script>
-<script defer="" src="../theme.js"></script>
+
+
 </body></html>

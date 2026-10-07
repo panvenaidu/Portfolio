@@ -1,0 +1,20 @@
+{
+  "name": "Workroom",
+  "colors": {
+    "vermilion": "#8d2818",
+    "paper": "#e9edf0",
+    "ink": "#291e1c"
+  },
+  "typography": {
+    "display": "Bodoni Moda Variable",
+    "body": "Public Sans Variable",
+    "bodyDesktop": 16,
+    "bodyMobile": 15,
+    "displayMax": 96
+  },
+  "motion": {
+    "signature": "Wall and Desk viewing distance",
+    "reducedMotion": "native reading flow"
+  },
+  "source": "DESIGN.md"
+}

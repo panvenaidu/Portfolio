@@ -1,0 +1,30 @@
+@import '@fontsource-variable/bodoni-moda';
+@import '@fontsource-variable/public-sans';
+html[data-portfolio-theme="workroom"]{--case-paper:#e9edf0;--case-ink:#291e1c;--case-muted:#62524b;--case-line:#c3c6c5;--case-blue:#8d2818;--case-pale:#e9edf0;--case-dark:#8d2818;scrollbar-color:#8d2818 #e9edf0}
+html[data-portfolio-theme="workroom"] *,html[data-portfolio-theme="workroom"] *::before,html[data-portfolio-theme="workroom"] *::after{border-radius:0!important;box-shadow:none!important;animation:none!important;transition:none!important}
+html[data-portfolio-theme="workroom"] .case-page,html[data-portfolio-theme="workroom"] .case-page :is(p,li,a,span,small){font-family:'Public Sans Variable',Arial,sans-serif}
+html[data-portfolio-theme="workroom"] .case-page :is(h1,h2,h3){font-family:'Bodoni Moda Variable',Georgia,serif;font-weight:600;letter-spacing:-.035em;color:var(--case-ink)}
+html[data-portfolio-theme="workroom"] .case-page h1{font-size:clamp(54px,8vw,108px);line-height:1.08}
+html[data-portfolio-theme="workroom"] .case-page h2{font-size:clamp(35px,4.3vw,60px);line-height:1.1}
+html[data-portfolio-theme="workroom"] .case-page p,html[data-portfolio-theme="workroom"] .case-page li{color:var(--case-ink);line-height:1.8}
+html[data-portfolio-theme="workroom"] .case-header{background:#8d2818;color:#e9edf0;border-color:#ad5b4d;font-family:'Public Sans Variable',Arial,sans-serif}
+html[data-portfolio-theme="workroom"] .case-brand{font-family:'Bodoni Moda Variable',Georgia,serif;font-size:23px;font-weight:550}
+html[data-portfolio-theme="workroom"] .case-brand span{font-family:'Public Sans Variable',Arial,sans-serif;color:#f0c9ba}
+html[data-portfolio-theme="workroom"] .case-page main{max-width:1180px;gap:70px;padding-inline:clamp(24px,6vw,90px)}
+html[data-portfolio-theme="workroom"] .case-page .bg-primary{background:#8d2818;border-color:#8d2818;color:#e9edf0}
+html[data-portfolio-theme="workroom"] .case-page .bg-primary :is(span,p){color:#e9edf0}
+html[data-portfolio-theme="workroom"] .case-page :is(.bg-white,.bg-surface-container-low){background:transparent;border:0}
+html[data-portfolio-theme="workroom"] .stack-cards{display:block}
+html[data-portfolio-theme="workroom"] .stack-card{background:transparent;border-top:1px solid #c3c6c5;padding:28px 0}
+html[data-portfolio-theme="workroom"] .case-page [class*="border-l-"]{border-left-width:0;padding-left:0}
+html[data-portfolio-theme="workroom"] .case-page main>section.grid{border:0;padding:0;gap:35px}
+html[data-portfolio-theme="workroom"] .case-page .font-mono{font-family:ui-monospace,monospace}
+html[data-portfolio-theme="workroom"] .case-page pre{background:#dce0e2!important;color:#291e1c!important;border:1px solid #c3c6c5;padding:22px}
+html[data-portfolio-theme="workroom"] .case-external-arrow,html[data-portfolio-theme="workroom"] .status-dot{display:none}
+html[data-portfolio-theme="workroom"] .case-page ul{list-style:disc;padding-left:20px}
+html[data-portfolio-theme="workroom"] .case-page li::before{display:none}
+html[data-portfolio-theme="workroom"] .case-page li:hover{transform:none}
+html[data-portfolio-theme="workroom"] :focus-visible{outline:3px solid #8d2818;outline-offset:5px}
+html[data-portfolio-theme="workroom"] .case-header :focus-visible{outline-color:#e9edf0}
+html[data-portfolio-theme="workroom"] ::selection{background:#8d2818;color:#e9edf0}
+@media(max-width:700px){html[data-portfolio-theme="workroom"] .case-page main{gap:45px;padding-inline:24px}html[data-portfolio-theme="workroom"] .case-page h1{font-size:clamp(36px,11vw,52px);overflow-wrap:normal}html[data-portfolio-theme="workroom"] .case-header .case-brand{font-size:17px}}

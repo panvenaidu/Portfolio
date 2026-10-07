@@ -1,62 +1,38 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="en" data-portfolio-theme="workroom"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<!-- Theme boot: runs before first paint so the page never flashes the wrong
-     design. Follows the OS until the visitor picks a side themselves. -->
-<script>
-(function () {
-    var t;
-    try { t = localStorage.getItem('pn-theme'); } catch (e) { t = null; }
-    if (t !== 'dark' && t !== 'light') {
-        t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-            ? 'dark' : 'light';
-    }
-    document.documentElement.setAttribute('data-theme', t);
-    if (t === 'dark') document.documentElement.classList.add('dark');
-})();
-</script>
-<title>Valorix — Case Study | Panvee Naidu</title>
-<meta content="Valorix — an ongoing VALORANT performance analytics platform. Next.js 15, React 19, hand-built SVG charts with zero charting dependencies. A case study on shipping a product surface while blocked on a production API key." name="description"/>
+
+<title>Valorix – Case Study | Panvee Naidu</title>
+<meta content="Valorix – an ongoing VALORANT performance analytics platform. Next.js 15, React 19, hand-built SVG charts with zero charting dependencies. A case study on shipping a product surface while blocked on a production API key." name="description"/>
 <meta content="Panvee Naidu" name="author"/>
-<meta content="Valorix — Case Study | Panvee Naidu" property="og:title"/>
+<meta content="Valorix – Case Study | Panvee Naidu" property="og:title"/>
 <meta content="An ongoing VALORANT performance analytics platform built in Next.js 15 and React 19, with hand-built SVG charts and zero charting dependencies." property="og:description"/>
 <meta content="https://panveedev.vercel.app/og.png" property="og:image"/>
 <meta content="website" property="og:type"/>
 <link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23000'/%3E%3Ctext x='32' y='44' font-family='ui-monospace,Menlo,monospace' font-size='30' font-weight='700' fill='%23fff' text-anchor='middle'%3EPN%3C/text%3E%3C/svg%3E" rel="icon" type="image/svg+xml"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Hanken+Grotesk:wght@400;700;800&amp;family=Libre+Caslon+Display&amp;family=Instrument+Sans:ital,wght@0,400;0,500;1,400&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+
+
 <link href="../styles.css" rel="stylesheet"/>
 <link href="case.css" rel="stylesheet"/>
-<link href="../dark.css" rel="stylesheet"/>
+<link href="workroom.css" rel="stylesheet"/>
+
 </head>
 <body class="font-body-md antialiased case-page">
-<header class="sticky top-0 z-50 bg-background border-b-2 border-primary">
-<div class="max-w-5xl mx-auto px-stack-lg py-stack-md flex items-center justify-between gap-stack-md">
-<a class="font-label-sm text-label-sm text-primary hover:underline inline-flex items-center gap-1" href="../index.html#projects"><span class="material-symbols-outlined text-[16px]">arrow_back</span>FEATURED WORK</a>
-<div class="flex items-center gap-stack-md">
-<a class="font-label-sm text-label-sm text-primary hover:underline" href="../index.html">PANVEE NAIDU</a>
-<button aria-label="Switch to dark design" aria-pressed="false" class="theme-toggle" data-theme-toggle="" type="button">
-<svg aria-hidden="true" class="tt-moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-<svg aria-hidden="true" class="tt-sun" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
-<span class="tt-text" data-theme-label="">Dark</span>
-</button>
-</div>
-</div>
-</header>
+<a class="case-skip" href="#case-main">Skip to case study</a><header class="case-header"><a href="/#room-systems">← Selected work</a><a class="case-brand" href="/">Panvee Naidu<span>Software engineer</span></a><a href="/#room-contact">Let’s talk <span class="case-external-arrow" aria-hidden="true">↗</span></a></header>
 
-<main class="max-w-5xl mx-auto px-stack-lg py-section-gap flex flex-col gap-section-gap">
+<main id="case-main" class="max-w-5xl mx-auto px-stack-lg py-section-gap flex flex-col gap-section-gap">
 
 <!-- Hero -->
 <section>
 <div class="inline-flex items-center gap-2 border border-primary px-stack-sm py-1 mb-stack-md font-label-sm text-label-sm text-primary">
-<span aria-hidden="true" class="status-dot"></span>ONGOING &mdash; LONG-TERM PROJECT
+<span aria-hidden="true" class="status-dot"></span>ONGOING &ndash; LONG-TERM PROJECT
 </div>
 <h1 class="font-headline-xl-mobile md:font-headline-xl text-headline-xl-mobile md:text-headline-xl text-primary mb-stack-md">Valorix</h1>
-<p class="font-body-lg text-body-lg text-secondary border-l-2 border-primary pl-stack-md mb-stack-lg">A performance analytics platform for VALORANT players &mdash; match history, agent-level insight and progression tracking. Built as a long-term product rather than a coursework exercise, and still in active development.</p>
+<p class="font-body-lg text-body-lg text-secondary border-l-2 border-primary pl-stack-md mb-stack-lg">A performance analytics platform for VALORANT players &ndash; match history, agent-level insight and progression tracking. Built as a long-term product rather than a coursework exercise, and still in active development.</p>
 <div class="flex flex-wrap gap-stack-sm">
-<a class="font-label-sm text-label-sm border border-primary px-stack-sm py-2 bg-primary text-on-primary hover:bg-white hover:text-primary transition-colors inline-flex items-center gap-1" href="https://playvalorix.vercel.app" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px]">open_in_new</span>Live Site</a>
-<a class="font-label-sm text-label-sm border border-primary px-stack-sm py-2 bg-primary text-on-primary hover:bg-white hover:text-primary transition-colors inline-flex items-center gap-1" href="https://github.com/panvenaidu/valorix" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px]">link</span>Source</a>
+<a class="font-label-sm text-label-sm border border-primary px-stack-sm py-2 bg-primary text-on-primary hover:bg-white hover:text-primary transition-colors inline-flex items-center gap-1" href="https://playvalorix.vercel.app" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px] case-external-arrow" aria-hidden="true">↗</span>Live Site</a>
+<a class="font-label-sm text-label-sm border border-primary px-stack-sm py-2 bg-primary text-on-primary hover:bg-white hover:text-primary transition-colors inline-flex items-center gap-1" href="https://github.com/panvenaidu/valorix" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px] case-external-arrow" aria-hidden="true">↗</span>Source</a>
 </div>
 </section>
 
@@ -73,7 +49,7 @@
 <h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary border-b-2 border-primary pb-stack-sm mb-stack-lg">Overview</h2>
 <div class="flex flex-col gap-stack-md max-w-3xl">
 <p class="font-body-md text-body-md text-secondary">Valorix is a web application that turns raw VALORANT match data into something a player can act on: which agents actually perform on which maps, where a session started to slip, and how form moves over weeks rather than single games.</p>
-<p class="font-body-md text-body-md text-secondary">What is live today is the full product surface &mdash; the marketing site and a complete, navigable preview of the product at <span class="font-mono text-primary">/vision</span>, covering dashboard, match history, profile, analytics, insights and progression screens. The interface is real and built to production standards. The data behind it is not yet live, for a reason covered below.</p>
+<p class="font-body-md text-body-md text-secondary">What is live today is the full product surface &ndash; the marketing site and a complete, navigable preview of the product at <span class="font-mono text-primary">/vision</span>, covering dashboard, match history, profile, analytics, insights and progression screens. The interface is real and built to production standards. The data behind it is not yet live, for a reason covered below.</p>
 <p class="font-body-md text-body-md text-secondary">The project is treated as a long-running product build. Architecture, design system and component library were established first so that features can be added without rework, rather than shipping a single throwaway page.</p>
 </div>
 </section>
@@ -83,7 +59,7 @@
 <h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary border-b-2 border-primary pb-stack-sm mb-stack-lg">The Problem</h2>
 <div class="flex flex-col gap-stack-md max-w-3xl">
 <p class="font-body-md text-body-md text-secondary">In-game statistics tell a player what happened, not why. A scoreboard shows kills and deaths for one match, but no player can see their own patterns across a season from inside the game client.</p>
-<p class="font-body-md text-body-md text-secondary">Third-party trackers exist, but most present dense tables that assume the reader already knows what matters. The gap is interpretation &mdash; taking the same underlying match records and surfacing the two or three observations that would actually change how someone plays next.</p>
+<p class="font-body-md text-body-md text-secondary">Third-party trackers exist, but most present dense tables that assume the reader already knows what matters. The gap is interpretation &ndash; taking the same underlying match records and surfacing the two or three observations that would actually change how someone plays next.</p>
 <p class="font-body-md text-body-md text-secondary">That framing drove every product decision: fewer numbers on screen, each one earning its place, with charts used to show direction over time rather than to decorate.</p>
 </div>
 </section>
@@ -102,7 +78,7 @@
 <article class="stack-card" data-card>
 <p class="font-label-sm text-label-sm text-secondary mb-stack-sm">STEP 01</p>
 <h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Specification before implementation</h3>
-<p class="font-body-md text-body-md text-secondary">Screens were specified in writing first &mdash; what each one is for, what a user should conclude from it, and what belongs on it. Writing the spec first killed several features before they cost any code.</p>
+<p class="font-body-md text-body-md text-secondary">Screens were specified in writing first &ndash; what each one is for, what a user should conclude from it, and what belongs on it. Writing the spec first killed several features before they cost any code.</p>
 </article>
 
 <article class="stack-card" data-card>
@@ -114,7 +90,7 @@
 <article class="stack-card" data-card>
 <p class="font-label-sm text-label-sm text-secondary mb-stack-sm">STEP 03</p>
 <h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Charts built by hand</h3>
-<p class="font-body-md text-body-md text-secondary">Every visualisation &mdash; <span class="font-mono text-primary">LineChart</span>, <span class="font-mono text-primary">Sparkline</span>, <span class="font-mono text-primary">SegmentedBar</span>, <span class="font-mono text-primary">BarList</span> &mdash; is hand-rendered SVG with a shared geometry helper. The dependency list contains no charting library at all: only <span class="font-mono text-primary">next</span>, <span class="font-mono text-primary">react</span>, <span class="font-mono text-primary">framer-motion</span>, <span class="font-mono text-primary">animejs</span>, <span class="font-mono text-primary">clsx</span> and <span class="font-mono text-primary">tailwind-merge</span>.</p>
+<p class="font-body-md text-body-md text-secondary">Every visualisation &ndash; <span class="font-mono text-primary">LineChart</span>, <span class="font-mono text-primary">Sparkline</span>, <span class="font-mono text-primary">SegmentedBar</span>, <span class="font-mono text-primary">BarList</span> &ndash; is hand-rendered SVG with a shared geometry helper. The dependency list contains no charting library at all: only <span class="font-mono text-primary">next</span>, <span class="font-mono text-primary">react</span>, <span class="font-mono text-primary">framer-motion</span>, <span class="font-mono text-primary">animejs</span>, <span class="font-mono text-primary">clsx</span> and <span class="font-mono text-primary">tailwind-merge</span>.</p>
 </article>
 
 <article class="stack-card" data-card>
@@ -142,7 +118,7 @@
 
 <article class="stack-card" data-card>
 <p class="font-label-sm text-label-sm text-secondary mb-stack-sm">01</p>
-<h3 class="font-headline-md text-headline-md text-primary mb-stack-md">The production API key &mdash; the blocker</h3>
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-md">The production API key &ndash; the blocker</h3>
 <p class="font-body-md text-body-md text-secondary mb-stack-sm">Live match data requires a production API key from Riot Games. Development keys expire on a 24-hour cycle and are rate-limited to a level no real user base can sit behind, so they cannot back a deployed product.</p>
 <p class="font-body-md text-body-md text-secondary mb-stack-sm">Production approval requires an application describing a working product with a real audience. That approval has not come through, and it is the single reason Valorix is not serving live statistics today.</p>
 <p class="font-body-md text-body-md text-secondary"><span class="text-primary font-medium">How it was handled:</span> rather than stall the project, the product was built to be complete and convincing behind a typed data boundary. Every screen, interaction and chart is finished. Granting the key becomes a data-source swap rather than months of remaining work.</p>
@@ -151,7 +127,7 @@
 <article class="stack-card" data-card>
 <p class="font-label-sm text-label-sm text-secondary mb-stack-sm">02</p>
 <h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Honest placeholders</h3>
-<p class="font-body-md text-body-md text-secondary">Preview data is documented in-file as invented. Map and agent names are the real ones so screens read correctly, but handles, ranks, scores and win rates are fabricated and labelled as such, and no Riot artwork or portraits are referenced anywhere. The alternative &mdash; unlabelled fake numbers that look live &mdash; would have been misleading.</p>
+<p class="font-body-md text-body-md text-secondary">Preview data is documented in-file as invented. Map and agent names are the real ones so screens read correctly, but handles, ranks, scores and win rates are fabricated and labelled as such, and no Riot artwork or portraits are referenced anywhere. The alternative &ndash; unlabelled fake numbers that look live &ndash; would have been misleading.</p>
 </article>
 
 <article class="stack-card" data-card>
@@ -215,11 +191,11 @@
 
 <!-- Footer nav -->
 <section class="border-t-2 border-primary pt-stack-lg flex flex-wrap gap-stack-md justify-between items-center">
-<a class="font-label-md text-label-md text-primary hover:underline inline-flex items-center gap-1" href="../index.html#projects"><span class="material-symbols-outlined text-[16px]">arrow_back</span>All work</a>
-<div class="flex flex-wrap items-center gap-stack-md"><a class="case-next font-label-md text-label-md text-primary inline-flex items-center gap-2" href="smart-home-automation.html"><span class="case-next-label">Next</span><span class="case-next-name">Smart Home Automation</span><span class="material-symbols-outlined text-[16px] case-next-arrow">arrow_forward</span></a><a class="font-label-md text-label-md px-stack-lg py-stack-md bg-primary text-on-primary border-2 border-primary hover:bg-white hover:text-primary transition-colors" href="../index.html#contact">Get in touch</a></div>
+<a class="font-label-md text-label-md text-primary hover:underline inline-flex items-center gap-1" href="/#room-systems"><span class="material-symbols-outlined text-[16px]">←</span>All work</a>
+<div class="flex flex-wrap items-center gap-stack-md"><a class="case-next font-label-md text-label-md text-primary inline-flex items-center gap-2" href="smart-home-automation.html"><span class="case-next-label">Next</span><span class="case-next-name">Smart Home Automation</span><span class="material-symbols-outlined text-[16px] case-next-arrow">→</span></a><a class="font-label-md text-label-md px-stack-lg py-stack-md bg-primary text-on-primary border-2 border-primary hover:bg-white hover:text-primary transition-colors" href="/#room-contact">Get in touch</a></div>
 </section>
 
 </main>
-<script src="case.js"></script>
-<script defer="" src="../theme.js"></script>
+
+
 </body></html>

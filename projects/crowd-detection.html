@@ -1,59 +1,35 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="en" data-portfolio-theme="workroom"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<!-- Theme boot: runs before first paint so the page never flashes the wrong
-     design. Follows the OS until the visitor picks a side themselves. -->
-<script>
-(function () {
-    var t;
-    try { t = localStorage.getItem('pn-theme'); } catch (e) { t = null; }
-    if (t !== 'dark' && t !== 'light') {
-        t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-            ? 'dark' : 'light';
-    }
-    document.documentElement.setAttribute('data-theme', t);
-    if (t === 'dark') document.documentElement.classList.add('dark');
-})();
-</script>
-<title>Crowd Detection System — Case Study | Panvee Naidu</title>
-<meta content="A real-time computer vision pipeline that detects people with YOLOv8, clusters them into crowds by proximity, and logs sustained crowd events to CSV — including an honest account of two bugs found on review." name="description"/>
+
+<title>Crowd Detection System – Case Study | Panvee Naidu</title>
+<meta content="A real-time computer vision pipeline that detects people with YOLOv8, clusters them into crowds by proximity, and logs sustained crowd events to CSV – including an honest account of two bugs found on review." name="description"/>
 <meta content="Panvee Naidu" name="author"/>
-<meta content="Crowd Detection System — Case Study | Panvee Naidu" property="og:title"/>
+<meta content="Crowd Detection System – Case Study | Panvee Naidu" property="og:title"/>
 <meta content="A real-time computer vision pipeline using YOLOv8 and OpenCV that detects crowd formations through proximity clustering and temporal persistence." property="og:description"/>
 <meta content="https://panveedev.vercel.app/og.png" property="og:image"/>
 <meta content="website" property="og:type"/>
 <link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23000'/%3E%3Ctext x='32' y='44' font-family='ui-monospace,Menlo,monospace' font-size='30' font-weight='700' fill='%23fff' text-anchor='middle'%3EPN%3C/text%3E%3C/svg%3E" rel="icon" type="image/svg+xml"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Hanken+Grotesk:wght@400;700;800&amp;family=Libre+Caslon+Display&amp;family=Instrument+Sans:ital,wght@0,400;0,500;1,400&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+
+
 <link href="../styles.css" rel="stylesheet"/>
 <link href="case.css" rel="stylesheet"/>
-<link href="../dark.css" rel="stylesheet"/>
+<link href="workroom.css" rel="stylesheet"/>
+
 </head>
 <body class="font-body-md antialiased case-page">
-<header class="sticky top-0 z-50 bg-background border-b-2 border-primary">
-<div class="max-w-5xl mx-auto px-stack-lg py-stack-md flex items-center justify-between gap-stack-md">
-<a class="font-label-sm text-label-sm text-primary hover:underline inline-flex items-center gap-1" href="../index.html#projects"><span class="material-symbols-outlined text-[16px]">arrow_back</span>FEATURED WORK</a>
-<div class="flex items-center gap-stack-md">
-<a class="font-label-sm text-label-sm text-primary hover:underline" href="../index.html">PANVEE NAIDU</a>
-<button aria-label="Switch to dark design" aria-pressed="false" class="theme-toggle" data-theme-toggle="" type="button">
-<svg aria-hidden="true" class="tt-moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-<svg aria-hidden="true" class="tt-sun" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
-<span class="tt-text" data-theme-label="">Dark</span>
-</button>
-</div>
-</div>
-</header>
+<a class="case-skip" href="#case-main">Skip to case study</a><header class="case-header"><a href="/#room-systems">← Selected work</a><a class="case-brand" href="/">Panvee Naidu<span>Software engineer</span></a><a href="/#room-contact">Let’s talk <span class="case-external-arrow" aria-hidden="true">↗</span></a></header>
 
-<main class="max-w-5xl mx-auto px-stack-lg py-section-gap flex flex-col gap-section-gap">
+<main id="case-main" class="max-w-5xl mx-auto px-stack-lg py-section-gap flex flex-col gap-section-gap">
 
 <!-- Hero -->
 <section>
-<div class="inline-flex items-center gap-2 border border-primary px-stack-sm py-1 mb-stack-md font-label-sm text-label-sm text-primary">COMPUTER VISION &mdash; WORKING PROTOTYPE</div>
+<div class="inline-flex items-center gap-2 border border-primary px-stack-sm py-1 mb-stack-md font-label-sm text-label-sm text-primary">COMPUTER VISION &ndash; WORKING PROTOTYPE</div>
 <h1 class="font-headline-xl-mobile md:font-headline-xl text-headline-xl-mobile md:text-headline-xl text-primary mb-stack-md">Crowd Detection System</h1>
-<p class="font-body-lg text-body-lg text-secondary border-l-2 border-primary pl-stack-md mb-stack-lg">A computer vision pipeline that finds people in a video stream, decides which of them constitute a crowd, and logs only the gatherings that persist &mdash; so an operator sees sustained events rather than every passing group.</p>
+<p class="font-body-lg text-body-lg text-secondary border-l-2 border-primary pl-stack-md mb-stack-lg">A computer vision pipeline that finds people in a video stream, decides which of them constitute a crowd, and logs only the gatherings that persist &ndash; so an operator sees sustained events rather than every passing group.</p>
 <div class="flex flex-wrap gap-stack-sm">
-<a class="font-label-sm text-label-sm border border-primary px-stack-sm py-2 bg-primary text-on-primary hover:bg-white hover:text-primary transition-colors inline-flex items-center gap-1" href="https://github.com/panvee/crowd-detect-ai" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px]">link</span>Source</a>
+<a class="font-label-sm text-label-sm border border-primary px-stack-sm py-2 bg-primary text-on-primary hover:bg-white hover:text-primary transition-colors inline-flex items-center gap-1" href="https://github.com/panvee/crowd-detect-ai" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px] case-external-arrow" aria-hidden="true">↗</span>Source</a>
 </div>
 </section>
 
@@ -71,7 +47,7 @@
 <div class="flex flex-col gap-stack-md max-w-3xl">
 <p class="font-body-md text-body-md text-secondary">The pipeline runs frame by frame over a video source. For each frame it detects every person, reduces each detection to a single centre point, measures the distances between those points, and asks whether enough of them are close enough together to count as a crowd.</p>
 <p class="font-body-md text-body-md text-secondary">A single frame is not enough evidence, so the system also tracks whether a crowd holds across consecutive frames. Only gatherings that survive that check are written to <span class="font-mono text-primary">crowd_log.csv</span> with the frame number and the size of the largest group.</p>
-<p class="font-body-md text-body-md text-secondary">All three thresholds &mdash; minimum crowd size, proximity distance in pixels, and persistence window &mdash; are constants at the top of the file, so the same code adapts to a narrow corridor or an open concourse by changing numbers rather than logic.</p>
+<p class="font-body-md text-body-md text-secondary">All three thresholds &ndash; minimum crowd size, proximity distance in pixels, and persistence window &ndash; are constants at the top of the file, so the same code adapts to a narrow corridor or an open concourse by changing numbers rather than logic.</p>
 </div>
 </section>
 
@@ -81,7 +57,7 @@
 <div class="flex flex-col gap-stack-md max-w-3xl">
 <p class="font-body-md text-body-md text-secondary">Crowd density is a safety problem before it is a technical one. Crushes at stations, venues and religious gatherings develop over minutes, and the people best placed to intervene are usually watching a wall of camera feeds where nothing looks unusual until it is too late.</p>
 <p class="font-body-md text-body-md text-secondary">Counting people is the easy half and largely solved by off-the-shelf detectors. The harder half is judgement: a detector that reports "eleven people are visible" says nothing, because eleven people spread across a plaza is a normal afternoon and eleven people pressed into one doorway is an incident.</p>
-<p class="font-body-md text-body-md text-secondary">So the real requirement was to convert raw detections into <em>events worth alerting on</em> &mdash; which means encoding both spatial closeness and duration, and suppressing everything else.</p>
+<p class="font-body-md text-body-md text-secondary">So the real requirement was to convert raw detections into <em>events worth alerting on</em> &ndash; which means encoding both spatial closeness and duration, and suppressing everything else.</p>
 </div>
 </section>
 
@@ -154,8 +130,8 @@
 <h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Two bugs found reviewing my own code</h3>
 <p class="font-body-md text-body-md text-secondary mb-stack-sm">Re-reading the detector after it was working turned up two defects that testing on a single clip had not surfaced:</p>
 <ul class="flex flex-col gap-stack-sm mb-stack-sm">
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200"><strong class="text-primary">Grouping under-counts.</strong> Each candidate group is built by measuring everyone against a single seed person. A chain of people standing in a line &mdash; A near B, B near C, but A far from C &mdash; is a real crowd that this logic splits apart. Proper transitive clustering would catch it.</li>
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200"><strong class="text-primary">The persistence check is too strict.</strong> It tests for exact equality against the frame window rather than "at least", so a crowd that produces more qualifying frames than the threshold can slip past unlogged &mdash; the opposite of the intended behaviour.</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200"><strong class="text-primary">Grouping under-counts.</strong> Each candidate group is built by measuring everyone against a single seed person. A chain of people standing in a line &ndash; A near B, B near C, but A far from C &ndash; is a real crowd that this logic splits apart. Proper transitive clustering would catch it.</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200"><strong class="text-primary">The persistence check is too strict.</strong> It tests for exact equality against the frame window rather than "at least", so a crowd that produces more qualifying frames than the threshold can slip past unlogged &ndash; the opposite of the intended behaviour.</li>
 </ul>
 <p class="font-body-md text-body-md text-secondary">Both are documented rather than hidden. They are listed here because a reviewer reading the source will find them, and because the useful skill on display is auditing your own working code, not shipping something flawless first time.</p>
 </article>
@@ -188,7 +164,7 @@
 <div class="border border-primary p-stack-md bg-surface-container-low transition-colors hover:bg-white hover:border-2">
 <h3 class="font-label-md text-label-md text-primary border-b border-gray-light pb-stack-sm mb-stack-sm">Known limitations</h3>
 <ul class="flex flex-col gap-stack-sm">
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Clustering is non-transitive &mdash; splits chains</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Clustering is non-transitive &ndash; splits chains</li>
 <li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Persistence check uses exact equality</li>
 <li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Pixel thresholds ignore camera perspective</li>
 <li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">No identity tracking between frames</li>
@@ -212,11 +188,11 @@
 
 <!-- Footer nav -->
 <section class="border-t-2 border-primary pt-stack-lg flex flex-wrap gap-stack-md justify-between items-center">
-<a class="font-label-md text-label-md text-primary hover:underline inline-flex items-center gap-1" href="../index.html#projects"><span class="material-symbols-outlined text-[16px]">arrow_back</span>All work</a>
-<div class="flex flex-wrap items-center gap-stack-md"><a class="case-next font-label-md text-label-md text-primary inline-flex items-center gap-2" href="softsell.html"><span class="case-next-label">Next</span><span class="case-next-name">SoftSell</span><span class="material-symbols-outlined text-[16px] case-next-arrow">arrow_forward</span></a><a class="font-label-md text-label-md px-stack-lg py-stack-md bg-primary text-on-primary border-2 border-primary hover:bg-white hover:text-primary transition-colors" href="../index.html#contact">Get in touch</a></div>
+<a class="font-label-md text-label-md text-primary hover:underline inline-flex items-center gap-1" href="/#room-systems"><span class="material-symbols-outlined text-[16px]">←</span>All work</a>
+<div class="flex flex-wrap items-center gap-stack-md"><a class="case-next font-label-md text-label-md text-primary inline-flex items-center gap-2" href="softsell.html"><span class="case-next-label">Next</span><span class="case-next-name">SoftSell</span><span class="material-symbols-outlined text-[16px] case-next-arrow">→</span></a><a class="font-label-md text-label-md px-stack-lg py-stack-md bg-primary text-on-primary border-2 border-primary hover:bg-white hover:text-primary transition-colors" href="/#room-contact">Get in touch</a></div>
 </section>
 
 </main>
-<script src="case.js"></script>
-<script defer="" src="../theme.js"></script>
+
+
 </body></html>

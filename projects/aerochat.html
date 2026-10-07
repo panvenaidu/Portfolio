@@ -1,21 +1,8 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="en" data-portfolio-theme="workroom"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<!-- Theme boot: runs before first paint so the page never flashes the wrong
-     design. Follows the OS until the visitor picks a side themselves. -->
-<script>
-(function () {
-    var t;
-    try { t = localStorage.getItem('pn-theme'); } catch (e) { t = null; }
-    if (t !== 'dark' && t !== 'light') {
-        t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-            ? 'dark' : 'light';
-    }
-    document.documentElement.setAttribute('data-theme', t);
-    if (t === 'dark') document.documentElement.classList.add('dark');
-})();
-</script>
+
 <title>AeroChat | Panvee Naidu</title>
 <meta content="A containerisation mini project: a four-service chat stack orchestrated with Docker Compose on an isolated bridge network, with a named volume, env-file configuration and a Makefile lifecycle." name="description"/>
 <meta content="Panvee Naidu" name="author"/>
@@ -24,35 +11,24 @@
 <meta content="https://panveedev.vercel.app/og.png" property="og:image"/>
 <meta content="website" property="og:type"/>
 <link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23000'/%3E%3Ctext x='32' y='44' font-family='ui-monospace,Menlo,monospace' font-size='30' font-weight='700' fill='%23fff' text-anchor='middle'%3EPN%3C/text%3E%3C/svg%3E" rel="icon" type="image/svg+xml"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Hanken+Grotesk:wght@400;700;800&amp;family=Libre+Caslon+Display&amp;family=Instrument+Sans:ital,wght@0,400;0,500;1,400&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+
+
 <link href="../styles.css" rel="stylesheet"/>
 <link href="case.css" rel="stylesheet"/>
-<link href="../dark.css" rel="stylesheet"/>
+<link href="workroom.css" rel="stylesheet"/>
+
 </head>
 <body class="font-body-md antialiased case-page">
-<header class="sticky top-0 z-50 bg-background border-b-2 border-primary">
-<div class="max-w-5xl mx-auto px-stack-lg py-stack-md flex items-center justify-between gap-stack-md">
-<a class="font-label-sm text-label-sm text-primary hover:underline inline-flex items-center gap-1" href="../index.html#projects"><span class="material-symbols-outlined text-[16px]">arrow_back</span>FEATURED WORK</a>
-<div class="flex items-center gap-stack-md">
-<a class="font-label-sm text-label-sm text-primary hover:underline" href="../index.html">PANVEE NAIDU</a>
-<button aria-label="Switch to dark design" aria-pressed="false" class="theme-toggle" data-theme-toggle="" type="button">
-<svg aria-hidden="true" class="tt-moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-<svg aria-hidden="true" class="tt-sun" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
-<span class="tt-text" data-theme-label="">Dark</span>
-</button>
-</div>
-</div>
-</header>
+<a class="case-skip" href="#case-main">Skip to case study</a><header class="case-header"><a href="/#room-systems">← Selected work</a><a class="case-brand" href="/">Panvee Naidu<span>Software engineer</span></a><a href="/#room-contact">Let’s talk <span class="case-external-arrow" aria-hidden="true">↗</span></a></header>
 
-<main class="max-w-5xl mx-auto px-stack-lg py-section-gap flex flex-col gap-section-gap">
+<main id="case-main" class="max-w-5xl mx-auto px-stack-lg py-section-gap flex flex-col gap-section-gap">
 
 <section>
 <div class="inline-flex items-center gap-2 border border-primary px-stack-sm py-1 mb-stack-md font-label-sm text-label-sm text-primary">COURSEWORK MINI PROJECT</div>
 <h1 class="font-headline-xl-mobile md:font-headline-xl text-headline-xl-mobile md:text-headline-xl text-primary mb-stack-md">AeroChat</h1>
-<p class="font-body-lg text-body-lg text-secondary border-l-2 border-primary pl-stack-md mb-stack-lg max-w-3xl">A containerisation exercise set by our professor &mdash; the brief was Docker and containers, not the application. The repository publishes the orchestration layer: four services wired together with Docker Compose, on an isolated network, run with one command.</p>
+<p class="font-body-lg text-body-lg text-secondary border-l-2 border-primary pl-stack-md mb-stack-lg max-w-3xl">A containerisation exercise set by our professor &ndash; the brief was Docker and containers, not the application. The repository publishes the orchestration layer: four services wired together with Docker Compose, on an isolated network, run with one command.</p>
 <div class="flex flex-wrap gap-stack-sm">
-<a class="font-label-sm text-label-sm border border-primary px-stack-sm py-2 bg-primary text-on-primary hover:bg-white hover:text-primary transition-colors inline-flex items-center gap-1" href="https://github.com/panvenaidu/aero-chat-realtime" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px]">link</span>Source</a>
+<a class="font-label-sm text-label-sm border border-primary px-stack-sm py-2 bg-primary text-on-primary hover:bg-white hover:text-primary transition-colors inline-flex items-center gap-1" href="https://github.com/panvenaidu/aero-chat-realtime" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px] case-external-arrow" aria-hidden="true">↗</span>Source</a>
 </div>
 </section>
 
@@ -67,7 +43,7 @@
 <h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary border-b-2 border-primary pb-stack-sm mb-stack-lg">Overview</h2>
 <div class="flex flex-col gap-stack-md max-w-3xl">
 <p class="font-body-md text-body-md text-secondary">The assignment was about container orchestration, so that is what this repository contains: a <span class="font-mono text-primary">docker-compose.yml</span> that brings up a chat application as four cooperating containers, a <span class="font-mono text-primary">Makefile</span> wrapping the lifecycle, a deploy script, and an example environment file.</p>
-<p class="font-body-md text-body-md text-secondary">The application source itself is kept private and is not published here, and nothing is hosted &mdash; the stack runs on a local machine and nowhere else. What is on show is the infrastructure definition, which is what the exercise was marked on.</p>
+<p class="font-body-md text-body-md text-secondary">The application source itself is kept private and is not published here, and nothing is hosted &ndash; the stack runs on a local machine and nowhere else. What is on show is the infrastructure definition, which is what the exercise was marked on.</p>
 </div>
 </section>
 
@@ -75,7 +51,7 @@
 <h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary border-b-2 border-primary pb-stack-sm mb-stack-lg">The Problem</h2>
 <div class="flex flex-col gap-stack-md max-w-3xl">
 <p class="font-body-md text-body-md text-secondary">A web application that needs a database and a cache is four moving parts, not one. Running them by hand means installing PostgreSQL and Redis locally, starting each in the right order, remembering the connection strings, and hoping the next machine is configured identically.</p>
-<p class="font-body-md text-body-md text-secondary">The classic failure is "works on my machine": versions drift, a service is missing, or a port collides. Containers exist to make that reproducible &mdash; the same declaration produces the same stack anywhere Docker runs.</p>
+<p class="font-body-md text-body-md text-secondary">The classic failure is "works on my machine": versions drift, a service is missing, or a port collides. Containers exist to make that reproducible &ndash; the same declaration produces the same stack anywhere Docker runs.</p>
 </div>
 </section>
 
@@ -98,7 +74,7 @@
 <article class="stack-card" data-card>
 <p class="font-label-sm text-label-sm text-secondary mb-stack-sm">STEP 02</p>
 <h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Give them a private network</h3>
-<p class="font-body-md text-body-md text-secondary">All four join a single <span class="font-mono text-primary">app-net</span> bridge network. Containers reach each other by service name &mdash; the backend connects to <span class="font-mono text-primary">redis://redis:6379</span>, not to an IP &mdash; and only the ports deliberately published are reachable from outside. The database and cache are never exposed to the host at all.</p>
+<p class="font-body-md text-body-md text-secondary">All four join a single <span class="font-mono text-primary">app-net</span> bridge network. Containers reach each other by service name &ndash; the backend connects to <span class="font-mono text-primary">redis://redis:6379</span>, not to an IP &ndash; and only the ports deliberately published are reachable from outside. The database and cache are never exposed to the host at all.</p>
 </article>
 
 <article class="stack-card" data-card>
@@ -116,7 +92,7 @@
 <article class="stack-card" data-card>
 <p class="font-label-sm text-label-sm text-secondary mb-stack-sm">STEP 05</p>
 <h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Reduce it to one command</h3>
-<p class="font-body-md text-body-md text-secondary">A <span class="font-mono text-primary">Makefile</span> wraps the day-to-day operations &mdash; <span class="font-mono text-primary">make up</span> builds and starts everything detached, with <span class="font-mono text-primary">ps</span>, <span class="font-mono text-primary">logs</span> and <span class="font-mono text-primary">down</span> for inspection and teardown. A <span class="font-mono text-primary">deploy.sh</span> script does the same for anyone who would rather not use Make.</p>
+<p class="font-body-md text-body-md text-secondary">A <span class="font-mono text-primary">Makefile</span> wraps the day-to-day operations &ndash; <span class="font-mono text-primary">make up</span> builds and starts everything detached, with <span class="font-mono text-primary">ps</span>, <span class="font-mono text-primary">logs</span> and <span class="font-mono text-primary">down</span> for inspection and teardown. A <span class="font-mono text-primary">deploy.sh</span> script does the same for anyone who would rather not use Make.</p>
 </article>
 
 </div>
@@ -144,7 +120,7 @@
 <article class="stack-card" data-card>
 <p class="font-label-sm text-label-sm text-secondary mb-stack-sm">02</p>
 <h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Secrets in a public repository</h3>
-<p class="font-body-md text-body-md text-secondary">The setup notes carry a default database password so the stack runs out of the box. That is a real hazard once a repository is public &mdash; a default that is never changed is the same as no password. The committed file is an example rather than the live configuration, and the correct habit is to generate credentials per environment and keep them only in the untracked <span class="font-mono text-primary">.env</span>.</p>
+<p class="font-body-md text-body-md text-secondary">The setup notes carry a default database password so the stack runs out of the box. That is a real hazard once a repository is public &ndash; a default that is never changed is the same as no password. The committed file is an example rather than the live configuration, and the correct habit is to generate credentials per environment and keep them only in the untracked <span class="font-mono text-primary">.env</span>.</p>
 </article>
 
 <article class="stack-card" data-card>
@@ -176,7 +152,7 @@
 <h3 class="font-label-md text-label-md text-primary border-b border-gray-light pb-stack-sm mb-stack-sm">Known limitations</h3>
 <ul class="flex flex-col gap-stack-sm">
 <li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Application source is private, not in the repo</li>
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Local only &mdash; nothing is deployed or hosted</li>
+<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Local only &ndash; nothing is deployed or hosted</li>
 <li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">No TLS; ports are plain HTTP</li>
 <li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Startup ordering has no readiness gate</li>
 </ul>
@@ -197,11 +173,11 @@
 </section>
 
 <section class="border-t-2 border-primary pt-stack-lg flex flex-wrap gap-stack-md justify-between items-center">
-<a class="font-label-md text-label-md text-primary hover:underline inline-flex items-center gap-1" href="../index.html#projects"><span class="material-symbols-outlined text-[16px]">arrow_back</span>All work</a>
-<div class="flex flex-wrap items-center gap-stack-md"><a class="case-next font-label-md text-label-md text-primary inline-flex items-center gap-2" href="pkcs11-otp.html"><span class="case-next-label">Next</span><span class="case-next-name">PKCS#11 OTP</span><span class="material-symbols-outlined text-[16px] case-next-arrow">arrow_forward</span></a><a class="font-label-md text-label-md px-stack-lg py-stack-md bg-primary text-on-primary border-2 border-primary hover:bg-white hover:text-primary transition-colors" href="../index.html#contact">Get in touch</a></div>
+<a class="font-label-md text-label-md text-primary hover:underline inline-flex items-center gap-1" href="/#room-systems"><span class="material-symbols-outlined text-[16px]">←</span>All work</a>
+<div class="flex flex-wrap items-center gap-stack-md"><a class="case-next font-label-md text-label-md text-primary inline-flex items-center gap-2" href="pkcs11-otp.html"><span class="case-next-label">Next</span><span class="case-next-name">PKCS#11 OTP</span><span class="material-symbols-outlined text-[16px] case-next-arrow">→</span></a><a class="font-label-md text-label-md px-stack-lg py-stack-md bg-primary text-on-primary border-2 border-primary hover:bg-white hover:text-primary transition-colors" href="/#room-contact">Get in touch</a></div>
 </section>
 
 </main>
-<script src="case.js"></script>
-<script defer="" src="../theme.js"></script>
+
+
 </body></html>

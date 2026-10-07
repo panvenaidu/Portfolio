@@ -1,0 +1,5 @@
+// Local-only degradation harness. Never included in the production build.
+import {createServer} from 'vite';
+import {readFileSync} from 'node:fs';
+const server=await createServer({server:{host:'127.0.0.1',port:5175,strictPort:true},plugins:[{name:'degradation-fixtures',configureServer(server){server.middlewares.use(async(req,res,next)=>{if(!req.url.startsWith('/_qa/'))return next();let html=readFileSync('index.html','utf8');let setup='';if(req.url.includes('no-js'))html=html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g,'');if(req.url.includes('reduced'))setup=`const nativeMatchMedia=window.matchMedia.bind(window);window.matchMedia=q=>q.includes('prefers-reduced-motion')?{matches:true,media:q,addEventListener(){},removeEventListener(){}}:nativeMatchMedia(q);`;if(setup)html=html.replace('<head>','<head><script>'+setup+'</script>');res.setHeader('Content-Type','text/html');res.end(req.url.includes('no-js')?html:await server.transformIndexHtml(req.url,html));})}}]});
+await server.listen();console.log('Fixtures: http://127.0.0.1:5175/_qa/workroom-no-js and /_qa/workroom-reduced');

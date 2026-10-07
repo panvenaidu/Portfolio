@@ -18,3 +18,7 @@ profile.png
 
 # Exact duplicates of certificates already in the repo
 Certs/*copy*
+dist/
+
+# Local browser verification captures
+scrollcraft/builds/workroom/shots/

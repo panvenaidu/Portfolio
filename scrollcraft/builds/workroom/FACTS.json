@@ -1,0 +1,124 @@
+{
+  "name": "Panvee Naidu",
+  "role": "Software engineer",
+  "availability": "Open to software engineering roles",
+  "location": "India",
+  "email": "panveenaidu5@gmail.com",
+  "github": "https://github.com/panvenaidu",
+  "linkedin": "https://www.linkedin.com/in/panvee-naidu-8a6430291/",
+  "resume": "/Panvee_Naidu_Resume.pdf",
+  "portrait": "/profile.jpg",
+  "product_image": "/assets/valorix-preview.jpg",
+  "education": {
+    "course": "B.Tech, Computer Science & Engineering",
+    "institution": "SRM University, AP",
+    "specialisation": "Cybersecurity",
+    "expected": "May 2027",
+    "cgpa": "7.4/10"
+  },
+  "experience": {
+    "role": "Salesforce Developer Intern",
+    "organisation": "SmartBridge × Salesforce",
+    "period": "May to July 2025",
+    "facts": "Eight-week Agentblazer Champion program; Apex classes and Lightning Web Components; Object Relationships Superbadge."
+  },
+  "projects": [
+    {
+      "id": "aerochat",
+      "title": "AeroChat",
+      "kind": "Systems architecture",
+      "tools": "Docker Compose, PostgreSQL, Redis, Socket.IO",
+      "fact": "Four local containers: React client, Node and Socket.IO server, PostgreSQL storage, Redis cache. Isolated bridge network and persistent database volume. Runs locally; application source is private.",
+      "case": "/projects/aerochat.html",
+      "source": "https://github.com/panvenaidu/aero-chat-realtime"
+    },
+    {
+      "id": "home-automation",
+      "title": "Smart Home Automation",
+      "kind": "Distributed IoT",
+      "tools": "Python, MQTT, REST",
+      "fact": "Three decoupled Python processes communicate over MQTT. Multi-threaded REST API, natural-language command parsing and live energy monitoring.",
+      "case": "/projects/smart-home-automation.html",
+      "source": "https://github.com/panvee/Home-Automation-Using-Voice-Command"
+    },
+    {
+      "id": "pkcs11",
+      "title": "PKCS#11 Authentication",
+      "kind": "Applied cybersecurity",
+      "tools": "C, PKCS#11, SoftHSM, MySQL",
+      "fact": "One-time-password authentication with keys held inside a simulated SoftHSM cryptographic token. Explores the hardware security model locally.",
+      "case": "/projects/pkcs11-otp.html",
+      "source": "https://github.com/panvenaidu/pkcs11-otp-authentication"
+    },
+    {
+      "id": "valorix",
+      "title": "Valorix",
+      "kind": "Product engineering",
+      "tools": "Next.js, TypeScript, React",
+      "fact": "VALORANT analytics product with an original design system and purpose-built charts. Real live interface preview; preview data. Riot API approval pending.",
+      "case": "/projects/valorix.html",
+      "source": "https://github.com/panvenaidu/valorix",
+      "demo": "https://playvalorix.vercel.app"
+    },
+    {
+      "id": "crowd",
+      "title": "Crowd Detection",
+      "kind": "Computer vision",
+      "tools": "YOLOv8, OpenCV",
+      "fact": "Detects people, groups nearby detections into crowds and logs sustained crowd events to CSV. Case study records two bugs found on review.",
+      "case": "/projects/crowd-detection.html",
+      "source": "https://github.com/panvee/crowd-detect-ai"
+    },
+    {
+      "id": "aurum",
+      "title": "Aurum",
+      "kind": "Product architecture",
+      "tools": "FastAPI, React, JWT",
+      "fact": "Multi-tenant hotel management. Isolated platform admin, hotel admin and guest portals, JWT role guards and automatic commission engine.",
+      "source": "https://github.com/panvenaidu/aurum-hotel-management"
+    },
+    {
+      "id": "softsell",
+      "title": "SoftSell",
+      "kind": "Interface development",
+      "tools": "React, Vite, Tailwind",
+      "fact": "Software-licence marketplace concept. Eight modular components, system-aware dark mode, validated lead form and scripted chat widget.",
+      "case": "/projects/softsell.html",
+      "source": "https://github.com/panvee/SoftSell-Software-License-Marketplace"
+    }
+  ],
+  "credentials": [
+    {
+      "label": "SAP Generative AI Developer SAP · 2026",
+      "file": "/Certs/sap-generative-ai-developer.pdf"
+    },
+    {
+      "label": "Agentblazer Champion Program SmartBridge × Salesforce · 2025",
+      "file": "/Certs/salesforce-smartbridge.pdf"
+    },
+    {
+      "label": "Google AI Essentials Google · 2025",
+      "file": "/Certs/google-ai-essentials.pdf"
+    },
+    {
+      "label": "GenAI for Front-End Development Coursera · 2025",
+      "file": "/Certs/meta-genai-frontend.pdf"
+    },
+    {
+      "label": "Introduction to Front-End Development Meta · 2025",
+      "file": "/Certs/meta-intro-frontend.pdf"
+    },
+    {
+      "label": "Data Analytics Hackathon Techgyan × IIT Hyderabad · 2025",
+      "file": "/Certs/techgyan-hackathon-data-analytics.jpg"
+    },
+    {
+      "label": "Data Science with Python Techgyan × IIT Hyderabad · 2025",
+      "file": "/Certs/techgyan-data-science-python.jpg"
+    },
+    {
+      "label": "Data Analytics Workshop Techgyan × IIT Hyderabad · 2025",
+      "file": "/Certs/techgyan-workshop-data-analytics.jpg"
+    }
+  ]
+}

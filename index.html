@@ -1,1359 +1,188 @@
-<!DOCTYPE html>
-
-<html lang="en" style=""><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<!-- Theme boot: runs before first paint so the page never flashes the wrong
-     design. Follows the OS until the visitor picks a side themselves. -->
-<script>
-(function () {
-    var t;
-    try { t = localStorage.getItem('pn-theme'); } catch (e) { t = null; }
-    if (t !== 'dark' && t !== 'light') {
-        t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-            ? 'dark' : 'light';
-    }
-    document.documentElement.setAttribute('data-theme', t);
-    if (t === 'dark') document.documentElement.classList.add('dark');
-})();
-</script>
-<title>Panvee Naidu | Software Engineer</title>
-<meta content="Computer Science undergraduate specialising in Cybersecurity, designing and shipping full-stack systems — from distributed IoT platforms to real-time computer vision. Seeking a remote software engineering internship." name="description"/>
-<meta content="Panvee Naidu" name="author"/>
-<link href="https://panveedev.vercel.app/" rel="canonical"/>
-<!-- Open Graph / LinkedIn -->
-<meta content="Panvee Naidu | Software Engineer" property="og:title"/>
-<meta content="Computer Science undergraduate specialising in Cybersecurity. Real-time services with Socket.IO and Redis, containerised full-stack backends, distributed IoT, and hardware-backed cryptography. Seeking a remote software engineering internship." property="og:description"/>
-<meta content="https://panveedev.vercel.app/og.png" property="og:image"/>
-<meta content="1200" property="og:image:width"/>
-<meta content="630" property="og:image:height"/>
-<meta content="Panvee Naidu — Software Engineer portfolio" property="og:image:alt"/>
-<meta content="https://panveedev.vercel.app/" property="og:url"/>
-<meta content="website" property="og:type"/>
-<meta content="Panvee Naidu Portfolio" property="og:site_name"/>
-<!-- Twitter/X -->
-<meta content="summary_large_image" name="twitter:card"/>
-<meta content="Panvee Naidu | Software Engineer" name="twitter:title"/>
-<meta content="Computer Science undergraduate specialising in Cybersecurity. Seeking a remote software engineering internship." name="twitter:description"/>
-<meta content="https://panveedev.vercel.app/og.png" name="twitter:image"/>
-<!-- Favicon: PN monogram, inline so it costs no extra request -->
-<link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23000'/%3E%3Ctext x='32' y='44' font-family='ui-monospace,Menlo,monospace' font-size='30' font-weight='700' fill='%23fff' text-anchor='middle'%3EPN%3C/text%3E%3C/svg%3E" rel="icon" type="image/svg+xml"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Hanken+Grotesk:wght@400;700;800&amp;family=Libre+Caslon+Display&amp;family=Instrument+Sans:ital,wght@0,400;0,500;1,400&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="styles.css" rel="stylesheet"/>
-<link href="dark.css" rel="stylesheet"/>
-<style>
-        ::selection {
-            background-color: #000000;
-            color: #FFFFFF;
-        }
-        body {
-            background-color: #f9f9f9;
-            color: #1a1c1c;
-        }
-
-        /* Micro-interactions and Transitions */
-        @media (prefers-reduced-motion: no-preference) {
-            .reveal-section {
-                opacity: 0;
-                transform: translateY(40px);
-                transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-            }
-            .reveal-section.is-visible {
-                opacity: 1;
-                transform: translateY(0);
-            }
-
-            .stagger-child {
-                opacity: 0;
-                transform: translateY(30px);
-                transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            }
-            .stagger-child.is-visible {
-                opacity: 1;
-                transform: translateY(0);
-            }
-
-            .card-tilt {
-                transform-style: preserve-3d;
-                transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            }
-
-            .shimmer-btn {
-                position: relative;
-                overflow: hidden;
-                z-index: 1;
-            }
-            .shimmer-btn::after {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: -100%;
-                width: 50%;
-                height: 100%;
-                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-                transform: skewX(-20deg);
-                z-index: -1;
-                transition: none;
-            }
-            .shimmer-btn:hover::after {
-                animation: shimmer 1s infinite;
-            }
-            @keyframes shimmer {
-                100% {
-                    left: 200%;
-                }
-            }
-        }
-
-        /* Sliding nav indicator */
-        .nav-links {
-            position: relative;
-        }
-        .nav-link {
-            transition: color 0.3s ease;
-        }
-        /* Two classes = beats Tailwind's single-class text-secondary regardless of source order */
-        .nav-link.is-active {
-            color: #000000;
-        }
-        .nav-indicator {
-            position: absolute;
-            bottom: -6px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: #000000;
-            opacity: 0;
-            pointer-events: none;
-            transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-                        width 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-                        opacity 0.25s ease;
-        }
-        /* Used to place the bar without animating on first paint / resize */
-        .nav-indicator.no-anim {
-            transition: none;
-        }
-        @media (prefers-reduced-motion: reduce) {
-            .nav-indicator {
-                transition: opacity 0.25s ease;
-            }
-        }
-
-        /* Availability badge: small dot that breathes to read as "live" */
-        .availability-dot {
-            display: inline-block;
-            width: 7px;
-            height: 7px;
-            background-color: #dc2626;
-            border-radius: 50%;
-            flex-shrink: 0;
-        }
-        @media (prefers-reduced-motion: no-preference) {
-            .availability-dot {
-                animation: availability-pulse 2.4s ease-in-out infinite;
-            }
-            @keyframes availability-pulse {
-                0%, 100% { opacity: 1; transform: scale(1); }
-                50%      { opacity: 0.35; transform: scale(0.8); }
-            }
-        }
-
-        /* Resume buttons: icon nudges on hover (eye pulses, arrow drops) */
-        .resume-btn .material-symbols-outlined {
-            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .resume-btn:hover .material-symbols-outlined {
-            transform: scale(1.15);
-        }
-        .resume-btn[download]:hover .material-symbols-outlined {
-            transform: translateY(3px);
-        }
-        @media (prefers-reduced-motion: reduce) {
-            .resume-btn .material-symbols-outlined {
-                transition: none;
-            }
-        }
-
-        /* Certification cards: black fill sweeps up from the base on hover */
-        .cert-card {
-            position: relative;
-            overflow: hidden;
-            isolation: isolate;
-        }
-        .cert-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-color: #000000;
-            transform: scaleY(0);
-            transform-origin: bottom;
-            transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-            z-index: -1;
-        }
-        .cert-card:hover::before,
-        .cert-card:focus-visible::before {
-            transform: scaleY(1);
-        }
-
-        /* Project cards that open a write-up: a standing "Read more" chip so the
-           card reads as clickable without needing a hover to discover it.
-           card-tilt sets `transform` from JS, so the press state uses shadow. */
-        .card-cue {
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        .card-open:hover .card-cue,
-        .card-open:focus-within .card-cue {
-            background-color: #000000;
-            color: #FFFFFF;
-        }
-        .card-cue .material-symbols-outlined {
-            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .card-open:hover .card-cue .material-symbols-outlined {
-            transform: translateX(3px);
-        }
-        .card-open:active {
-            box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1) !important;
-        }
-        .card-open a:focus-visible {
-            outline: 2px solid #000000;
-            outline-offset: 3px;
-        }
-        @media (prefers-reduced-motion: reduce) {
-            .card-cue,
-            .card-cue .material-symbols-outlined {
-                transition: none;
-            }
-        }
-        .cert-card h3,
-        .cert-card div {
-            transition: color 0.35s ease;
-        }
-        .cert-card:hover h3,
-        .cert-card:hover div,
-        .cert-card:focus-visible h3,
-        .cert-card:focus-visible div {
-            color: #ffffff;
-        }
-        /* The "open" arrow slides in as the fill lands */
-        .cert-card .cert-meta::after {
-            content: '\2197';
-            display: inline-block;
-            margin-left: auto;
-            opacity: 0;
-            transform: translate(-6px, 6px);
-            transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .cert-card:hover .cert-meta::after,
-        .cert-card:focus-visible .cert-meta::after {
-            opacity: 1;
-            transform: translate(0, 0);
-        }
-        .cert-card .cert-meta {
-            justify-content: space-between;
-        }
-        @media (prefers-reduced-motion: reduce) {
-            .cert-card::before,
-            .cert-card .cert-meta::after {
-                transition: none;
-            }
-        }
-    </style>
+<!doctype html>
+<html lang="en" class="room-flow">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#8d2818">
+  <meta name="description" content="Panvee Naidu, software engineer. A gallery of systems, authentication and product work, with real project sources and credentials.">
+  <title>Panvee Naidu | Workroom</title>
+  <link rel="stylesheet" href="/src/workroom.css">
 </head>
-<body class="font-body-md text-body-md antialiased bg-background text-on-background relative overflow-x-hidden">
-<!-- ============================================================ LIGHT VIEW ==
-     The original brutalist design. Hidden wholesale when data-theme="dark".
-     ========================================================================= -->
-<div class="pn-view pn-light">
-<canvas class="fixed inset-0 w-full h-full pointer-events-none z-0" id="bg-canvas"></canvas>
-<!-- Header -->
-<header class="bg-background dark:bg-background w-full sticky top-0 z-40 border-b-2 border-primary dark:border-primary-fixed">
-<nav class="flex justify-between items-center max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-md">
-<a class="font-label-md text-[17px] font-bold tracking-[0.12em] text-primary dark:text-primary-fixed cursor-pointer transition-transform duration-200 active:scale-95" href="#hero">
-                PANVEE NAIDU
-            </a>
-<ul class="nav-links hidden md:flex gap-stack-lg items-center">
-<li class=""><a class="nav-link font-label-md text-label-md text-secondary dark:text-secondary-fixed hover:text-primary dark:hover:text-primary-fixed cursor-pointer active:scale-95" href="#projects">Projects</a></li>
-<li class=""><a class="nav-link font-label-md text-label-md text-secondary dark:text-secondary-fixed hover:text-primary dark:hover:text-primary-fixed cursor-pointer active:scale-95" href="#skills">Skills</a></li>
-<li class=""><a class="nav-link font-label-md text-label-md text-secondary dark:text-secondary-fixed hover:text-primary dark:hover:text-primary-fixed cursor-pointer active:scale-95" href="#resume">Resume</a></li>
-<li class=""><a class="nav-link font-label-md text-label-md text-secondary dark:text-secondary-fixed hover:text-primary dark:hover:text-primary-fixed cursor-pointer active:scale-95" href="#certifications">Certs</a></li>
-<li class="nav-indicator" id="nav-indicator"></li>
-</ul>
-<div class="flex items-center gap-stack-sm relative">
-<div class="hidden md:block">
-<a class="font-label-md text-label-md px-stack-md py-stack-sm bg-primary text-on-primary hover:bg-white hover:text-primary border-2 border-primary transition-all cursor-pointer active:scale-95" href="#contact">
-                    Contact
-                </a>
-</div>
-<!-- Theme toggle sits LAST in both designs so it holds the same spot on the
-     rail when the two views swap. Keep it after Contact in the dark header too. -->
-<div class="theme-indicator-wrapper">
-<button aria-label="Switch to dark design" aria-pressed="false" class="theme-toggle" data-theme-toggle="" type="button">
-<svg aria-hidden="true" class="tt-moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-<svg aria-hidden="true" class="tt-sun" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
-<span class="tt-text" data-theme-label="">Dark</span>
-</button>
-<!-- Always on. theme.js rewrites the copy to match whichever design is showing. -->
-<div class="theme-cue" data-theme-cue="" hidden="">
-<span class="cue-dot"></span>
-<span data-cue-text="">See it in a whole different design</span>
-<span class="cue-arrow">&#8593;</span>
-</div>
-</div>
-<!-- Mobile Menu Icon -->
-<button aria-label="Open menu" class="md:hidden text-primary" id="mobile-menu-btn">
-<span class="material-symbols-outlined text-3xl">menu</span>
-</button>
-</div>
-</nav>
-</header>
-<!-- Mobile Full-Screen Overlay -->
-<div class="fixed inset-0 bg-background z-50 flex flex-col justify-center items-center transform translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" id="mobile-menu-overlay">
-<button aria-label="Close menu" class="absolute top-6 right-6 text-primary p-2 focus:outline-none" id="mobile-close-btn">
-<span class="material-symbols-outlined text-4xl">close</span>
-</button>
-<nav class="flex flex-col items-center gap-stack-lg">
-<a class="mobile-nav-link font-headline-xl-mobile text-headline-xl-mobile font-bold text-primary hover:text-secondary transition-colors" href="#projects">Projects</a>
-<a class="mobile-nav-link font-headline-xl-mobile text-headline-xl-mobile font-bold text-primary hover:text-secondary transition-colors" href="#skills">Skills</a>
-<a class="mobile-nav-link font-headline-xl-mobile text-headline-xl-mobile font-bold text-primary hover:text-secondary transition-colors" href="#resume">Resume</a>
-<a class="mobile-nav-link font-headline-xl-mobile text-headline-xl-mobile font-bold text-primary hover:text-secondary transition-colors" href="#certifications">Certs</a>
-<a class="mobile-nav-link shimmer-btn mt-stack-md font-label-md text-label-md px-stack-lg py-stack-md bg-primary text-on-primary border-2 border-primary hover:bg-white hover:text-primary transition-colors cursor-pointer" href="#contact">Contact</a>
-</nav>
-</div>
-<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-section-gap flex flex-col gap-section-gap relative z-10">
-<!-- Hero Section -->
-<section class="reveal-section flex flex-col md:flex-row gap-gutter items-center" id="hero">
-<div class="w-full md:w-1/2 flex flex-col gap-stack-lg">
-<div>
-<h1 class="font-headline-xl-mobile md:font-headline-xl text-headline-xl-mobile md:text-headline-xl text-primary mb-stack-md">
-                        Panvee Naidu
-                    </h1>
-<div class="availability-badge inline-flex items-center gap-2 border border-primary px-stack-sm py-1 mb-stack-md font-label-sm text-label-sm text-primary">
-<span aria-hidden="true" class="availability-dot"></span>AVAILABLE &mdash; OPEN TO SWE ROLES
-                    </div>
-<p class="font-body-lg text-body-lg text-secondary border-l-2 border-primary pl-stack-md">
-                        Computer Science undergraduate specialising in Cybersecurity, designing and shipping full-stack systems — real-time services, containerised backends, and distributed IoT.
-</p>
-</div>
-<div>
-<a class="shimmer-btn inline-block font-label-md text-label-md px-stack-lg py-stack-md bg-primary text-on-primary border-2 border-primary hover:bg-white hover:text-primary transition-colors cursor-pointer" href="#contact">
-                        Get in Touch
-                    </a>
-</div>
-</div>
-<div class="w-full md:w-1/2">
-<img alt="Portrait of Panvee Naidu" class="w-full h-auto aspect-square object-cover border-2 border-primary grayscale hover:grayscale-0 transition-all duration-500" src="profile.jpg"/>
-</div>
-</section>
-<!-- Projects Section -->
-<section class="reveal-section" id="projects">
-<div class="mb-stack-lg border-b-2 border-primary pb-stack-sm">
-<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Featured Work</h2>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
-<!-- Project Card 1 — AeroChat -->
-<div class="stagger-child card-tilt border-2 border-primary p-stack-lg group hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] bg-white relative card-open">
-<a class="absolute inset-0 z-10" href="projects/aerochat.html"><span class="sr-only">Read more about AeroChat</span></a>
-<h3 class="font-headline-md text-headline-md text-primary mb-stack-sm group-hover:underline">AeroChat</h3>
-<p class="font-body-md text-body-md text-secondary mb-stack-md">Containerisation mini project &mdash; four services orchestrated with Docker Compose on an isolated bridge network, with a named volume for database persistence and a Makefile wrapping the lifecycle. Runs locally only.</p>
-<div class="flex flex-wrap gap-stack-sm mt-auto relative z-20 pointer-events-none">
-<span class="font-label-sm text-label-sm border border-primary px-2 py-1">Docker</span>
-<span class="font-label-sm text-label-sm border border-primary px-2 py-1">Docker Compose</span>
-<span class="font-label-sm text-label-sm border border-primary px-2 py-1">PostgreSQL</span>
-<span class="font-label-sm text-label-sm border border-primary px-2 py-1">Redis</span>
-<a class="font-label-sm text-label-sm border border-primary px-2 py-1 bg-primary pointer-events-auto text-on-primary hover:bg-white hover:text-primary transition-colors flex items-center gap-1" href="https://github.com/panvenaidu/aero-chat-realtime" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px]">link</span>GitHub</a>
-<span class="card-cue font-label-sm text-label-sm border border-primary px-2 py-1 inline-flex items-center gap-1 pointer-events-none" aria-hidden="true">Read more<span class="material-symbols-outlined text-[14px]">arrow_forward</span></span>
-</div>
-</div>
-<!-- Project Card 2 — Aurum -->
-<div class="stagger-child card-tilt border-2 border-primary p-stack-lg group hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] bg-white">
-<h3 class="font-headline-md text-headline-md text-primary mb-stack-sm group-hover:underline">Aurum</h3>
-<p class="font-body-md text-body-md text-secondary mb-stack-md">Multi-tenant hotel platform with three isolated portals — platform admin, hotel admin and guest — behind JWT role guards, plus an automatic commission engine.</p>
-<div class="flex flex-wrap gap-stack-sm mt-auto">
-<span class="font-label-sm text-label-sm border border-primary px-2 py-1">FastAPI</span>
-<span class="font-label-sm text-label-sm border border-primary px-2 py-1">SQLModel</span>
-<span class="font-label-sm text-label-sm border border-primary px-2 py-1">React</span>
-<span class="font-label-sm text-label-sm border border-primary px-2 py-1">JWT</span>
-<a class="font-label-sm text-label-sm border border-primary px-2 py-1 bg-primary text-on-primary hover:bg-white hover:text-primary transition-colors flex items-center gap-1" href="https://github.com/panvenaidu/aurum-hotel-management" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px]">link</span>GitHub</a></div>
-</div>
-<!-- Project Card 3 — PKCS#11 OTP -->
-<div class="stagger-child card-tilt border-2 border-primary p-stack-lg group hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] bg-white relative card-open">
-<a class="absolute inset-0 z-10" href="projects/pkcs11-otp.html"><span class="sr-only">Read more about PKCS#11 OTP Authentication</span></a>
-<h3 class="font-headline-md text-headline-md text-primary mb-stack-sm group-hover:underline">PKCS#11 OTP Authentication</h3>
-<p class="font-body-md text-body-md text-secondary mb-stack-md">Hardware-security-module-backed one-time passwords via PKCS#11 and SoftHSM, with keys held inside the token rather than in application memory.</p>
-<div class="flex flex-wrap gap-stack-sm mt-auto relative z-20 pointer-events-none">
-<span class="font-label-sm text-label-sm border border-primary px-2 py-1">C</span>
-<span class="font-label-sm text-label-sm border border-primary px-2 py-1">PKCS#11</span>
-<span class="font-label-sm text-label-sm border border-primary px-2 py-1">SoftHSM</span>
-<span class="font-label-sm text-label-sm border border-primary px-2 py-1">MySQL</span>
-<a class="font-label-sm text-label-sm border border-primary px-2 py-1 bg-primary pointer-events-auto text-on-primary hover:bg-white hover:text-primary transition-colors flex items-center gap-1" href="https://github.com/panvenaidu/pkcs11-otp-authentication" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px]">link</span>GitHub</a>
-<span class="card-cue font-label-sm text-label-sm border border-primary px-2 py-1 inline-flex items-center gap-1 pointer-events-none" aria-hidden="true">Read more<span class="material-symbols-outlined text-[14px]">arrow_forward</span></span>
-</div>
-</div>
-<!-- Project Card 4 — Valorix -->
-<div class="stagger-child card-tilt border-2 border-primary p-stack-lg group hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] bg-white relative card-open">
-<a class="absolute inset-0 z-10" href="projects/valorix.html"><span class="sr-only">Read the Valorix case study</span></a>
-<h3 class="font-headline-md text-headline-md text-primary mb-stack-sm group-hover:underline">Valorix</h3>
-<p class="font-body-md text-body-md text-secondary mb-stack-md">Production Next.js 15 / React 19 app with a custom Tailwind v4 token system, hand-built SVG charts with zero charting dependencies, and reduced-motion guards on every animation.</p>
-<div class="flex flex-wrap gap-stack-sm mt-auto relative z-20 pointer-events-none">
-<span class="font-label-sm text-label-sm border border-primary px-2 py-1">Next.js 15</span>
-<span class="font-label-sm text-label-sm border border-primary px-2 py-1">TypeScript</span>
-<span class="font-label-sm text-label-sm border border-primary px-2 py-1">Tailwind</span>
-<a class="font-label-sm text-label-sm border border-primary px-2 py-1 bg-primary pointer-events-auto text-on-primary hover:bg-white hover:text-primary transition-colors flex items-center gap-1" href="https://playvalorix.vercel.app" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px]">open_in_new</span>Live Demo</a><a class="font-label-sm text-label-sm border border-primary px-2 py-1 bg-primary pointer-events-auto text-on-primary hover:bg-white hover:text-primary transition-colors flex items-center gap-1" href="https://github.com/panvenaidu/valorix" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px]">link</span>GitHub</a>
-<span class="card-cue font-label-sm text-label-sm border border-primary px-2 py-1 inline-flex items-center gap-1 pointer-events-none" aria-hidden="true">Read more<span class="material-symbols-outlined text-[14px]">arrow_forward</span></span>
-</div>
-</div>
-<!-- Project Card 5 — Smart Home Automation -->
-<div class="stagger-child card-tilt border-2 border-primary p-stack-lg group hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] bg-white relative card-open">
-<a class="absolute inset-0 z-10" href="projects/smart-home-automation.html"><span class="sr-only">Read the Smart Home Automation case study</span></a>
-<h3 class="font-headline-md text-headline-md text-primary mb-stack-sm group-hover:underline">Smart Home Automation</h3>
-<p class="font-body-md text-body-md text-secondary mb-stack-md">Distributed IoT platform across three decoupled processes over MQTT, with a multi-threaded REST API and a voice interpreter routing 14 intent patterns.</p>
-<div class="flex flex-wrap gap-stack-sm mt-auto relative z-20 pointer-events-none">
-<span class="font-label-sm text-label-sm border border-primary px-2 py-1">Python</span>
-<span class="font-label-sm text-label-sm border border-primary px-2 py-1">MQTT</span>
-<span class="font-label-sm text-label-sm border border-primary px-2 py-1">REST</span>
-<span class="font-label-sm text-label-sm border border-primary px-2 py-1">Threading</span>
-<a class="font-label-sm text-label-sm border border-primary px-2 py-1 bg-primary pointer-events-auto text-on-primary hover:bg-white hover:text-primary transition-colors flex items-center gap-1" href="https://github.com/panvee/Home-Automation-Using-Voice-Command" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px]">link</span>GitHub</a>
-<span class="card-cue font-label-sm text-label-sm border border-primary px-2 py-1 inline-flex items-center gap-1 pointer-events-none" aria-hidden="true">Read more<span class="material-symbols-outlined text-[14px]">arrow_forward</span></span>
-</div>
-</div>
-<!-- Project Card 6 — Crowd Detection -->
-<div class="stagger-child card-tilt border-2 border-primary p-stack-lg group hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] bg-white relative card-open">
-<a class="absolute inset-0 z-10" href="projects/crowd-detection.html"><span class="sr-only">Read the Crowd Detection System case study</span></a>
-<h3 class="font-headline-md text-headline-md text-primary mb-stack-sm group-hover:underline">Crowd Detection System</h3>
-<p class="font-body-md text-body-md text-secondary mb-stack-md">Real-time vision pipeline that clusters YOLOv8 detections by proximity and logs only crowds that persist across frames.</p>
-<div class="flex flex-wrap gap-stack-sm mt-auto relative z-20 pointer-events-none">
-<span class="font-label-sm text-label-sm border border-primary px-2 py-1">Computer Vision</span>
-<span class="font-label-sm text-label-sm border border-primary px-2 py-1">YOLOv8</span>
-<span class="font-label-sm text-label-sm border border-primary px-2 py-1">OpenCV</span>
-<a class="font-label-sm text-label-sm border border-primary px-2 py-1 bg-primary pointer-events-auto text-on-primary hover:bg-white hover:text-primary transition-colors flex items-center gap-1" href="https://github.com/panvee/crowd-detect-ai" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px]">link</span>GitHub</a>
-<span class="card-cue font-label-sm text-label-sm border border-primary px-2 py-1 inline-flex items-center gap-1 pointer-events-none" aria-hidden="true">Read more<span class="material-symbols-outlined text-[14px]">arrow_forward</span></span>
-</div>
-</div>
-<!-- Project Card 7 — SoftSell -->
-<div class="stagger-child card-tilt border-2 border-primary p-stack-lg group hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] bg-white relative card-open">
-<a class="absolute inset-0 z-10" href="projects/softsell.html"><span class="sr-only">Read more about SoftSell</span></a>
-<h3 class="font-headline-md text-headline-md text-primary mb-stack-sm group-hover:underline">SoftSell</h3>
-<p class="font-body-md text-body-md text-secondary mb-stack-md">React single-page marketing site for a software-license resale concept — 8 modular components with system-aware dark mode, validated lead capture, and a scripted chat widget.</p>
-<div class="flex flex-wrap gap-stack-sm mt-auto relative z-20 pointer-events-none">
-<span class="font-label-sm text-label-sm border border-primary px-2 py-1">React</span>
-<span class="font-label-sm text-label-sm border border-primary px-2 py-1">Vite</span>
-<span class="font-label-sm text-label-sm border border-primary px-2 py-1">Tailwind</span>
-<span class="font-label-sm text-label-sm border border-primary px-2 py-1">Framer Motion</span>
-<a class="font-label-sm text-label-sm border border-primary px-2 py-1 bg-primary pointer-events-auto text-on-primary hover:bg-white hover:text-primary transition-colors flex items-center gap-1" href="https://github.com/panvee/SoftSell-Software-License-Marketplace" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px]">link</span>GitHub</a>
-<span class="card-cue font-label-sm text-label-sm border border-primary px-2 py-1 inline-flex items-center gap-1 pointer-events-none" aria-hidden="true">Read more<span class="material-symbols-outlined text-[14px]">arrow_forward</span></span>
-</div>
-</div>
-</div>
-</section>
-<!-- Skills Section -->
-<section class="reveal-section" id="skills">
-<div class="mb-stack-lg border-b-2 border-primary pb-stack-sm">
-<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Technical Expertise</h2>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
-<!-- Languages -->
-<div class="stagger-child border border-primary p-stack-md bg-surface-container-low transition-colors hover:bg-white hover:border-2">
-<h3 class="font-label-md text-label-md text-primary border-b border-gray-light pb-stack-sm mb-stack-sm">Languages</h3>
-<ul class="flex flex-col gap-stack-sm">
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Python</li>
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">JavaScript</li>
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">TypeScript</li>
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">C</li>
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Apex</li>
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">SQL</li>
-</ul>
-</div>
-<!-- Backend -->
-<div class="stagger-child border border-primary p-stack-md bg-surface-container-low transition-colors hover:bg-white hover:border-2">
-<h3 class="font-label-md text-label-md text-primary border-b border-gray-light pb-stack-sm mb-stack-sm">Backend &amp; Systems</h3>
-<ul class="flex flex-col gap-stack-sm">
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">FastAPI</li>
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Node.js / Express</li>
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Socket.IO</li>
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">REST APIs</li>
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">MQTT</li>
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Redis</li>
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">PostgreSQL</li>
-</ul>
-</div>
-<!-- Frontend -->
-<div class="stagger-child border border-primary p-stack-md bg-surface-container-low transition-colors hover:bg-white hover:border-2">
-<h3 class="font-label-md text-label-md text-primary border-b border-gray-light pb-stack-sm mb-stack-sm">Frontend</h3>
-<ul class="flex flex-col gap-stack-sm">
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">React</li>
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Next.js</li>
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Tailwind CSS</li>
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Vite</li>
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Framer Motion</li>
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">HTML/CSS</li>
-</ul>
-</div>
-<!-- DevOps & Security -->
-<div class="stagger-child border border-primary p-stack-md bg-surface-container-low transition-colors hover:bg-white hover:border-2">
-<h3 class="font-label-md text-label-md text-primary border-b border-gray-light pb-stack-sm mb-stack-sm">DevOps &amp; Security</h3>
-<ul class="flex flex-col gap-stack-sm">
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Docker / Compose</li>
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">JWT / bcrypt</li>
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">PKCS#11 / SoftHSM</li>
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">CI/CD</li>
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Git / GitHub</li>
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Linux</li>
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">Vercel</li>
-<li class="font-body-sm text-body-sm text-secondary before:content-[''] before:inline-block before:w-2 before:h-2 before:bg-primary before:mr-2 transition-transform hover:translate-x-1 duration-200">YOLOv8 / OpenCV</li>
-</ul>
-</div>
-</div>
-</section>
-<!-- Resume Section -->
-<section class="reveal-section border-2 border-primary p-stack-lg bg-white flex flex-col md:flex-row justify-between items-start md:items-center gap-stack-lg" id="resume">
-<div class="w-full md:w-2/3">
-<h2 class="font-headline-md text-headline-md text-primary mb-stack-sm">Experience</h2>
-<div class="border-l-2 border-gray-light pl-stack-md mt-stack-md hover:border-primary transition-colors duration-300">
-<h3 class="font-label-md text-label-md text-primary">SmartBridge <span class="font-body-sm text-secondary font-normal ml-2">Salesforce Developer Intern &middot; May &ndash; Jul 2025</span></h3>
-<p class="font-body-sm text-body-sm text-secondary mt-stack-sm">Completed an 8-week Agentblazer Champion program in collaboration with Salesforce — building and testing custom Apex classes and Lightning Web Components, and earning the Object Relationships Superbadge.</p>
-</div>
-</div>
-<div class="w-full md:w-auto flex-shrink-0 flex flex-col sm:flex-row md:flex-col lg:flex-row gap-stack-sm">
-<a class="shimmer-btn resume-btn inline-flex items-center justify-center gap-2 w-full md:w-auto text-center font-label-md text-label-md px-stack-lg py-stack-md bg-primary text-on-primary border-2 border-primary hover:bg-white hover:text-primary transition-colors cursor-pointer" href="Panvee_Naidu_Resume.pdf" rel="noopener noreferrer" target="_blank">
-<span class="material-symbols-outlined align-middle text-[18px]">visibility</span> View Resume
-                </a>
-<a class="resume-btn inline-flex items-center justify-center gap-2 w-full md:w-auto text-center font-label-md text-label-md px-stack-lg py-stack-md bg-white text-primary border-2 border-primary hover:bg-primary hover:text-on-primary transition-colors cursor-pointer" download href="Panvee_Naidu_Resume.pdf">
-<span class="material-symbols-outlined align-middle text-[18px]">download</span> Download
-                </a>
-</div>
-</section>
-<!-- Education Section -->
-<section class="reveal-section" id="education">
-<h2 class="font-headline-md text-headline-md text-primary mb-stack-lg">Education</h2>
-<div class="stagger-child border-2 border-primary p-stack-lg bg-white flex flex-col md:flex-row md:items-center justify-between gap-stack-md">
-<div>
-<h3 class="font-headline-md text-headline-md text-primary">SRM University &mdash; AP</h3>
-<p class="font-body-md text-body-md text-secondary mt-stack-sm">B.Tech, Computer Science and Engineering</p>
-<p class="font-label-sm text-label-sm text-primary mt-stack-sm inline-block border border-primary px-2 py-1">SPECIALIZATION IN CYBERSECURITY</p>
-</div>
-<div class="flex flex-row md:flex-col gap-stack-lg md:gap-stack-sm md:text-right flex-shrink-0">
-<div>
-<div class="font-label-sm text-label-sm text-secondary">EXPECTED</div>
-<div class="font-label-md text-label-md text-primary mt-1">May 2027</div>
-</div>
-<div>
-<div class="font-label-sm text-label-sm text-secondary">CGPA</div>
-<div class="font-label-md text-label-md text-primary mt-1">7.4 / 10</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Certifications Section -->
-<section class="reveal-section" id="certifications">
-<h2 class="font-headline-md text-headline-md text-primary mb-stack-lg">Certifications &amp; Achievements</h2>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-stack-md">
-<a class="cert-card stagger-child card-tilt group border-2 border-primary bg-white p-stack-md flex flex-col justify-between min-h-[150px]" href="Certs/sap-generative-ai-developer.pdf" rel="noopener noreferrer" target="_blank">
-<div>
-<div class="font-label-sm text-label-sm text-secondary mb-stack-sm">SAP &middot; 2026</div>
-<h3 class="font-label-md text-label-md text-primary leading-snug">SAP Generative AI Developer</h3>
-</div>
-<div class="cert-meta font-label-sm text-label-sm text-secondary flex items-center gap-1 mt-stack-md">
-<span class="material-symbols-outlined text-[14px]">verified</span>CERTIFIED
-</div>
-</a>
-<a class="cert-card stagger-child card-tilt group border-2 border-primary bg-white p-stack-md flex flex-col justify-between min-h-[150px]" href="Certs/salesforce-smartbridge.pdf" rel="noopener noreferrer" target="_blank">
-<div>
-<div class="font-label-sm text-label-sm text-secondary mb-stack-sm">SMARTBRIDGE &times; SALESFORCE &middot; 2025</div>
-<h3 class="font-label-md text-label-md text-primary leading-snug">Agentblazer Champion Program</h3>
-</div>
-<div class="cert-meta font-label-sm text-label-sm text-secondary flex items-center gap-1 mt-stack-md">
-<span class="material-symbols-outlined text-[14px]">verified</span>CERTIFIED
-</div>
-</a>
-<a class="cert-card stagger-child card-tilt group border-2 border-primary bg-white p-stack-md flex flex-col justify-between min-h-[150px]" href="Certs/google-ai-essentials.pdf" rel="noopener noreferrer" target="_blank">
-<div>
-<div class="font-label-sm text-label-sm text-secondary mb-stack-sm">GOOGLE &middot; 2025</div>
-<h3 class="font-label-md text-label-md text-primary leading-snug">Google AI Essentials</h3>
-</div>
-<div class="cert-meta font-label-sm text-label-sm text-secondary flex items-center gap-1 mt-stack-md">
-<span class="material-symbols-outlined text-[14px]">verified</span>CERTIFIED
-</div>
-</a>
-<a class="cert-card stagger-child card-tilt group border-2 border-primary bg-white p-stack-md flex flex-col justify-between min-h-[150px]" href="Certs/meta-genai-frontend.pdf" rel="noopener noreferrer" target="_blank">
-<div>
-<div class="font-label-sm text-label-sm text-secondary mb-stack-sm">COURSERA &middot; 2025</div>
-<h3 class="font-label-md text-label-md text-primary leading-snug">GenAI for Front-End Development</h3>
-</div>
-<div class="cert-meta font-label-sm text-label-sm text-secondary flex items-center gap-1 mt-stack-md">
-<span class="material-symbols-outlined text-[14px]">verified</span>CERTIFIED
-</div>
-</a>
-<a class="cert-card stagger-child card-tilt group border-2 border-primary bg-white p-stack-md flex flex-col justify-between min-h-[150px]" href="Certs/meta-intro-frontend.pdf" rel="noopener noreferrer" target="_blank">
-<div>
-<div class="font-label-sm text-label-sm text-secondary mb-stack-sm">META &middot; 2025</div>
-<h3 class="font-label-md text-label-md text-primary leading-snug">Introduction to Front-End Development</h3>
-</div>
-<div class="cert-meta font-label-sm text-label-sm text-secondary flex items-center gap-1 mt-stack-md">
-<span class="material-symbols-outlined text-[14px]">verified</span>CERTIFIED
-</div>
-</a>
-<a class="cert-card stagger-child card-tilt group border-2 border-primary bg-white p-stack-md flex flex-col justify-between min-h-[150px]" href="Certs/techgyan-hackathon-data-analytics.jpg" rel="noopener noreferrer" target="_blank">
-<div>
-<div class="font-label-sm text-label-sm text-secondary mb-stack-sm">TECHGYAN &times; IIT HYDERABAD &middot; JUN 2025</div>
-<h3 class="font-label-md text-label-md text-primary leading-snug">Data Analytics Hackathon</h3>
-</div>
-<div class="cert-meta font-label-sm text-label-sm text-secondary flex items-center gap-1 mt-stack-md">
-<span class="material-symbols-outlined text-[14px]">workspace_premium</span>PARTICIPANT
-</div>
-</a>
-<a class="cert-card stagger-child card-tilt group border-2 border-primary bg-white p-stack-md flex flex-col justify-between min-h-[150px]" href="Certs/techgyan-data-science-python.jpg" rel="noopener noreferrer" target="_blank">
-<div>
-<div class="font-label-sm text-label-sm text-secondary mb-stack-sm">TECHGYAN &times; IIT HYDERABAD &middot; JUN 2025</div>
-<h3 class="font-label-md text-label-md text-primary leading-snug">Data Science with Python</h3>
-</div>
-<div class="cert-meta font-label-sm text-label-sm text-secondary flex items-center gap-1 mt-stack-md">
-<span class="material-symbols-outlined text-[14px]">workspace_premium</span>PARTICIPANT
-</div>
-</a>
-<a class="cert-card stagger-child card-tilt group border-2 border-primary bg-white p-stack-md flex flex-col justify-between min-h-[150px]" href="Certs/techgyan-workshop-data-analytics.jpg" rel="noopener noreferrer" target="_blank">
-<div>
-<div class="font-label-sm text-label-sm text-secondary mb-stack-sm">TECHGYAN &times; IIT HYDERABAD &middot; JUN 2025</div>
-<h3 class="font-label-md text-label-md text-primary leading-snug">Data Analytics Workshop</h3>
-</div>
-<div class="cert-meta font-label-sm text-label-sm text-secondary flex items-center gap-1 mt-stack-md">
-<span class="material-symbols-outlined text-[14px]">workspace_premium</span>PARTICIPANT
-</div>
-</a>
-</div>
-</section>
-</main>
-<!-- Footer / Contact -->
-<footer class="reveal-section bg-background dark:bg-background w-full border-t-2 border-primary dark:border-primary-fixed mt-section-gap relative z-10" id="contact">
-<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-section-gap flex flex-col md:flex-row justify-between items-start gap-section-gap md:gap-gutter">
-<div class="w-full md:w-1/2">
-<h2 class="font-headline-md text-headline-md text-primary mb-stack-lg">Let's Connect</h2>
-<form class="flex flex-col gap-stack-lg max-w-md" id="contact-form">
-<input class="w-full bg-transparent border-0 border-b border-primary focus:border-b-2 outline-none font-body-md text-body-md py-2 px-0 transition-all placeholder:text-outline-variant" id="cf-name" placeholder="Name" type="text"/>
-<input class="w-full bg-transparent border-0 border-b border-primary focus:border-b-2 outline-none font-body-md text-body-md py-2 px-0 transition-all placeholder:text-outline-variant" id="cf-email" placeholder="Email" type="email"/>
-<textarea class="w-full bg-transparent border-0 border-b border-primary focus:border-b-2 outline-none font-body-md text-body-md py-2 px-0 transition-all resize-none placeholder:text-outline-variant" id="cf-message" placeholder="Message" rows="3"></textarea>
-<button class="shimmer-btn self-start font-label-md text-label-md px-stack-md py-stack-sm bg-primary text-on-primary border-2 border-primary hover:bg-white hover:text-primary transition-colors cursor-pointer" type="submit">
-                        Send Message
-                    </button>
-</form>
-</div>
-<div class="flex flex-col gap-stack-md items-start md:items-end w-full md:w-auto">
-<div class="font-label-md text-[17px] font-bold tracking-[0.12em] text-primary dark:text-primary-fixed">
-                    PANVEE NAIDU
+<body>
+  <a class="room-skip" href="#room-main">Skip to the workroom</a>
+  <header class="room-header" id="room-header">
+    <a class="room-home-link" href="#room-home">Panvee Naidu</a>
+    <nav aria-label="Workroom navigation" class="room-navigation">
+      <details class="room-directory" id="room-directory">
+        <summary>Project directory</summary>
+        <div class="room-directory-list">
+          <a href="#room-aerochat">AeroChat</a>
+          <a href="#room-home-automation">Smart Home Automation</a>
+          <a href="#room-pkcs11">PKCS#11 Authentication</a>
+          <a href="#room-valorix">Valorix</a>
+          <a href="#room-crowd">Crowd Detection</a>
+          <a href="#room-aurum">Aurum</a>
+          <a href="#room-softsell">SoftSell</a>
+        </div>
+      </details>
+      <a class="room-record-link" href="#room-record">Record</a>
+      <a href="#room-contact">Contact</a>
+      <button type="button" id="room-view-toggle" aria-pressed="false" aria-controls="room-systems room-valorix room-range" hidden>Desk view</button>
+      <button type="button" id="room-motion-toggle" aria-pressed="false" aria-label="Pause scroll motion" hidden>Pause motion</button>
+    </nav>
+  </header>
+  <main id="room-main">
+    <section id="room-home" class="room-opening" data-sc-act="flow" aria-labelledby="room-name">
+      <div class="room-opening-composition">
+        <div class="room-frame-edge" data-sc-parallax="-0.12" aria-hidden="true"></div>
+        <figure class="room-portrait" data-sc-parallax="0.08">
+          <img src="/profile.jpg" width="1100" height="1100" alt="Portrait of Panvee Naidu" fetchpriority="high">
+          <figcaption>Panvee Naidu. India.</figcaption>
+        </figure>
+        <div class="room-identity" data-sc-parallax="0.03">
+          <h1 id="room-name">Panvee<br>Naidu</h1>
+          <p class="room-role">Software engineer</p>
+          <p class="room-availability">Open to software engineering roles</p>
+          <a href="/Panvee_Naidu_Resume.pdf" target="_blank" rel="noopener">Read the résumé</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="room-systems" class="room-systems" data-sc-act="flow" aria-labelledby="room-systems-title">
+      <div class="room-gallery-stage" data-sc-stage>
+        <div class="room-gallery-heading">
+          <h2 id="room-systems-title">Connected work</h2>
+          <nav class="room-object-jumps" aria-label="Connected work objects">
+            <a href="#room-aerochat">AeroChat</a>
+            <a href="#room-home-automation">Smart Home</a>
+            <a href="#room-pkcs11">PKCS#11</a>
+          </nav>
+          <p class="room-view-description" id="room-view-description">Systems architecture, distributed IoT and applied cybersecurity.</p>
+        </div>
+        <div class="room-gallery-rail" data-sc-pan="0">
+          <article id="room-aerochat" class="room-object room-system-object" data-room-object aria-labelledby="room-aerochat-title" tabindex="-1">
+            <figure class="room-architecture room-aero-architecture">
+              <div class="room-aero-network">
+                <div class="room-network-node room-client"><strong>React client</strong><span>Client container</span></div>
+                <div class="room-network-node room-server"><strong>Node + Socket.IO</strong><span>Server container</span></div>
+                <div class="room-network-branches">
+                  <div class="room-network-node"><strong>PostgreSQL</strong><span>Storage container</span></div>
+                  <div class="room-network-node"><strong>Redis</strong><span>Cache container</span></div>
                 </div>
-<ul class="flex gap-stack-md">
-<li class=""><a class="font-label-sm text-label-sm text-secondary dark:text-secondary-fixed hover:text-primary dark:hover:text-primary-fixed transition-colors hover:underline" href="https://github.com/panvenaidu" rel="noopener noreferrer" target="_blank">GitHub</a></li>
-<li class=""><a class="font-label-sm text-label-sm text-secondary dark:text-secondary-fixed hover:text-primary dark:hover:text-primary-fixed transition-colors hover:underline" href="https://www.linkedin.com/in/panvee-naidu-8a6430291/" rel="noopener noreferrer" target="_blank">LinkedIn</a></li>
-<li class=""><a class="contact-email-link font-label-sm text-label-sm text-secondary dark:text-secondary-fixed hover:text-primary dark:hover:text-primary-fixed transition-colors hover:underline" href="#">Email</a></li>
-</ul>
-</div>
-</div>
-</footer>
-</div><!-- /.pn-light -->
+                <p class="room-network-boundary">Isolated bridge network</p>
+              </div>
+              <figcaption>Architecture illustration. Four local containers; persistent database volume.</figcaption>
+            </figure>
+            <div class="room-object-label">
+              <h3 id="room-aerochat-title">AeroChat</h3>
+              <p class="room-discipline">Systems architecture</p>
+              <p class="room-tools">Docker Compose, PostgreSQL, Redis, Socket.IO</p>
+              <p class="room-object-fact">Four local containers: React client, Node and Socket.IO server, PostgreSQL storage, Redis cache. Isolated bridge network and persistent database volume. Runs locally; application source is private.</p>
+              <div class="room-object-links"><a href="/projects/aerochat.html">Read AeroChat case study</a><a href="https://github.com/panvenaidu/aero-chat-realtime" target="_blank" rel="noopener">Repository</a></div>
+            </div>
+          </article>
+          <article id="room-home-automation" class="room-object room-system-object" data-room-object aria-labelledby="room-home-automation-title" tabindex="-1">
+            <figure class="room-architecture room-home-architecture">
+              <div class="room-process-diagram">
+                <p class="room-process-title">Three decoupled Python processes</p>
+                <div class="room-processes"><span>Command parsing</span><span>REST API</span><span>Energy monitoring</span></div>
+                <div class="room-mqtt-bus">MQTT communication</div>
+              </div>
+              <figcaption>Architecture illustration. Processes communicate over MQTT.</figcaption>
+            </figure>
+            <div class="room-object-label">
+              <h3 id="room-home-automation-title">Smart Home<br>Automation</h3>
+              <p class="room-discipline">Distributed IoT</p>
+              <p class="room-tools">Python, MQTT, REST</p>
+              <p class="room-object-fact">Three decoupled Python processes communicate over MQTT. Multi-threaded REST API, natural-language command parsing and live energy monitoring.</p>
+              <div class="room-object-links"><a href="/projects/smart-home-automation.html">Read Smart Home case study</a><a href="https://github.com/panvee/Home-Automation-Using-Voice-Command" target="_blank" rel="noopener">Repository</a></div>
+            </div>
+          </article>
+          <article id="room-pkcs11" class="room-object room-system-object" data-room-object aria-labelledby="room-pkcs11-title" tabindex="-1">
+            <figure class="room-architecture room-token-architecture">
+              <div class="room-token-diagram">
+                <p class="room-token-request">One-time-password authentication</p>
+                <div class="room-token-interface">PKCS#11 interface</div>
+                <div class="room-token-boundary"><strong>SoftHSM token</strong><span>Cryptographic keys remain inside</span><em>Simulated locally</em></div>
+              </div>
+              <figcaption>Security-model illustration. SoftHSM is a simulated cryptographic token.</figcaption>
+            </figure>
+            <div class="room-object-label">
+              <h3 id="room-pkcs11-title">PKCS#11<br>Authentication</h3>
+              <p class="room-discipline">Applied cybersecurity</p>
+              <p class="room-tools">C, PKCS#11, SoftHSM, MySQL</p>
+              <p class="room-object-fact">One-time-password authentication with keys held inside a simulated SoftHSM cryptographic token. Explores the hardware security model locally.</p>
+              <div class="room-object-links"><a href="/projects/pkcs11-otp.html">Read PKCS#11 case study</a><a href="https://github.com/panvenaidu/pkcs11-otp-authentication" target="_blank" rel="noopener">Repository</a></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-<!-- ============================================================= DARK VIEW ==
-     The editorial teal design. A separate design rather than a recolour, so it
-     carries its own markup; dark.css styles it and dark.js drives its motion.
+    <section class="room-product" data-sc-act="flow" aria-label="Product evidence">
+      <article id="room-valorix" class="room-object room-product-object" data-room-object aria-labelledby="room-valorix-title" tabindex="-1">
+        <div class="room-object-label">
+          <div class="room-product-heading"><h2 id="room-valorix-title">Valorix</h2><p class="room-discipline">Product engineering</p><p class="room-tools">Next.js, TypeScript, React</p></div>
+          <div class="room-product-description"><p class="room-object-fact">VALORANT analytics product with an original design system and purpose-built charts. Real live interface preview; preview data. Riot API approval pending.</p><div class="room-object-links"><a href="/projects/valorix.html">Read Valorix case study</a><a href="https://playvalorix.vercel.app" target="_blank" rel="noopener">Live preview</a><a href="https://github.com/panvenaidu/valorix" target="_blank" rel="noopener">Repository</a></div></div>
+        </div>
+        <figure class="room-product-evidence">
+          <div class="room-product-image" data-sc-reveal="up" data-sc-reveal-at="0.08 0.32"><img src="/assets/valorix-preview.jpg" width="1150" height="804" alt="Actual Valorix analytics interface showing its dashboard and charts with preview data" loading="lazy"></div>
+          <figcaption>Actual interface preview. Preview data; Riot API approval pending.</figcaption>
+        </figure>
+      </article>
+    </section>
 
-     MAINTENANCE: content here is a second copy. When a project, skill,
-     certificate or date changes, update BOTH the light section above and the
-     matching block below. The six project pages need no such pairing — they
-     are restyled by CSS alone.
+    <section id="room-range" class="room-range" data-sc-act="flow" aria-labelledby="room-range-title">
+      <h2 id="room-range-title">Further work</h2>
+      <article id="room-crowd" class="room-object room-range-object" data-room-object aria-labelledby="room-crowd-title" tabindex="-1">
+        <div class="room-object-heading"><h3 id="room-crowd-title">Crowd Detection</h3><p class="room-discipline">Computer vision</p><p class="room-tools">YOLOv8, OpenCV</p></div>
+        <p class="room-object-fact">Detects people, groups nearby detections into crowds and logs sustained crowd events to CSV. Case study records two bugs found on review.</p>
+        <div class="room-object-links"><a href="/projects/crowd-detection.html">Read Crowd Detection case study</a><a href="https://github.com/panvee/crowd-detect-ai" target="_blank" rel="noopener">Repository</a></div>
+      </article>
+      <article id="room-aurum" class="room-object room-range-object" data-room-object aria-labelledby="room-aurum-title" tabindex="-1">
+        <div class="room-object-heading"><h3 id="room-aurum-title">Aurum</h3><p class="room-discipline">Product architecture</p><p class="room-tools">FastAPI, React, JWT</p></div>
+        <p class="room-object-fact">Multi-tenant hotel management. Isolated platform admin, hotel admin and guest portals, JWT role guards and automatic commission engine.</p>
+        <div class="room-object-links"><a href="https://github.com/panvenaidu/aurum-hotel-management" target="_blank" rel="noopener">Aurum repository</a></div>
+      </article>
+      <article id="room-softsell" class="room-object room-range-object" data-room-object aria-labelledby="room-softsell-title" tabindex="-1">
+        <div class="room-object-heading"><h3 id="room-softsell-title">SoftSell</h3><p class="room-discipline">Interface development</p><p class="room-tools">React, Vite, Tailwind</p></div>
+        <p class="room-object-fact">Software-licence marketplace concept. Eight modular components, system-aware dark mode, validated lead form and scripted chat widget.</p>
+        <div class="room-object-links"><a href="/projects/softsell.html">Read SoftSell case study</a><a href="https://github.com/panvee/SoftSell-Software-License-Marketplace" target="_blank" rel="noopener">Repository</a></div>
+      </article>
+    </section>
 
-     Everything is authored in its finished, visible state. dark.js applies the
-     hidden pre-state itself, so this reads correctly with JS disabled.
-     ========================================================================= -->
-<div class="pn-view pn-dark">
+    <section id="room-record" class="room-record" data-sc-act="flow" aria-labelledby="room-record-title">
+      <h2 id="room-record-title">Record</h2>
+      <div class="room-record-entries">
+        <div><h3>Salesforce Developer Intern</h3><p>SmartBridge × Salesforce</p><p class="room-record-meta">May to July 2025</p><p>Eight-week Agentblazer Champion program; Apex classes and Lightning Web Components; Object Relationships Superbadge.</p></div>
+        <div><h3>B.Tech, Computer Science &amp; Engineering</h3><p>SRM University, AP</p><p class="room-record-meta">Expected May 2027</p><p>Specialisation in Cybersecurity. CGPA: 7.4/10.</p><a href="/Panvee_Naidu_Resume.pdf" target="_blank" rel="noopener">Read the full résumé</a></div>
+      </div>
+      <div id="room-credentials" class="room-credentials" aria-labelledby="room-credentials-title" data-sc-in>
+        <h3 id="room-credentials-title">Credentials</h3>
+        <ul>
+          <li><a href="/Certs/sap-generative-ai-developer.pdf" target="_blank" rel="noopener"><span>SAP Generative AI Developer</span><span>SAP · 2026</span></a></li>
+          <li><a href="/Certs/salesforce-smartbridge.pdf" target="_blank" rel="noopener"><span>Agentblazer Champion Program</span><span>SmartBridge × Salesforce · 2025</span></a></li>
+          <li><a href="/Certs/google-ai-essentials.pdf" target="_blank" rel="noopener"><span>Google AI Essentials</span><span>Google · 2025</span></a></li>
+          <li><a href="/Certs/meta-genai-frontend.pdf" target="_blank" rel="noopener"><span>GenAI for Front-End Development</span><span>Coursera · 2025</span></a></li>
+          <li><a href="/Certs/meta-intro-frontend.pdf" target="_blank" rel="noopener"><span>Introduction to Front-End Development</span><span>Meta · 2025</span></a></li>
+          <li><a href="/Certs/techgyan-hackathon-data-analytics.jpg" target="_blank" rel="noopener"><span>Data Analytics Hackathon</span><span>Techgyan × IIT Hyderabad · 2025</span></a></li>
+          <li><a href="/Certs/techgyan-data-science-python.jpg" target="_blank" rel="noopener"><span>Data Science with Python</span><span>Techgyan × IIT Hyderabad · 2025</span></a></li>
+          <li><a href="/Certs/techgyan-workshop-data-analytics.jpg" target="_blank" rel="noopener"><span>Data Analytics Workshop</span><span>Techgyan × IIT Hyderabad · 2025</span></a></li>
+        </ul>
+      </div>
+    </section>
 
-<div class="dk-progress" data-dprogress=""></div>
-
-<header class="dk-header" data-dheader="">
-<a class="dk-brand" data-danim="up" href="#d-hero">Panvee Naidu</a>
-<nav class="dk-nav">
-<a class="dk-navlink" data-danim="up" data-dnavlink="" href="#d-projects">Projects</a>
-<a class="dk-navlink" data-danim="up" data-dnavlink="" href="#d-skills">Skills</a>
-<a class="dk-navlink" data-danim="up" data-dnavlink="" href="#d-resume">Resume</a>
-<a class="dk-navlink" data-danim="up" data-dnavlink="" href="#d-certifications">Certs</a>
-<a class="dk-pill" data-danim="up" href="#d-contact">Contact</a>
-<div class="theme-indicator-wrapper">
-<button aria-label="Switch to light design" aria-pressed="true" class="theme-toggle" data-theme-toggle="" type="button">
-<svg aria-hidden="true" class="tt-moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-<svg aria-hidden="true" class="tt-sun" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
-<span class="tt-text" data-theme-label="">Light</span>
-</button>
-<div class="theme-cue" data-theme-cue="" hidden="">
-<span class="cue-dot"></span>
-<span data-cue-text="">Back to the original design</span>
-<span class="cue-arrow">&#8593;</span>
-</div>
-</div>
-</nav>
-</header>
-
-<!-- Hero -->
-<section class="dk-hero" id="d-hero">
-<div class="dk-hero-grid">
-<div class="dk-hero-main">
-<div class="dk-badge-row">
-<span class="dk-badge" data-danim="line-in">
-<span class="dk-dot"></span>
-                Available — open to SWE roles
-            </span>
-</div>
-<h1 class="dk-h1">
-<span class="dk-line"><span data-danim="line-in" style="display:block">Panvee</span></span>
-<span class="dk-line"><span data-danim="line-in" style="display:block"><em>Naidu</em></span></span>
-</h1>
-<div class="dk-rule" data-danim="rule"></div>
-<p class="dk-lede" data-danim="words">Computer Science undergraduate specialising in Cybersecurity, designing and shipping full-stack systems — real-time services, containerised backends, and distributed IoT.</p>
-<div class="dk-cta-row">
-<a class="dk-btn" data-danim="up" data-dmagnet="" href="#d-contact">
-<span class="dk-fill" data-dfill=""></span>
-<span>Get in touch</span>
-<span class="dk-arrow" data-darrow=""></span>
-</a>
-<a class="dk-btn-underline" data-danim="up" href="#d-projects">View work</a>
-</div>
-</div>
-<div class="dk-hero-aside">
-<div class="dk-portrait-frame">
-<img alt="Portrait of Panvee Naidu" class="dk-portrait" data-danim="img" data-dparallax=".06" src="profile.jpg"/>
-</div>
-<div class="dk-portrait-meta" data-danim="up">
-<span>SRM University — AP</span><span>B.Tech CSE '27</span>
-</div>
-</div>
-</div>
-<div class="dk-scroll" data-danim="up">SCROLL</div>
-</section>
-
-<!-- Featured work -->
-<section class="dk-section" id="d-projects">
-<div class="dk-projects-grid">
-<div class="dk-projects-aside">
-<div class="dk-projects-sticky">
-<div class="dk-clip"><h2 class="dk-h2 dk-projects-title" data-danim="line-in">Featured<br/><em>Work</em></h2></div>
-<div class="dk-projects-rule" data-danim="rule"></div>
-<div class="dk-eyebrow" data-danim="up"><span class="dk-rowcount" data-drowcount="">01</span> / 07 SELECTED</div>
-</div>
-</div>
-<div class="dk-rows">
-
-<a class="dk-row" data-danim="wipe" data-drow="" href="projects/aerochat.html">
-<span class="dk-rowbg" data-drowbg=""></span>
-<span class="dk-row-inner">
-<span class="dk-num" data-dnum="">01</span>
-<span class="dk-row-body">
-<h3 class="dk-row-title">AeroChat</h3>
-<span class="dk-stackline"><span>Docker</span><span>·</span><span>Compose</span><span>·</span><span>PostgreSQL</span><span>·</span><span>Redis</span></span>
-</span>
-<span class="dk-row-desc">Containerisation mini project — four services orchestrated with Docker Compose on an isolated bridge network, with a named volume for database persistence and a Makefile wrapping the lifecycle.</span>
-<span class="dk-rowarrow" data-drowarrow="">Read →</span>
-</span>
-</a>
-
-<div class="dk-row" data-danim="wipe" data-drow="" style="cursor:default">
-<span class="dk-rowbg" data-drowbg=""></span>
-<span class="dk-row-inner">
-<span class="dk-num" data-dnum="">02</span>
-<span class="dk-row-body">
-<h3 class="dk-row-title">Aurum</h3>
-<span class="dk-stackline"><span>FastAPI</span><span>·</span><span>SQLModel</span><span>·</span><span>React</span><span>·</span><span>JWT</span></span>
-</span>
-<span class="dk-row-desc">Multi-tenant hotel platform with three isolated portals — platform admin, hotel admin and guest — behind JWT role guards, plus an automatic commission engine.</span>
-</span>
-</div>
-
-<a class="dk-row" data-danim="wipe" data-drow="" href="projects/pkcs11-otp.html">
-<span class="dk-rowbg" data-drowbg=""></span>
-<span class="dk-row-inner">
-<span class="dk-num" data-dnum="">03</span>
-<span class="dk-row-body">
-<h3 class="dk-row-title">PKCS#11 OTP</h3>
-<span class="dk-stackline"><span>C</span><span>·</span><span>PKCS#11</span><span>·</span><span>SoftHSM</span><span>·</span><span>MySQL</span></span>
-</span>
-<span class="dk-row-desc">Hardware-security-module-backed one-time passwords via PKCS#11 and SoftHSM, with keys held inside the token rather than in application memory.</span>
-<span class="dk-rowarrow" data-drowarrow="">Read →</span>
-</span>
-</a>
-
-<a class="dk-row" data-danim="wipe" data-drow="" href="projects/valorix.html">
-<span class="dk-rowbg" data-drowbg=""></span>
-<span class="dk-row-inner">
-<span class="dk-num" data-dnum="">04</span>
-<span class="dk-row-body">
-<h3 class="dk-row-title">Valorix</h3>
-<span class="dk-stackline"><span>Next.js 15</span><span>·</span><span>TypeScript</span><span>·</span><span>Tailwind</span></span>
-</span>
-<span class="dk-row-desc">Production Next.js 15 / React 19 app with a custom Tailwind v4 token system, hand-built SVG charts with zero charting dependencies, and reduced-motion guards on every animation.</span>
-<span class="dk-rowarrow" data-drowarrow="">Read →</span>
-</span>
-</a>
-
-<a class="dk-row" data-danim="wipe" data-drow="" href="projects/smart-home-automation.html">
-<span class="dk-rowbg" data-drowbg=""></span>
-<span class="dk-row-inner">
-<span class="dk-num" data-dnum="">05</span>
-<span class="dk-row-body">
-<h3 class="dk-row-title">Smart Home Automation</h3>
-<span class="dk-stackline"><span>Python</span><span>·</span><span>MQTT</span><span>·</span><span>REST</span><span>·</span><span>Threading</span></span>
-</span>
-<span class="dk-row-desc">Distributed IoT platform across three decoupled processes over MQTT, with a multi-threaded REST API and a voice interpreter routing 14 intent patterns.</span>
-<span class="dk-rowarrow" data-drowarrow="">Read →</span>
-</span>
-</a>
-
-<a class="dk-row" data-danim="wipe" data-drow="" href="projects/crowd-detection.html">
-<span class="dk-rowbg" data-drowbg=""></span>
-<span class="dk-row-inner">
-<span class="dk-num" data-dnum="">06</span>
-<span class="dk-row-body">
-<h3 class="dk-row-title">Crowd Detection</h3>
-<span class="dk-stackline"><span>Computer Vision</span><span>·</span><span>YOLOv8</span><span>·</span><span>OpenCV</span></span>
-</span>
-<span class="dk-row-desc">Real-time vision pipeline that clusters YOLOv8 detections by proximity and logs only crowds that persist across frames.</span>
-<span class="dk-rowarrow" data-drowarrow="">Read →</span>
-</span>
-</a>
-
-<a class="dk-row" data-danim="wipe" data-drow="" href="projects/softsell.html">
-<span class="dk-rowbg" data-drowbg=""></span>
-<span class="dk-row-inner">
-<span class="dk-num" data-dnum="">07</span>
-<span class="dk-row-body">
-<h3 class="dk-row-title">SoftSell</h3>
-<span class="dk-stackline"><span>React</span><span>·</span><span>Vite</span><span>·</span><span>Tailwind</span><span>·</span><span>Framer Motion</span></span>
-</span>
-<span class="dk-row-desc">React single-page marketing site for a software-license resale concept — 8 modular components with system-aware dark mode, validated lead capture, and a scripted chat widget.</span>
-<span class="dk-rowarrow" data-drowarrow="">Read →</span>
-</span>
-</a>
-
-</div>
-</div>
-</section>
-
-<!-- Running tech marquee -->
-<div class="dk-marquee-wrap" data-dmarquee-wrap="">
-<div class="dk-marquee" data-dmarquee="">
-<span><span>Python</span><span>·</span><span>TypeScript</span><span>·</span><span>FastAPI</span><span>·</span><span>Socket.IO</span><span>·</span><span>Redis</span><span>·</span><span>PostgreSQL</span><span>·</span><span>Docker</span><span>·</span><span>MQTT</span><span>·</span><span>Next.js</span><span>·</span><span>PKCS#11</span><span>·</span><span>YOLOv8</span><span>·</span><span>Linux</span><span>·</span></span>
-<span aria-hidden="true"><span>Python</span><span>·</span><span>TypeScript</span><span>·</span><span>FastAPI</span><span>·</span><span>Socket.IO</span><span>·</span><span>Redis</span><span>·</span><span>PostgreSQL</span><span>·</span><span>Docker</span><span>·</span><span>MQTT</span><span>·</span><span>Next.js</span><span>·</span><span>PKCS#11</span><span>·</span><span>YOLOv8</span><span>·</span><span>Linux</span><span>·</span></span>
-</div>
-</div>
-
-<!-- Technical expertise -->
-<section class="dk-section" id="d-skills">
-<div class="dk-wrap">
-<div class="dk-clip" style="margin-bottom:clamp(30px,6vh,64px)"><h2 class="dk-h2" data-danim="line-in">Technical <em>Expertise</em></h2></div>
-<div class="dk-skill-cols">
-<div class="dk-skill-col">
-<div class="dk-skill-head" data-danim="up">01 — Languages</div>
-<div class="dk-skill-list" data-dstagger="">
-<span class="dk-skill" data-danim="up" data-dskill="">Python</span><span class="dk-skill" data-danim="up" data-dskill="">JavaScript</span><span class="dk-skill" data-danim="up" data-dskill="">TypeScript</span><span class="dk-skill" data-danim="up" data-dskill="">C</span><span class="dk-skill" data-danim="up" data-dskill="">Apex</span><span class="dk-skill" data-danim="up" data-dskill="">SQL</span>
-</div>
-</div>
-<div class="dk-skill-col">
-<div class="dk-skill-head" data-danim="up">02 — Backend &amp; Systems</div>
-<div class="dk-skill-list" data-dstagger="">
-<span class="dk-skill" data-danim="up" data-dskill="">FastAPI</span><span class="dk-skill" data-danim="up" data-dskill="">Node.js / Express</span><span class="dk-skill" data-danim="up" data-dskill="">Socket.IO</span><span class="dk-skill" data-danim="up" data-dskill="">REST APIs</span><span class="dk-skill" data-danim="up" data-dskill="">MQTT</span><span class="dk-skill" data-danim="up" data-dskill="">Redis</span><span class="dk-skill" data-danim="up" data-dskill="">PostgreSQL</span>
-</div>
-</div>
-<div class="dk-skill-col">
-<div class="dk-skill-head" data-danim="up">03 — Frontend</div>
-<div class="dk-skill-list" data-dstagger="">
-<span class="dk-skill" data-danim="up" data-dskill="">React</span><span class="dk-skill" data-danim="up" data-dskill="">Next.js</span><span class="dk-skill" data-danim="up" data-dskill="">Tailwind CSS</span><span class="dk-skill" data-danim="up" data-dskill="">Vite</span><span class="dk-skill" data-danim="up" data-dskill="">Framer Motion</span><span class="dk-skill" data-danim="up" data-dskill="">HTML/CSS</span>
-</div>
-</div>
-<div class="dk-skill-col">
-<div class="dk-skill-head" data-danim="up">04 — DevOps &amp; Security</div>
-<div class="dk-skill-list" data-dstagger="">
-<span class="dk-skill" data-danim="up" data-dskill="">Docker / Compose</span><span class="dk-skill" data-danim="up" data-dskill="">JWT / bcrypt</span><span class="dk-skill" data-danim="up" data-dskill="">PKCS#11 / SoftHSM</span><span class="dk-skill" data-danim="up" data-dskill="">CI/CD</span><span class="dk-skill" data-danim="up" data-dskill="">Git / GitHub</span><span class="dk-skill" data-danim="up" data-dskill="">Linux</span><span class="dk-skill" data-danim="up" data-dskill="">Vercel</span><span class="dk-skill" data-danim="up" data-dskill="">YOLOv8 / OpenCV</span>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<!-- Experience + education -->
-<section class="dk-section dk-section--surface" id="d-resume">
-<div class="dk-split">
-<div class="dk-col-wide">
-<div class="dk-clip"><h2 class="dk-h2 dk-h2--tall" data-danim="line-in">Experience</h2></div>
-<div class="dk-entry" data-danim="wipe">
-<div class="dk-entry-meta">
-<span>SmartBridge · Salesforce Developer Intern</span><span>May – Jul 2025</span>
-</div>
-<p class="dk-entry-body">Completed an 8-week Agentblazer Champion program in collaboration with Salesforce — building and testing custom Apex classes and Lightning Web Components, and earning the Object Relationships Superbadge.</p>
-</div>
-<div class="dk-cta-row">
-<a class="dk-btn" data-danim="up" data-dmagnet="" href="Panvee_Naidu_Resume.pdf" rel="noopener noreferrer" target="_blank">
-<span class="dk-fill" data-dfill=""></span>
-<span>View résumé</span>
-</a>
-<a class="dk-btn-ghost" data-danim="up" download="" href="Panvee_Naidu_Resume.pdf">Download</a>
-</div>
-</div>
-<div class="dk-col-narrow">
-<div class="dk-clip"><h2 class="dk-h2 dk-h2--tall" data-danim="line-in">Education</h2></div>
-<div class="dk-entry" data-danim="wipe">
-<h3 class="dk-edu-name">SRM University — AP</h3>
-<p class="dk-edu-sub">B.Tech, Computer Science and Engineering · Specialization in Cybersecurity</p>
-<div class="dk-stats">
-<div>
-<div class="dk-stat-label">Expected</div>
-<div class="dk-stat-value">May 2027</div>
-</div>
-<div>
-<div class="dk-stat-label">CGPA</div>
-<div class="dk-stat-value"><span data-danim="up" data-dcount="7.4">7.4</span> <small>/ 10</small></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<!-- Certifications -->
-<section class="dk-section" id="d-certifications">
-<div class="dk-wrap">
-<div class="dk-sec-head">
-<div class="dk-clip"><h2 class="dk-h2" data-danim="line-in">Certifications</h2></div>
-<div class="dk-eyebrow"><span data-danim="up" data-dcount="8" data-dpad="2">08</span> CREDENTIALS</div>
-</div>
-<div class="dk-cert-grid" data-dstagger="">
-<a class="dk-cert" data-danim="up" data-dcert="" href="Certs/sap-generative-ai-developer.pdf" rel="noopener noreferrer" target="_blank">
-<span class="dk-certbg" data-dcertbg=""></span>
-<span class="dk-certmeta" data-dcerttxt="">SAP · 2026</span>
-<span class="dk-certtitle" data-dcerttxt="">SAP Generative AI Developer</span>
-</a>
-<a class="dk-cert" data-danim="up" data-dcert="" href="Certs/salesforce-smartbridge.pdf" rel="noopener noreferrer" target="_blank">
-<span class="dk-certbg" data-dcertbg=""></span>
-<span class="dk-certmeta" data-dcerttxt="">SmartBridge × Salesforce · 2025</span>
-<span class="dk-certtitle" data-dcerttxt="">Agentblazer Champion Program</span>
-</a>
-<a class="dk-cert" data-danim="up" data-dcert="" href="Certs/google-ai-essentials.pdf" rel="noopener noreferrer" target="_blank">
-<span class="dk-certbg" data-dcertbg=""></span>
-<span class="dk-certmeta" data-dcerttxt="">Google · 2025</span>
-<span class="dk-certtitle" data-dcerttxt="">Google AI Essentials</span>
-</a>
-<a class="dk-cert" data-danim="up" data-dcert="" href="Certs/meta-genai-frontend.pdf" rel="noopener noreferrer" target="_blank">
-<span class="dk-certbg" data-dcertbg=""></span>
-<span class="dk-certmeta" data-dcerttxt="">Coursera · 2025</span>
-<span class="dk-certtitle" data-dcerttxt="">GenAI for Front-End Development</span>
-</a>
-<a class="dk-cert" data-danim="up" data-dcert="" href="Certs/meta-intro-frontend.pdf" rel="noopener noreferrer" target="_blank">
-<span class="dk-certbg" data-dcertbg=""></span>
-<span class="dk-certmeta" data-dcerttxt="">Meta · 2025</span>
-<span class="dk-certtitle" data-dcerttxt="">Introduction to Front-End Development</span>
-</a>
-<a class="dk-cert" data-danim="up" data-dcert="" href="Certs/techgyan-hackathon-data-analytics.jpg" rel="noopener noreferrer" target="_blank">
-<span class="dk-certbg" data-dcertbg=""></span>
-<span class="dk-certmeta" data-dcerttxt="">TechGyan × IIT Hyderabad · Jun 2025</span>
-<span class="dk-certtitle" data-dcerttxt="">Data Analytics Hackathon</span>
-</a>
-<a class="dk-cert" data-danim="up" data-dcert="" href="Certs/techgyan-data-science-python.jpg" rel="noopener noreferrer" target="_blank">
-<span class="dk-certbg" data-dcertbg=""></span>
-<span class="dk-certmeta" data-dcerttxt="">TechGyan × IIT Hyderabad · Jun 2025</span>
-<span class="dk-certtitle" data-dcerttxt="">Data Science with Python</span>
-</a>
-<a class="dk-cert" data-danim="up" data-dcert="" href="Certs/techgyan-workshop-data-analytics.jpg" rel="noopener noreferrer" target="_blank">
-<span class="dk-certbg" data-dcertbg=""></span>
-<span class="dk-certmeta" data-dcerttxt="">TechGyan × IIT Hyderabad · Jun 2025</span>
-<span class="dk-certtitle" data-dcerttxt="">Data Analytics Workshop</span>
-</a>
-</div>
-</div>
-</section>
-
-<!-- Contact -->
-<section class="dk-contact" id="d-contact">
-<div class="dk-contact-grid">
-<div class="dk-contact-main">
-<div class="dk-clip"><h2 class="dk-h2 dk-h2--huge" data-danim="line-in">Let's <em>connect</em></h2></div>
-<p class="dk-contact-lede" data-danim="words">Open to remote software engineering internships. The fastest way to reach me is email — I reply within a day.</p>
-<div class="dk-contact-rule" data-danim="rule"></div>
-<div class="dk-social">
-<a data-danim="up" data-dlink="" href="https://github.com/panvenaidu" rel="noopener noreferrer" target="_blank">GitHub</a>
-<a data-danim="up" data-dlink="" href="https://www.linkedin.com/in/panvee-naidu-8a6430291/" rel="noopener noreferrer" target="_blank">LinkedIn</a>
-<a class="contact-email-link" data-danim="up" data-dlink="" href="#">Email</a>
-</div>
-</div>
-<form class="dk-form" data-dform="">
-<label class="dk-field" data-danim="up" data-dfield="">
-<span class="dk-field-label">Name</span>
-<input id="dk-cf-name" placeholder="Your name" type="text"/>
-<span class="dk-underline" data-dunderline=""></span>
-</label>
-<label class="dk-field" data-danim="up" data-dfield="">
-<span class="dk-field-label">Email</span>
-<input id="dk-cf-email" placeholder="you@company.com" type="email"/>
-<span class="dk-underline" data-dunderline=""></span>
-</label>
-<label class="dk-field" data-danim="up" data-dfield="">
-<span class="dk-field-label">Message</span>
-<textarea id="dk-cf-message" placeholder="A line about the role" rows="3"></textarea>
-<span class="dk-underline" data-dunderline=""></span>
-</label>
-<button class="dk-btn dk-submit" data-danim="up" data-dmagnet="" data-dsubmit="" type="submit">
-<span class="dk-fill" data-dfill=""></span>
-<span data-dsubmitlabel="">Send message</span>
-</button>
-</form>
-</div>
-</section>
-
-<footer class="dk-footer">
-<div class="dk-wrap">
-<div class="dk-clip"><div class="dk-wordmark" data-danim="line-in">Panvee Naidu</div></div>
-<div class="dk-footer-meta" data-danim="up">
-<span>Available for remote SWE internships</span><span>© 2026</span>
-</div>
-</div>
-</footer>
-
-</div><!-- /.pn-dark -->
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    // --- Contact address (change this one line to update it everywhere) ---
-    const CONTACT_EMAIL = 'panveenaidu5@gmail.com';
-
-    // --- Contact form -> opens the visitor's mail client addressed to you ---
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.getElementById('cf-name').value.trim();
-            const email = document.getElementById('cf-email').value.trim();
-            const message = document.getElementById('cf-message').value.trim();
-
-            const subject = name ? `Portfolio enquiry from ${name}` : 'Portfolio enquiry';
-            const body = `${message}\n\n---\nFrom: ${name || '(not given)'}\nReply to: ${email || '(not given)'}`;
-
-            window.location.href = `mailto:${CONTACT_EMAIL}`
-                + `?subject=${encodeURIComponent(subject)}`
-                + `&body=${encodeURIComponent(body)}`;
-        });
-    }
-
-    // Footer "Email" link points at the same address
-    document.querySelectorAll('.contact-email-link').forEach(link => {
-        link.href = `mailto:${CONTACT_EMAIL}`;
-    });
-
-    // --- Sliding nav indicator + scroll spy ---
-    const navLinks = Array.from(document.querySelectorAll('.nav-link'));
-    const navIndicator = document.getElementById('nav-indicator');
-    const siteHeader = document.querySelector('header');
-    const spySections = navLinks
-        .map(link => document.querySelector(link.getAttribute('href')))
-        .filter(Boolean);
-
-    let activeLink = null;
-
-    function placeIndicator(link, animate = true) {
-        if (!navIndicator) return;
-        if (!animate) navIndicator.classList.add('no-anim');
-
-        if (link) {
-            navIndicator.style.width = link.offsetWidth + 'px';
-            navIndicator.style.transform = `translateX(${link.offsetLeft}px)`;
-            navIndicator.style.opacity = '1';
-        } else {
-            // No section in view (hero / contact) — fade out, keep last position
-            navIndicator.style.opacity = '0';
-        }
-
-        if (!animate) {
-            void navIndicator.offsetWidth; // flush the change before re-enabling transitions
-            navIndicator.classList.remove('no-anim');
-        }
-    }
-
-    function updateActiveSection(animate = true) {
-        // Probe just below the sticky header. Take the LAST section whose top has passed
-        // that line — testing for containment instead would leave the indicator blank
-        // whenever the probe lands in the gap between two sections.
-        const probe = (siteHeader ? siteHeader.offsetHeight : 0) + 40;
-        let current = null;
-
-        spySections.forEach(section => {
-            if (section.getBoundingClientRect().top <= probe) current = section.id;
-        });
-
-        let matched = null;
-        navLinks.forEach(link => {
-            const isActive = current !== null && link.getAttribute('href') === '#' + current;
-            link.classList.toggle('is-active', isActive);
-            if (isActive) matched = link;
-        });
-
-        if (matched !== activeLink || !animate) {
-            activeLink = matched;
-            placeIndicator(matched, animate);
-        }
-    }
-
-    // Capture phase so this still fires if a nested element ever becomes the scroller
-    // (body computes to overflow-y:auto because of the overflow-x-hidden class on it).
-    document.addEventListener('scroll', () => updateActiveSection(), { passive: true, capture: true });
-    window.addEventListener('resize', () => {
-        activeLink = null;          // force a re-measure at the new width
-        updateActiveSection(false);
-    });
-    // Re-measure once webfonts land, since they change link widths
-    if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(() => {
-            activeLink = null;
-            updateActiveSection(false);
-        });
-    }
-    updateActiveSection(false);
-
-    // --- Mobile Menu Toggle ---
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileCloseBtn = document.getElementById('mobile-close-btn');
-    const mobileOverlay = document.getElementById('mobile-menu-overlay');
-    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
-
-    function toggleMenu() {
-        const isClosed = mobileOverlay.classList.contains('translate-x-full');
-        if (isClosed) {
-            mobileOverlay.classList.remove('translate-x-full');
-            document.body.style.overflow = 'hidden';
-        } else {
-            mobileOverlay.classList.add('translate-x-full');
-            document.body.style.overflow = '';
-        }
-    }
-
-    if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', toggleMenu);
-    if (mobileCloseBtn) mobileCloseBtn.addEventListener('click', toggleMenu);
-    mobileLinks.forEach(link => {
-        link.addEventListener('click', toggleMenu);
-    });
-
-    // --- Reveal Animations & Staggering ---
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    
-    if (!prefersReducedMotion) {
-        const revealOptions = {
-            threshold: 0.1,
-            rootMargin: "0px 0px -50px 0px"
-        };
-
-        const revealObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) return;
-                
-                entry.target.classList.add('is-visible');
-                
-                // Handle staggered children
-                const staggers = entry.target.querySelectorAll('.stagger-child');
-                staggers.forEach((child, index) => {
-                    setTimeout(() => {
-                        child.classList.add('is-visible');
-                    }, index * 100 + 200); // Base delay + stagger
-                });
-                
-                observer.unobserve(entry.target);
-            });
-        }, revealOptions);
-
-        document.querySelectorAll('.reveal-section').forEach(section => {
-            revealObserver.observe(section);
-        });
-
-        // --- 3D Tilt Effect ---
-        const tiltCards = document.querySelectorAll('.card-tilt');
-        tiltCards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                // Calculate rotation based on cursor position
-                const rotateX = ((y - centerY) / centerY) * -4; // Max 4 deg
-                const rotateY = ((x - centerX) / centerX) * 4;
-                
-                card.style.transform = `perspective(1000px) scale3d(1.02, 1.02, 1.02) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1000px) scale3d(1, 1, 1) rotateX(0) rotateY(0)';
-                card.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
-            });
-            
-            card.addEventListener('mouseenter', () => {
-                card.style.transition = 'none';
-            });
-        });
-    } else {
-        // Show immediately if reduced motion
-        document.querySelectorAll('.reveal-section, .stagger-child').forEach(el => {
-            el.style.opacity = '1';
-            el.style.transform = 'none';
-            el.style.transition = 'none';
-        });
-    }
-
-
-    // --- Background Canvas ---
-    const canvas = document.getElementById('bg-canvas');
-    const gl = canvas.getContext('webgl');
-    if (!gl) return;
-
-    const vsSource = `
-        attribute vec2 a_position;
-        varying vec2 v_texCoord;
-        void main() {
-            gl_Position = vec4(a_position, 0.0, 1.0);
-            v_texCoord = a_position * 0.5 + 0.5;
-            v_texCoord.y = 1.0 - v_texCoord.y;
-        }
-    `;
-
-    const fsSource = `
-precision highp float;
-varying vec2 v_texCoord;
-uniform float u_time;
-uniform vec2 u_resolution;
-uniform vec2 u_mouse;
-
-void main() {
-    // Normalised coordinates (0.0 to 1.0)
-    vec2 uv = v_texCoord;
-    
-    // Adjust for aspect ratio
-    float aspect = u_resolution.x / u_resolution.y;
-    vec2 gridUv = uv;
-    gridUv.x *= aspect;
-    
-    // Grid settings
-    float density = 40.0;
-    vec2 gv = fract(gridUv * density) - 0.5;
-    vec2 id = floor(gridUv * density);
-    
-    // Mouse interaction
-    vec2 mouse = u_mouse / u_resolution;
-    mouse.x *= aspect;
-    float dist = distance(gridUv, mouse);
-    
-    // Dot logic
-    float baseSize = 0.02; // Decreased baseSize
-    float influence = smoothstep(0.2, 0.0, dist);
-    float size = baseSize + influence * 0.08;
-    
-    // Drawing the dot
-    float mask = smoothstep(size, size - 0.01, length(gv));
-    
-    // Subtle breathing animation
-    float breathing = sin(u_time * 2.0 + (id.x + id.y) * 0.5) * 0.02;
-    mask *= 0.15 + breathing + influence * 0.5;
-    
-    // Obsidian Mono palette: Black dots on the surface background
-    // Since the screen is mostly white/grey, black dots work best
-    vec3 dotColor = vec3(0.0); // Pure black for high contrast
-    
-    gl_FragColor = vec4(dotColor, mask);
-}
-    `;
-
-    function createShader(gl, type, source) {
-        const shader = gl.createShader(type);
-        gl.shaderSource(shader, source);
-        gl.compileShader(shader);
-        if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-            console.error(gl.getShaderInfoLog(shader));
-            gl.deleteShader(shader);
-            return null;
-        }
-        return shader;
-    }
-
-    const vertexShader = createShader(gl, gl.VERTEX_SHADER, vsSource);
-    const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fsSource);
-
-    const program = gl.createProgram();
-    gl.attachShader(program, vertexShader);
-    gl.attachShader(program, fragmentShader);
-    gl.linkProgram(program);
-
-    gl.useProgram(program);
-
-    const positionBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-    const positions = [
-        -1.0, -1.0,
-         1.0, -1.0,
-        -1.0,  1.0,
-        -1.0,  1.0,
-         1.0, -1.0,
-         1.0,  1.0,
-    ];
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
-
-    const positionLocation = gl.getAttribLocation(program, "a_position");
-    gl.enableVertexAttribArray(positionLocation);
-    gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
-
-    const timeLocation = gl.getUniformLocation(program, "u_time");
-    const resolutionLocation = gl.getUniformLocation(program, "u_resolution");
-    const mouseLocation = gl.getUniformLocation(program, "u_mouse");
-
-    let mouseX = 0;
-    let mouseY = 0;
-
-    window.addEventListener('mousemove', (e) => {
-        const dpr = window.devicePixelRatio || 1;
-        mouseX = e.clientX * dpr;
-        mouseY = e.clientY * dpr;
-    });
-
-    function resize() {
-        const dpr = window.devicePixelRatio || 1;
-        canvas.width = window.innerWidth * dpr;
-        canvas.height = window.innerHeight * dpr;
-        canvas.style.width = window.innerWidth + 'px';
-        canvas.style.height = window.innerHeight + 'px';
-        gl.viewport(0, 0, canvas.width, canvas.height);
-    }
-    window.addEventListener('resize', resize);
-    resize();
-
-    function render(time) {
-        // This canvas belongs to the light design. While the dark theme is
-        // showing it is display:none, so skip the GL work rather than paint
-        // into a hidden element every frame.
-        if (document.documentElement.getAttribute('data-theme') === 'dark') {
-            requestAnimationFrame(render);
-            return;
-        }
-        gl.uniform1f(timeLocation, time * 0.001);
-        gl.uniform2f(resolutionLocation, canvas.width, canvas.height);
-        gl.uniform2f(mouseLocation, mouseX, mouseY); // v_texCoord is already flipped top-down in the vertex shader
-
-        // Clear for transparency 
-        gl.clearColor(0, 0, 0, 0);
-        gl.clear(gl.COLOR_BUFFER_BIT);
-
-        // Draw with blending
-        gl.enable(gl.BLEND);
-        gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
-
-        gl.drawArrays(gl.TRIANGLES, 0, 6);
-        requestAnimationFrame(render);
-    }
-    requestAnimationFrame(render);
-});
-</script>
-<script defer="" src="theme.js"></script>
-<script defer="" src="dark.js"></script>
-<!-- anime.js v4 (MIT), vendored so the page owns its dependency. motion.js
-     drives the light design only — dark.js already owns the dark one. -->
-<script defer="" src="vendor/anime.umd.min.js"></script>
-<script defer="" src="motion.js"></script>
-</body></html>
+    <section id="room-contact" class="room-contact" data-sc-act="flow" aria-labelledby="room-contact-title">
+      <h2 id="room-contact-title">Correspondence</h2>
+      <div class="room-contact-plate">
+        <p class="room-contact-name">Panvee Naidu</p>
+        <p>Software engineer. India.<br>Open to software engineering roles.</p>
+        <a class="room-email" href="mailto:panveenaidu5@gmail.com">panveenaidu5@gmail.com</a>
+        <div class="room-contact-links"><a href="/Panvee_Naidu_Resume.pdf" target="_blank" rel="noopener">Résumé</a><a href="https://github.com/panvenaidu" target="_blank" rel="noopener">GitHub</a><a href="https://www.linkedin.com/in/panvee-naidu-8a6430291/" target="_blank" rel="noopener">LinkedIn</a></div>
+      </div>
+    </section>
+  </main>
+  <p class="room-sr-only" id="room-view-status" role="status" aria-live="polite"></p>
+  <script type="module" src="/src/workroom.js"></script>
+</body>
+</html>

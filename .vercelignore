@@ -1,19 +1,19 @@
-# Build tooling — styles.css is compiled locally and shipped, so Vercel
-# serves pure static output and never needs to run a build.
 node_modules
-package.json
-package-lock.json
-tailwind.config.js
-src
-
-# Local/editor cruft
+.git
+.vercel
+.env*
+dist
 .DS_Store
-
-# Repo documentation and source originals, not part of the served site
-screen.png
+work
 DESIGN.md
-profile.png
+DESIGN-DIRECTION.md
+REVIEW.md
+screen.png
 docs
+screenshots
+ASSET-SOURCES.md
+Start Portfolio.command
+PRODUCT.md
+.impeccable
 
-# Exact duplicates of certificates already shipped (identical md5)
-Certs/*copy*
+scrollcraft

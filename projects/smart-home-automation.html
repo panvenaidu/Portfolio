@@ -1,21 +1,8 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="en" data-portfolio-theme="workroom"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<!-- Theme boot: runs before first paint so the page never flashes the wrong
-     design. Follows the OS until the visitor picks a side themselves. -->
-<script>
-(function () {
-    var t;
-    try { t = localStorage.getItem('pn-theme'); } catch (e) { t = null; }
-    if (t !== 'dark' && t !== 'light') {
-        t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-            ? 'dark' : 'light';
-    }
-    document.documentElement.setAttribute('data-theme', t);
-    if (t === 'dark') document.documentElement.classList.add('dark');
-})();
-</script>
+
 <title>Smart Home Automation | Panvee Naidu</title>
 <meta content="A distributed IoT platform built across three decoupled Python processes communicating over MQTT, with a multi-threaded REST API, natural-language command parsing and live energy monitoring." name="description"/>
 <meta content="Panvee Naidu" name="author"/>
@@ -24,35 +11,24 @@
 <meta content="https://panveedev.vercel.app/og.png" property="og:image"/>
 <meta content="website" property="og:type"/>
 <link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23000'/%3E%3Ctext x='32' y='44' font-family='ui-monospace,Menlo,monospace' font-size='30' font-weight='700' fill='%23fff' text-anchor='middle'%3EPN%3C/text%3E%3C/svg%3E" rel="icon" type="image/svg+xml"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Hanken+Grotesk:wght@400;700;800&amp;family=Libre+Caslon+Display&amp;family=Instrument+Sans:ital,wght@0,400;0,500;1,400&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+
+
 <link href="../styles.css" rel="stylesheet"/>
 <link href="case.css" rel="stylesheet"/>
-<link href="../dark.css" rel="stylesheet"/>
+<link href="workroom.css" rel="stylesheet"/>
+
 </head>
 <body class="font-body-md antialiased case-page">
-<header class="sticky top-0 z-50 bg-background border-b-2 border-primary">
-<div class="max-w-5xl mx-auto px-stack-lg py-stack-md flex items-center justify-between gap-stack-md">
-<a class="font-label-sm text-label-sm text-primary hover:underline inline-flex items-center gap-1" href="../index.html#projects"><span class="material-symbols-outlined text-[16px]">arrow_back</span>FEATURED WORK</a>
-<div class="flex items-center gap-stack-md">
-<a class="font-label-sm text-label-sm text-primary hover:underline" href="../index.html">PANVEE NAIDU</a>
-<button aria-label="Switch to dark design" aria-pressed="false" class="theme-toggle" data-theme-toggle="" type="button">
-<svg aria-hidden="true" class="tt-moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-<svg aria-hidden="true" class="tt-sun" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
-<span class="tt-text" data-theme-label="">Dark</span>
-</button>
-</div>
-</div>
-</header>
+<a class="case-skip" href="#case-main">Skip to case study</a><header class="case-header"><a href="/#room-systems">← Selected work</a><a class="case-brand" href="/">Panvee Naidu<span>Software engineer</span></a><a href="/#room-contact">Let’s talk <span class="case-external-arrow" aria-hidden="true">↗</span></a></header>
 
-<main class="max-w-5xl mx-auto px-stack-lg py-section-gap flex flex-col gap-section-gap">
+<main id="case-main" class="max-w-5xl mx-auto px-stack-lg py-section-gap flex flex-col gap-section-gap">
 
 <!-- Hero -->
 <section>
 <div class="inline-flex items-center gap-2 border border-primary px-stack-sm py-1 mb-stack-md font-label-sm text-label-sm text-primary">DISTRIBUTED SYSTEMS</div>
 <h1 class="font-headline-xl-mobile md:font-headline-xl text-headline-xl-mobile md:text-headline-xl text-primary mb-stack-md">Smart Home Automation</h1>
-<p class="font-body-lg text-body-lg text-secondary border-l-2 border-primary pl-stack-md mb-stack-lg max-w-3xl">Control nine devices by voice or dashboard, schedule them in plain English, and watch energy draw live &mdash; built as three independent processes talking over a message broker.</p>
-<a class="font-label-sm text-label-sm border border-primary px-stack-sm py-2 bg-primary text-on-primary hover:bg-white hover:text-primary transition-colors inline-flex items-center gap-1" href="https://github.com/panvee/Home-Automation-Using-Voice-Command" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px]">link</span>Source</a>
+<p class="font-body-lg text-body-lg text-secondary border-l-2 border-primary pl-stack-md mb-stack-lg max-w-3xl">Control nine devices by voice or dashboard, schedule them in plain English, and watch energy draw live &ndash; built as three independent processes talking over a message broker.</p>
+<a class="font-label-sm text-label-sm border border-primary px-stack-sm py-2 bg-primary text-on-primary hover:bg-white hover:text-primary transition-colors inline-flex items-center gap-1" href="https://github.com/panvee/Home-Automation-Using-Voice-Command" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px] case-external-arrow" aria-hidden="true">↗</span>Source</a>
 </section>
 
 <!-- At a glance -->
@@ -80,19 +56,19 @@
 <p class="font-body-sm text-body-sm text-secondary">Runs an HTTP server and an MQTT client side by side, exposing the system to a browser dashboard.</p>
 </div>
 </div>
-<p class="font-body-md text-body-md text-secondary mt-stack-lg max-w-3xl">The three know almost nothing about each other &mdash; they communicate only by publishing and subscribing to topics, so any one can be restarted, replaced or moved to another machine without the others noticing.</p>
+<p class="font-body-md text-body-md text-secondary mt-stack-lg max-w-3xl">The three know almost nothing about each other &ndash; they communicate only by publishing and subscribing to topics, so any one can be restarted, replaced or moved to another machine without the others noticing.</p>
 </section>
 
 <!-- Problem -->
 <section class="case-section" id="overview">
 <h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary border-b-2 border-primary pb-stack-sm mb-stack-lg">The Problem</h2>
 <div class="flex flex-col gap-stack-md max-w-3xl">
-<p class="font-body-md text-body-md text-secondary">Smart-home devices are fragmented. Every brand ships its own app and cloud account, so a house with lights from one vendor and a thermostat from another has no single place to control anything &mdash; and no view of energy use at all.</p>
+<p class="font-body-md text-body-md text-secondary">Smart-home devices are fragmented. Every brand ships its own app and cloud account, so a house with lights from one vendor and a thermostat from another has no single place to control anything &ndash; and no view of energy use at all.</p>
 <p class="font-body-md text-body-md text-secondary">So the design question was never "how do I switch a light on". It was: what messaging architecture lets devices of any type join one system without rewriting the controller each time?</p>
 </div>
 </section>
 
-<!-- Approach — stacked -->
+<!-- Approach – stacked -->
 <section class="case-section" id="approach">
 <div class="stack" data-stack>
 <div class="stack-track" data-track>
@@ -106,7 +82,7 @@
 <article class="stack-card" data-card>
 <p class="font-label-sm text-label-sm text-secondary mb-stack-sm">STEP 01</p>
 <h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Publish/subscribe over direct calls</h3>
-<p class="font-body-md text-body-md text-secondary">MQTT was chosen precisely so components would not hold references to each other. Wildcard topic subscriptions mean a new device publishing on the agreed pattern is picked up automatically &mdash; the bridge needs no change to support it. That is the property that answers the fragmentation problem.</p>
+<p class="font-body-md text-body-md text-secondary">MQTT was chosen precisely so components would not hold references to each other. Wildcard topic subscriptions mean a new device publishing on the agreed pattern is picked up automatically &ndash; the bridge needs no change to support it. That is the property that answers the fragmentation problem.</p>
 </article>
 
 <article class="stack-card" data-card>
@@ -130,7 +106,7 @@
 <article class="stack-card" data-card>
 <p class="font-label-sm text-label-sm text-secondary mb-stack-sm">STEP 05</p>
 <h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Bounded energy history</h3>
-<p class="font-body-md text-body-md text-secondary">Every telemetry message appends to an in-memory history capped at <strong class="text-primary">2,880 samples</strong> &mdash; a full day at 30-second resolution &mdash; with the oldest dropped on overflow. A long-running process cannot grow without bound, which matters more on a Raspberry Pi than on a laptop.</p>
+<p class="font-body-md text-body-md text-secondary">Every telemetry message appends to an in-memory history capped at <strong class="text-primary">2,880 samples</strong> &ndash; a full day at 30-second resolution &ndash; with the oldest dropped on overflow. A long-running process cannot grow without bound, which matters more on a Raspberry Pi than on a laptop.</p>
 </article>
 
 </div>
@@ -139,7 +115,7 @@
 </div>
 </section>
 
-<!-- Challenges — stacked -->
+<!-- Challenges – stacked -->
 <section class="case-section" id="challenges">
 <div class="stack" data-stack>
 <div class="stack-track" data-track>
@@ -153,14 +129,14 @@
 <article class="stack-card" data-card>
 <p class="font-label-sm text-label-sm text-secondary mb-stack-sm">01</p>
 <h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Security gaps in my own design</h3>
-<p class="font-body-md text-body-md text-secondary mb-stack-md">Once it worked, I reviewed it as an attacker rather than as its author. The dashboard has a login screen, but the REST endpoints behind it never check who is calling &mdash; anyone who can reach the port controls every device, so the authentication was decoration. MQTT traffic is also unencrypted, so anyone on the network can read telemetry or publish forged commands.</p>
+<p class="font-body-md text-body-md text-secondary mb-stack-md">Once it worked, I reviewed it as an attacker rather than as its author. The dashboard has a login screen, but the REST endpoints behind it never check who is calling &ndash; anyone who can reach the port controls every device, so the authentication was decoration. MQTT traffic is also unencrypted, so anyone on the network can read telemetry or publish forged commands.</p>
 <p class="font-body-md text-body-md text-secondary">Both are documented with a prioritised fix plan rather than quietly left out. Finding them was the most useful part of the project.</p>
 </article>
 
 <article class="stack-card" data-card>
 <p class="font-label-sm text-label-sm text-secondary mb-stack-sm">02</p>
 <h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Speech recognition is unreliable by nature</h3>
-<p class="font-body-md text-body-md text-secondary">Transcription fails constantly &mdash; ambient noise, timeouts, network errors, audio that is simply unintelligible. Each failure mode is caught separately and returns a distinct message rather than a stack trace, and the recogniser calibrates for ambient noise before each listen. A text command path runs alongside the voice path so the system stays testable without a microphone.</p>
+<p class="font-body-md text-body-md text-secondary">Transcription fails constantly &ndash; ambient noise, timeouts, network errors, audio that is simply unintelligible. Each failure mode is caught separately and returns a distinct message rather than a stack trace, and the recogniser calibrates for ambient noise before each listen. A text command path runs alongside the voice path so the system stays testable without a microphone.</p>
 </article>
 
 <article class="stack-card" data-card>
@@ -217,12 +193,12 @@
 
 <!-- Footer nav -->
 <section class="border-t-2 border-primary pt-stack-lg flex flex-wrap gap-stack-md justify-between items-center">
-<a class="font-label-md text-label-md text-primary hover:underline inline-flex items-center gap-1" href="../index.html#projects"><span class="material-symbols-outlined text-[16px]">arrow_back</span>All work</a>
-<div class="flex flex-wrap items-center gap-stack-md"><a class="case-next font-label-md text-label-md text-primary inline-flex items-center gap-2" href="crowd-detection.html"><span class="case-next-label">Next</span><span class="case-next-name">Crowd Detection</span><span class="material-symbols-outlined text-[16px] case-next-arrow">arrow_forward</span></a><a class="font-label-md text-label-md px-stack-lg py-stack-md bg-primary text-on-primary border-2 border-primary hover:bg-white hover:text-primary transition-colors" href="../index.html#contact">Get in touch</a></div>
+<a class="font-label-md text-label-md text-primary hover:underline inline-flex items-center gap-1" href="/#room-systems"><span class="material-symbols-outlined text-[16px]">←</span>All work</a>
+<div class="flex flex-wrap items-center gap-stack-md"><a class="case-next font-label-md text-label-md text-primary inline-flex items-center gap-2" href="crowd-detection.html"><span class="case-next-label">Next</span><span class="case-next-name">Crowd Detection</span><span class="material-symbols-outlined text-[16px] case-next-arrow">→</span></a><a class="font-label-md text-label-md px-stack-lg py-stack-md bg-primary text-on-primary border-2 border-primary hover:bg-white hover:text-primary transition-colors" href="/#room-contact">Get in touch</a></div>
 </section>
 
 </main>
 
-<script src="case.js"></script>
-<script defer="" src="../theme.js"></script>
+
+
 </body></html>
