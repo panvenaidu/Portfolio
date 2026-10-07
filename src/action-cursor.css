@@ -1,0 +1,29 @@
+.action-cursor-badge {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  pointer-events: none;
+  user-select: none;
+  background: #e9edf0;
+  color: #291e1c;
+  border: 1px solid #291e1c;
+  border-radius: 0;
+  padding: 8px 12px;
+  max-width: calc(100vw - 16px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: 'Public Sans Variable', Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0;
+  transition: none;
+}
+.action-cursor-badge[hidden] { display: none; }
+[data-action-cursor-active] { cursor: none !important; }
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce), (forced-colors: active) {
+  .action-cursor-badge { display: none !important; }
+  [data-action-cursor-active] { cursor: revert !important; }
+}

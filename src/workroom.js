@@ -1,4 +1,5 @@
 import './vendor/scrollcraft.js';
+import './action-cursor.js';
 
 const root = document.documentElement;
 const main = document.querySelector('#room-main');

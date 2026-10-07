@@ -4,31 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#8d2818">
-  <meta name="description" content="Panvee Naidu, software engineer. A gallery of systems, authentication and product work, with real project sources and credentials.">
+  <meta name="description" content="Panvee Naidu, software engineer. A gallery of systems, authentication and product work, with real project sources and certificates.">
   <title>Panvee Naidu | Workroom</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
   <link rel="stylesheet" href="/src/workroom.css">
 </head>
 <body>
   <a class="room-skip" href="#room-main">Skip to the workroom</a>
   <header class="room-header" id="room-header">
-    <a class="room-home-link" href="#room-home">Panvee Naidu</a>
+    <a class="room-home-link" href="#room-home" data-action-cursor="Return to start">Panvee Naidu</a>
     <nav aria-label="Workroom navigation" class="room-navigation">
       <details class="room-directory" id="room-directory">
-        <summary>Project directory</summary>
+        <summary data-action-cursor="">Project directory</summary>
         <div class="room-directory-list">
-          <a href="#room-aerochat">AeroChat</a>
-          <a href="#room-home-automation">Smart Home Automation</a>
-          <a href="#room-pkcs11">PKCS#11 Authentication</a>
-          <a href="#room-valorix">Valorix</a>
-          <a href="#room-crowd">Crowd Detection</a>
-          <a href="#room-aurum">Aurum</a>
-          <a href="#room-softsell">SoftSell</a>
+          <a href="#room-aerochat" data-action-cursor="View AeroChat">AeroChat</a>
+          <a href="#room-home-automation" data-action-cursor="View Smart Home">Smart Home Automation</a>
+          <a href="#room-pkcs11" data-action-cursor="View PKCS#11">PKCS#11 Authentication</a>
+          <a href="#room-valorix" data-action-cursor="View Valorix">Valorix</a>
+          <a href="#room-crowd" data-action-cursor="View Crowd Detection">Crowd Detection</a>
+          <a href="#room-aurum" data-action-cursor="View Aurum">Aurum</a>
+          <a href="#room-softsell" data-action-cursor="View SoftSell">SoftSell</a>
         </div>
       </details>
-      <a class="room-record-link" href="#room-record">Record</a>
-      <a href="#room-contact">Contact</a>
-      <button type="button" id="room-view-toggle" aria-pressed="false" aria-controls="room-systems room-valorix room-range" hidden>Desk view</button>
-      <button type="button" id="room-motion-toggle" aria-pressed="false" aria-label="Pause scroll motion" hidden>Pause motion</button>
+      <a class="room-record-link" href="#room-record" data-action-cursor="View background">Record</a>
+      <a href="#room-contact" data-action-cursor="Contact">Contact</a>
+      <button type="button" id="room-view-toggle" aria-pressed="false" aria-controls="room-systems room-valorix room-range" hidden data-action-cursor="">Desk view</button>
+      <button type="button" id="room-motion-toggle" aria-pressed="false" aria-label="Pause scroll motion" hidden data-action-cursor="">Pause motion</button>
     </nav>
   </header>
   <main id="room-main">
@@ -43,7 +44,7 @@
           <h1 id="room-name">Panvee<br>Naidu</h1>
           <p class="room-role">Software engineer</p>
           <p class="room-availability">Open to software engineering roles</p>
-          <a href="/Panvee_Naidu_Resume.pdf" target="_blank" rel="noopener">Read the résumé</a>
+          <a href="/Panvee_Naidu_Resume.pdf" target="_blank" rel="noopener" data-action-cursor="View résumé">Read the résumé</a>
         </div>
       </div>
     </section>
@@ -53,14 +54,14 @@
         <div class="room-gallery-heading">
           <h2 id="room-systems-title">Connected work</h2>
           <nav class="room-object-jumps" aria-label="Connected work objects">
-            <a href="#room-aerochat">AeroChat</a>
-            <a href="#room-home-automation">Smart Home</a>
-            <a href="#room-pkcs11">PKCS#11</a>
+            <a href="#room-aerochat" data-action-cursor="View AeroChat">AeroChat</a>
+            <a href="#room-home-automation" data-action-cursor="View Smart Home">Smart Home</a>
+            <a href="#room-pkcs11" data-action-cursor="View PKCS#11">PKCS#11</a>
           </nav>
           <p class="room-view-description" id="room-view-description">Systems architecture, distributed IoT and applied cybersecurity.</p>
         </div>
         <div class="room-gallery-rail" data-sc-pan="0">
-          <article id="room-aerochat" class="room-object room-system-object" data-room-object aria-labelledby="room-aerochat-title" tabindex="-1">
+          <article id="room-aerochat" class="room-object room-system-object" data-room-object data-action-area data-action-cursor="Read case study" aria-labelledby="room-aerochat-title" tabindex="-1">
             <figure class="room-architecture room-aero-architecture">
               <div class="room-aero-network">
                 <div class="room-network-node room-client"><strong>React client</strong><span>Client container</span></div>
@@ -78,10 +79,10 @@
               <p class="room-discipline">Systems architecture</p>
               <p class="room-tools">Docker Compose, PostgreSQL, Redis, Socket.IO</p>
               <p class="room-object-fact">Four local containers: React client, Node and Socket.IO server, PostgreSQL storage, Redis cache. Isolated bridge network and persistent database volume. Runs locally; application source is private.</p>
-              <div class="room-object-links"><a href="/projects/aerochat.html">Read AeroChat case study</a><a href="https://github.com/panvenaidu/aero-chat-realtime" target="_blank" rel="noopener">Repository</a></div>
+              <div class="room-object-links"><a href="/projects/aerochat.html" data-action-cursor="Read case study" data-action-primary>Read AeroChat case study</a><a href="https://github.com/panvenaidu/aero-chat-realtime" target="_blank" rel="noopener" data-action-cursor="View repository">Repository</a></div>
             </div>
           </article>
-          <article id="room-home-automation" class="room-object room-system-object" data-room-object aria-labelledby="room-home-automation-title" tabindex="-1">
+          <article id="room-home-automation" class="room-object room-system-object" data-room-object data-action-area data-action-cursor="Read case study" aria-labelledby="room-home-automation-title" tabindex="-1">
             <figure class="room-architecture room-home-architecture">
               <div class="room-process-diagram">
                 <p class="room-process-title">Three decoupled Python processes</p>
@@ -95,10 +96,10 @@
               <p class="room-discipline">Distributed IoT</p>
               <p class="room-tools">Python, MQTT, REST</p>
               <p class="room-object-fact">Three decoupled Python processes communicate over MQTT. Multi-threaded REST API, natural-language command parsing and live energy monitoring.</p>
-              <div class="room-object-links"><a href="/projects/smart-home-automation.html">Read Smart Home case study</a><a href="https://github.com/panvee/Home-Automation-Using-Voice-Command" target="_blank" rel="noopener">Repository</a></div>
+              <div class="room-object-links"><a href="/projects/smart-home-automation.html" data-action-cursor="Read case study" data-action-primary>Read Smart Home case study</a><a href="https://github.com/panvee/Home-Automation-Using-Voice-Command" target="_blank" rel="noopener" data-action-cursor="View repository">Repository</a></div>
             </div>
           </article>
-          <article id="room-pkcs11" class="room-object room-system-object" data-room-object aria-labelledby="room-pkcs11-title" tabindex="-1">
+          <article id="room-pkcs11" class="room-object room-system-object" data-room-object data-action-area data-action-cursor="Read case study" aria-labelledby="room-pkcs11-title" tabindex="-1">
             <figure class="room-architecture room-token-architecture">
               <div class="room-token-diagram">
                 <p class="room-token-request">One-time-password authentication</p>
@@ -112,7 +113,7 @@
               <p class="room-discipline">Applied cybersecurity</p>
               <p class="room-tools">C, PKCS#11, SoftHSM, MySQL</p>
               <p class="room-object-fact">One-time-password authentication with keys held inside a simulated SoftHSM cryptographic token. Explores the hardware security model locally.</p>
-              <div class="room-object-links"><a href="/projects/pkcs11-otp.html">Read PKCS#11 case study</a><a href="https://github.com/panvenaidu/pkcs11-otp-authentication" target="_blank" rel="noopener">Repository</a></div>
+              <div class="room-object-links"><a href="/projects/pkcs11-otp.html" data-action-cursor="Read case study" data-action-primary>Read PKCS#11 case study</a><a href="https://github.com/panvenaidu/pkcs11-otp-authentication" target="_blank" rel="noopener" data-action-cursor="View repository">Repository</a></div>
             </div>
           </article>
         </div>
@@ -120,10 +121,10 @@
     </section>
 
     <section class="room-product" data-sc-act="flow" aria-label="Product evidence">
-      <article id="room-valorix" class="room-object room-product-object" data-room-object aria-labelledby="room-valorix-title" tabindex="-1">
+      <article id="room-valorix" class="room-object room-product-object" data-room-object data-action-area data-action-cursor="Read case study" aria-labelledby="room-valorix-title" tabindex="-1">
         <div class="room-object-label">
           <div class="room-product-heading"><h2 id="room-valorix-title">Valorix</h2><p class="room-discipline">Product engineering</p><p class="room-tools">Next.js, TypeScript, React</p></div>
-          <div class="room-product-description"><p class="room-object-fact">VALORANT analytics product with an original design system and purpose-built charts. Real live interface preview; preview data. Riot API approval pending.</p><div class="room-object-links"><a href="/projects/valorix.html">Read Valorix case study</a><a href="https://playvalorix.vercel.app" target="_blank" rel="noopener">Live preview</a><a href="https://github.com/panvenaidu/valorix" target="_blank" rel="noopener">Repository</a></div></div>
+          <div class="room-product-description"><p class="room-object-fact">VALORANT analytics product with an original design system and purpose-built charts. Real live interface preview; preview data. Riot API approval pending.</p><div class="room-object-links"><a href="/projects/valorix.html" data-action-cursor="Read case study" data-action-primary>Read Valorix case study</a><a href="https://playvalorix.vercel.app" target="_blank" rel="noopener" data-action-cursor="View demo">Live preview</a><a href="https://github.com/panvenaidu/valorix" target="_blank" rel="noopener" data-action-cursor="View repository">Repository</a></div></div>
         </div>
         <figure class="room-product-evidence">
           <div class="room-product-image" data-sc-reveal="up" data-sc-reveal-at="0.08 0.32"><img src="/assets/valorix-preview.jpg" width="1150" height="804" alt="Actual Valorix analytics interface showing its dashboard and charts with preview data" loading="lazy"></div>
@@ -134,20 +135,20 @@
 
     <section id="room-range" class="room-range" data-sc-act="flow" aria-labelledby="room-range-title">
       <h2 id="room-range-title">Further work</h2>
-      <article id="room-crowd" class="room-object room-range-object" data-room-object aria-labelledby="room-crowd-title" tabindex="-1">
+      <article id="room-crowd" class="room-object room-range-object" data-room-object data-action-area data-action-cursor="Read case study" aria-labelledby="room-crowd-title" tabindex="-1">
         <div class="room-object-heading"><h3 id="room-crowd-title">Crowd Detection</h3><p class="room-discipline">Computer vision</p><p class="room-tools">YOLOv8, OpenCV</p></div>
         <p class="room-object-fact">Detects people, groups nearby detections into crowds and logs sustained crowd events to CSV. Case study records two bugs found on review.</p>
-        <div class="room-object-links"><a href="/projects/crowd-detection.html">Read Crowd Detection case study</a><a href="https://github.com/panvee/crowd-detect-ai" target="_blank" rel="noopener">Repository</a></div>
+        <div class="room-object-links"><a href="/projects/crowd-detection.html" data-action-cursor="Read case study" data-action-primary>Read Crowd Detection case study</a><a href="https://github.com/panvee/crowd-detect-ai" target="_blank" rel="noopener" data-action-cursor="View repository">Repository</a></div>
       </article>
-      <article id="room-aurum" class="room-object room-range-object" data-room-object aria-labelledby="room-aurum-title" tabindex="-1">
+      <article id="room-aurum" class="room-object room-range-object" data-room-object data-action-area data-action-cursor="View repository" aria-labelledby="room-aurum-title" tabindex="-1">
         <div class="room-object-heading"><h3 id="room-aurum-title">Aurum</h3><p class="room-discipline">Product architecture</p><p class="room-tools">FastAPI, React, JWT</p></div>
         <p class="room-object-fact">Multi-tenant hotel management. Isolated platform admin, hotel admin and guest portals, JWT role guards and automatic commission engine.</p>
-        <div class="room-object-links"><a href="https://github.com/panvenaidu/aurum-hotel-management" target="_blank" rel="noopener">Aurum repository</a></div>
+        <div class="room-object-links"><a href="https://github.com/panvenaidu/aurum-hotel-management" target="_blank" rel="noopener" data-action-cursor="View repository" data-action-primary>Aurum repository</a></div>
       </article>
-      <article id="room-softsell" class="room-object room-range-object" data-room-object aria-labelledby="room-softsell-title" tabindex="-1">
+      <article id="room-softsell" class="room-object room-range-object" data-room-object data-action-area data-action-cursor="Read case study" aria-labelledby="room-softsell-title" tabindex="-1">
         <div class="room-object-heading"><h3 id="room-softsell-title">SoftSell</h3><p class="room-discipline">Interface development</p><p class="room-tools">React, Vite, Tailwind</p></div>
         <p class="room-object-fact">Software-licence marketplace concept. Eight modular components, system-aware dark mode, validated lead form and scripted chat widget.</p>
-        <div class="room-object-links"><a href="/projects/softsell.html">Read SoftSell case study</a><a href="https://github.com/panvee/SoftSell-Software-License-Marketplace" target="_blank" rel="noopener">Repository</a></div>
+        <div class="room-object-links"><a href="/projects/softsell.html" data-action-cursor="Read case study" data-action-primary>Read SoftSell case study</a><a href="https://github.com/panvee/SoftSell-Software-License-Marketplace" target="_blank" rel="noopener" data-action-cursor="View repository">Repository</a></div>
       </article>
     </section>
 
@@ -155,19 +156,19 @@
       <h2 id="room-record-title">Record</h2>
       <div class="room-record-entries">
         <div><h3>Salesforce Developer Intern</h3><p>SmartBridge × Salesforce</p><p class="room-record-meta">May to July 2025</p><p>Eight-week Agentblazer Champion program; Apex classes and Lightning Web Components; Object Relationships Superbadge.</p></div>
-        <div><h3>B.Tech, Computer Science &amp; Engineering</h3><p>SRM University, AP</p><p class="room-record-meta">Expected May 2027</p><p>Specialisation in Cybersecurity. CGPA: 7.4/10.</p><a href="/Panvee_Naidu_Resume.pdf" target="_blank" rel="noopener">Read the full résumé</a></div>
+        <div><h3>B.Tech, Computer Science &amp; Engineering</h3><p>SRM University, AP</p><p class="room-record-meta">Expected May 2027</p><p>Specialisation in Cybersecurity. CGPA: 7.4/10.</p><a href="/Panvee_Naidu_Resume.pdf" target="_blank" rel="noopener" data-action-cursor="View résumé">Read the full résumé</a></div>
       </div>
       <div id="room-credentials" class="room-credentials" aria-labelledby="room-credentials-title" data-sc-in>
-        <h3 id="room-credentials-title">Credentials</h3>
+        <h3 id="room-credentials-title">Certificates</h3>
         <ul>
-          <li><a href="/Certs/sap-generative-ai-developer.pdf" target="_blank" rel="noopener"><span>SAP Generative AI Developer</span><span>SAP · 2026</span></a></li>
-          <li><a href="/Certs/salesforce-smartbridge.pdf" target="_blank" rel="noopener"><span>Agentblazer Champion Program</span><span>SmartBridge × Salesforce · 2025</span></a></li>
-          <li><a href="/Certs/google-ai-essentials.pdf" target="_blank" rel="noopener"><span>Google AI Essentials</span><span>Google · 2025</span></a></li>
-          <li><a href="/Certs/meta-genai-frontend.pdf" target="_blank" rel="noopener"><span>GenAI for Front-End Development</span><span>Coursera · 2025</span></a></li>
-          <li><a href="/Certs/meta-intro-frontend.pdf" target="_blank" rel="noopener"><span>Introduction to Front-End Development</span><span>Meta · 2025</span></a></li>
-          <li><a href="/Certs/techgyan-hackathon-data-analytics.jpg" target="_blank" rel="noopener"><span>Data Analytics Hackathon</span><span>Techgyan × IIT Hyderabad · 2025</span></a></li>
-          <li><a href="/Certs/techgyan-data-science-python.jpg" target="_blank" rel="noopener"><span>Data Science with Python</span><span>Techgyan × IIT Hyderabad · 2025</span></a></li>
-          <li><a href="/Certs/techgyan-workshop-data-analytics.jpg" target="_blank" rel="noopener"><span>Data Analytics Workshop</span><span>Techgyan × IIT Hyderabad · 2025</span></a></li>
+          <li><a href="/Certs/sap-generative-ai-developer.pdf" target="_blank" rel="noopener" data-action-cursor="View certificate"><span>SAP Generative AI Developer</span><span>SAP · 2026</span></a></li>
+          <li><a href="/Certs/salesforce-smartbridge.pdf" target="_blank" rel="noopener" data-action-cursor="View certificate"><span>Agentblazer Champion Program</span><span>SmartBridge × Salesforce · 2025</span></a></li>
+          <li><a href="/Certs/google-ai-essentials.pdf" target="_blank" rel="noopener" data-action-cursor="View certificate"><span>Google AI Essentials</span><span>Google · 2025</span></a></li>
+          <li><a href="/Certs/meta-genai-frontend.pdf" target="_blank" rel="noopener" data-action-cursor="View certificate"><span>GenAI for Front-End Development</span><span>Coursera · 2025</span></a></li>
+          <li><a href="/Certs/meta-intro-frontend.pdf" target="_blank" rel="noopener" data-action-cursor="View certificate"><span>Introduction to Front-End Development</span><span>Meta · 2025</span></a></li>
+          <li><a href="/Certs/techgyan-hackathon-data-analytics.jpg" target="_blank" rel="noopener" data-action-cursor="View certificate"><span>Data Analytics Hackathon</span><span>Techgyan × IIT Hyderabad · 2025</span></a></li>
+          <li><a href="/Certs/techgyan-data-science-python.jpg" target="_blank" rel="noopener" data-action-cursor="View certificate"><span>Data Science with Python</span><span>Techgyan × IIT Hyderabad · 2025</span></a></li>
+          <li><a href="/Certs/techgyan-workshop-data-analytics.jpg" target="_blank" rel="noopener" data-action-cursor="View certificate"><span>Data Analytics Workshop</span><span>Techgyan × IIT Hyderabad · 2025</span></a></li>
         </ul>
       </div>
     </section>
@@ -177,8 +178,8 @@
       <div class="room-contact-plate">
         <p class="room-contact-name">Panvee Naidu</p>
         <p>Software engineer. India.<br>Open to software engineering roles.</p>
-        <a class="room-email" href="mailto:panveenaidu5@gmail.com">panveenaidu5@gmail.com</a>
-        <div class="room-contact-links"><a href="/Panvee_Naidu_Resume.pdf" target="_blank" rel="noopener">Résumé</a><a href="https://github.com/panvenaidu" target="_blank" rel="noopener">GitHub</a><a href="https://www.linkedin.com/in/panvee-naidu-8a6430291/" target="_blank" rel="noopener">LinkedIn</a></div>
+        <a class="room-email" href="mailto:panveenaidu5@gmail.com" data-action-cursor="Email">panveenaidu5@gmail.com</a>
+        <div class="room-contact-links"><a href="/Panvee_Naidu_Resume.pdf" target="_blank" rel="noopener" data-action-cursor="View résumé">Résumé</a><a href="https://github.com/panvenaidu" target="_blank" rel="noopener" data-action-cursor="Visit GitHub">GitHub</a><a href="https://www.linkedin.com/in/panvee-naidu-8a6430291/" target="_blank" rel="noopener" data-action-cursor="Visit LinkedIn">LinkedIn</a></div>
       </div>
     </section>
   </main>

@@ -10,7 +10,7 @@
 <meta content="A React and Vite single-page marketing site for a software-licence resale concept: eight modular components, system-aware dark mode, a validated lead capture form and a scripted chat widget." property="og:description"/>
 <meta content="https://panveedev.vercel.app/og.png" property="og:image"/>
 <meta content="website" property="og:type"/>
-<link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23000'/%3E%3Ctext x='32' y='44' font-family='ui-monospace,Menlo,monospace' font-size='30' font-weight='700' fill='%23fff' text-anchor='middle'%3EPN%3C/text%3E%3C/svg%3E" rel="icon" type="image/svg+xml"/>
+<link href="/assets/favicon.svg" rel="icon" type="image/svg+xml"/>
 
 
 <link href="../styles.css" rel="stylesheet"/>
@@ -19,7 +19,7 @@
 
 </head>
 <body class="font-body-md antialiased case-page">
-<a class="case-skip" href="#case-main">Skip to case study</a><header class="case-header"><a href="/#room-systems">← Selected work</a><a class="case-brand" href="/">Panvee Naidu<span>Software engineer</span></a><a href="/#room-contact">Let’s talk <span class="case-external-arrow" aria-hidden="true">↗</span></a></header>
+<a class="case-skip" href="#case-main">Skip to case study</a><header class="case-header"><a href="/#room-systems" data-action-cursor="Back to selected work">← Selected work</a><a class="case-brand" href="/" data-action-cursor="Back to portfolio">Panvee Naidu<span>Software engineer</span></a><a href="/#room-contact" data-action-cursor="Contact">Let’s talk <span class="case-external-arrow" aria-hidden="true">↗</span></a></header>
 
 <main id="case-main" class="max-w-5xl mx-auto px-stack-lg py-section-gap flex flex-col gap-section-gap">
 
@@ -28,7 +28,7 @@
 <h1 class="font-headline-xl-mobile md:font-headline-xl text-headline-xl-mobile md:text-headline-xl text-primary mb-stack-md">SoftSell</h1>
 <p class="font-body-lg text-body-lg text-secondary border-l-2 border-primary pl-stack-md mb-stack-lg max-w-3xl">A single-page marketing site for a software-licence resale concept &ndash; built to see how far a landing page can be pushed on structure, motion and responsiveness without a backend behind it.</p>
 <div class="flex flex-wrap gap-stack-sm">
-<a class="font-label-sm text-label-sm border border-primary px-stack-sm py-2 bg-primary text-on-primary hover:bg-white hover:text-primary transition-colors inline-flex items-center gap-1" href="https://github.com/panvee/SoftSell-Software-License-Marketplace" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px] case-external-arrow" aria-hidden="true">↗</span>Source</a>
+<a class="font-label-sm text-label-sm border border-primary px-stack-sm py-2 bg-primary text-on-primary hover:bg-white hover:text-primary transition-colors inline-flex items-center gap-1" href="https://github.com/panvee/SoftSell-Software-License-Marketplace" rel="noopener noreferrer" target="_blank" data-action-cursor="View repository"><span class="material-symbols-outlined text-[14px] case-external-arrow" aria-hidden="true">↗</span>Source</a>
 </div>
 </section>
 
@@ -172,11 +172,12 @@
 </section>
 
 <section class="border-t-2 border-primary pt-stack-lg flex flex-wrap gap-stack-md justify-between items-center">
-<a class="font-label-md text-label-md text-primary hover:underline inline-flex items-center gap-1" href="/#room-systems"><span class="material-symbols-outlined text-[16px]">←</span>All work</a>
-<div class="flex flex-wrap items-center gap-stack-md"><a class="case-next font-label-md text-label-md text-primary inline-flex items-center gap-2" href="aerochat.html"><span class="case-next-label">Next</span><span class="case-next-name">AeroChat</span><span class="material-symbols-outlined text-[16px] case-next-arrow">→</span></a><a class="font-label-md text-label-md px-stack-lg py-stack-md bg-primary text-on-primary border-2 border-primary hover:bg-white hover:text-primary transition-colors" href="/#room-contact">Get in touch</a></div>
+<a class="font-label-md text-label-md text-primary hover:underline inline-flex items-center gap-1" href="/#room-systems" data-action-cursor="Back to selected work"><span class="material-symbols-outlined text-[16px]">←</span>All work</a>
+<div class="flex flex-wrap items-center gap-stack-md"><a class="case-next font-label-md text-label-md text-primary inline-flex items-center gap-2" href="aerochat.html" data-action-cursor="Read case study"><span class="case-next-label">Next</span><span class="case-next-name">AeroChat</span><span class="material-symbols-outlined text-[16px] case-next-arrow">→</span></a><a class="font-label-md text-label-md px-stack-lg py-stack-md bg-primary text-on-primary border-2 border-primary hover:bg-white hover:text-primary transition-colors" href="/#room-contact" data-action-cursor="Contact">Get in touch</a></div>
 </section>
 
 </main>
 
 
+<script type="module" src="/src/action-cursor.js"></script>
 </body></html>
